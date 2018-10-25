@@ -37,6 +37,7 @@ setting the environment variables `TEST_CASEOFFICER_USERNAME` and `TEST_CASEOFFI
 $ yarn e2e
  ```
 
+If you wish to see the browser running the tests simply set the `TEST_E2E_HEADLESS` environment variable to *false*
 ### Updating the project for your service
 
 You need to make changes everywhere there is a `TODO:` comment to make it relevant to your service:
