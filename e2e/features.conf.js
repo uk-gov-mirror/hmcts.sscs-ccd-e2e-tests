@@ -8,7 +8,7 @@ const path = require('path');
 exports.config = {
 
   baseUrl: serviceConfig.CcdWebUrl,
-  specs: ['./features/*.feature'],
+  specs: ['./features/**/*.feature'],
 
   capabilities: {
     browserName: 'chrome',
@@ -46,7 +46,7 @@ exports.config = {
   frameworkPath: require.resolve('protractor-cucumber-framework'),
 
   cucumberOpts: {
-    require: ['./features/stepDefinitions/**/*.steps.ts'],
+    require: ['./features/step-definitions/**/*.steps.ts'],
     tags: false,
     profile: false,
     'no-source': true
