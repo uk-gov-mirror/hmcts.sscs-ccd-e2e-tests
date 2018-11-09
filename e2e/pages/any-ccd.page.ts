@@ -65,11 +65,19 @@ export class AnyCcdPage extends AnyPage {
 
             } else if ($$('cut-tabs').isPresent()) {
 
-                return await element(by.xpath('//div[normalize-space()="' + fieldLabel + '"]/../..' +
-                    '//td[normalize-space()="' + fieldValue + '"]'))
-                    .isDisplayed();
-            }
+                if ($$('ccd-event-log').isPresent()) {
 
+                    return await element(by.xpath('//span[normalize-space()="' + fieldLabel + '"]/../..' +
+                        '//td[normalize-space()="' + fieldValue + '"]'))
+                        .isDisplayed();
+
+                } else {
+
+                    return await element(by.xpath('//div[normalize-space()="' + fieldLabel + '"]/../..' +
+                        '//td[normalize-space()="' + fieldValue + '"]'))
+                        .isDisplayed();
+                }
+            }
             return false;
         } catch (error) {
             return false;

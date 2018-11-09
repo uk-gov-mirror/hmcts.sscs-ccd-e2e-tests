@@ -1,12 +1,24 @@
 import { by, element } from 'protractor';
 import { AnyCcdPage } from './any-ccd.page';
+import { AnyCcdFormPage } from './any-ccd-form.page';
 import { OrdinalToCardinal } from '../helpers/ordinal-to-cardinal';
+
+const anyCcdFormPage = new AnyCcdFormPage();
 
 export class CaseDetailsPage extends AnyCcdPage {
 
+    async doNextStep(actionItem: string) {
+        const nextStepContainer =
+            await element
+                .all(by.xpath('.//label[@class="form-label" and normalize-space()="Next step"]/ancestor::ccd-event-trigger'))
+                .last();
+
+        await anyCcdFormPage.setFieldValueWithinContainer(nextStepContainer, actionItem);
+    }
+
     async isCollectionItemFieldValueDisplayed(
         collectionLabel: string,
-        collectionItemNumber: string,
+        collectionItemNumber: string | number,
         fieldLabel: string,
         fieldValue: string
     ) {

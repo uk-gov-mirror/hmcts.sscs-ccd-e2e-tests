@@ -22,7 +22,7 @@ export class AnyCcdFormPage extends AnyCcdPage {
 
     async getCollectionItemFieldValues(
         collectionLabel: string,
-        collectionItemNumber: string,
+        collectionItemNumber: string | number,
         fieldLabel: string
     ) {
         const collectionItemContainer =
@@ -41,7 +41,7 @@ export class AnyCcdFormPage extends AnyCcdPage {
 
     async setCollectionItemFieldValue(
         collectionLabel: string,
-        collectionItemNumber: string,
+        collectionItemNumber: string | number,
         fieldLabel: string,
         fieldValue: string
     ) {
@@ -72,7 +72,8 @@ export class AnyCcdFormPage extends AnyCcdPage {
     private async findCollectionContainer(collectionLabel: string) {
 
         return await element
-            .all(by.xpath('//ccd-write-collection-field//h3[normalize-space()="' + collectionLabel + '"]/ancestor::ccd-write-collection-field'))
+            .all(by.xpath('//ccd-write-collection-field//h3[normalize-space()="' + collectionLabel + '" or normalize-space()="' +
+                collectionLabel + ' (Optional)"]/ancestor::ccd-write-collection-field'))
             .first();
     }
 
@@ -110,7 +111,7 @@ export class AnyCcdFormPage extends AnyCcdPage {
         }
     }
 
-    private async setFieldValueWithinContainer(fieldContainer, fieldValue) {
+    async setFieldValueWithinContainer(fieldContainer, fieldValue) {
 
         // the order can be important, for example ccd-write-address-field must be before
         // ccd-write-text-field to allow addresses to be selected from the AddressUK complex type
@@ -176,8 +177,26 @@ export class AnyCcdFormPage extends AnyCcdPage {
                 .element(by.xpath('.//label[normalize-space()="' + fieldValue + '"]/../input'))
                 .click();
 
+        } else if (await fieldContainer.$$('select.ccd-dropdown').isPresent()) {
+
+            await fieldContainer
+                .element(by.xpath('.//option[normalize-space()="' + fieldValue + '"]'))
+                .click();
+
         } else {
             throw 'Unsupported field type';
         }
+    }
+
+    async setCreateCaseFieldValue(
+        fieldLabel: string,
+        fieldValue: string
+    ) {
+        const fieldContainer =
+            await element
+                .all(by.xpath('.//label[@class="form-label" and normalize-space()="' + fieldLabel + '"]/ancestor::ccd-create-case-filters'))
+                .last();
+
+            await this.setFieldValueWithinContainer(fieldContainer, fieldValue)
     }
 }
