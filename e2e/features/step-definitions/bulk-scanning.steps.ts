@@ -61,7 +61,7 @@ Given(/^I have a bulk-scanned document with (?:all mandatory fields)$/, {timeout
     await checkDataItems()
 });
 
-When(/^I choose the next step "(.+)"$/, async function (action) {
+When(/^I choose the next step "(.+)"$/, {timeout: 30 * 1000}, async function (action) {
     switch (action) {
         case 'Create new case from exception':
             await caseDetailsPage.doNextStep(action);
@@ -83,5 +83,5 @@ When(/^I choose the next step "(.+)"$/, async function (action) {
 });
 
 Then(/^the case should be in "(.+)" state$/, async function (state) {
-    await caseDetailsPage.isFieldValueDisplayed('Event', state);
+    await caseDetailsPage.isFieldValueDisplayed('End state', state);
 });
