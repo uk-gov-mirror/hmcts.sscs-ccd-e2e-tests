@@ -20,25 +20,6 @@ export class AnyCcdFormPage extends AnyCcdPage {
             .click();
     }
 
-    async getCollectionItemFieldValues(
-        collectionLabel: string,
-        collectionItemNumber: string | number,
-        fieldLabel: string
-    ) {
-        const collectionItemContainer =
-            await this.findCollectionItemContainer(collectionLabel, collectionItemNumber);
-
-        const fieldContainer =
-            await this.findFieldContainer(collectionItemContainer, fieldLabel);
-
-        if (await fieldContainer.$$('ccd-write-fixed-list-field').isPresent()) {
-
-            return await fieldContainer
-                .all(by.xpath('.//option'))
-                .map(async (option) => (await option.getText()).trim());
-        }
-    }
-
     async setCollectionItemFieldValue(
         collectionLabel: string,
         collectionItemNumber: string | number,
@@ -50,16 +31,6 @@ export class AnyCcdFormPage extends AnyCcdPage {
 
         const fieldContainer =
             await this.findFieldContainer(collectionItemContainer, fieldLabel);
-
-        await this.setFieldValueWithinContainer(fieldContainer, fieldValue);
-    }
-
-    async setFieldValue(
-        fieldLabel: string,
-        fieldValue: string
-    ) {
-        const fieldContainer =
-            await this.findFieldContainer(element, fieldLabel);
 
         await this.setFieldValueWithinContainer(fieldContainer, fieldValue);
     }

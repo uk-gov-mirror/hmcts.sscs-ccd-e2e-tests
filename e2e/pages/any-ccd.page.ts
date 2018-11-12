@@ -26,22 +26,6 @@ export class AnyCcdPage extends AnyPage {
             .click();
     }
 
-    async isFieldDisplayed(fieldLabel: string) {
-
-        try {
-
-            if ($$('cut-tabs').isPresent()) {
-
-                return await element(by.xpath('//div[normalize-space()="' + fieldLabel + '"]/../..//td'))
-                    .isDisplayed();
-            }
-
-            return false;
-        } catch (error) {
-            return false;
-        }
-    }
-
     async isFieldValueDisplayed(
         fieldLabel: string,
         fieldValue: string
@@ -84,47 +68,6 @@ export class AnyCcdPage extends AnyPage {
         }
     }
 
-    async isFieldsetFieldValueDisplayed(
-        fieldsetLabel: string,
-        fieldLabel: string,
-        fieldValue: string
-    ) {
-        try {
-
-            const fieldsetContainer =
-                await element
-                    .all(by.xpath('//dl[@class="complex-panel-title"]//span[normalize-space()="' + fieldsetLabel
-                        + '"]/ancestor::ccd-read-complex-field'))
-                    .first();
-
-            const fieldContainer =
-                await fieldsetContainer
-                    .all(by.xpath('.//th/span[normalize-space()="' + fieldLabel + '"]/../..'))
-                    .first();
-
-            return await fieldContainer
-                .element(by.xpath('.//td/span[normalize-space()="' + fieldValue + '"]'))
-                .isDisplayed();
-
-        } catch (error) {
-            return false;
-        }
-    }
-
-    async linkContains(match: string) {
-
-        try {
-
-            const linkPath = '//*[self::button or self::a][contains(text(), "' + match + '")]';
-
-            return await element(by.xpath(linkPath)).isDisplayed()
-                && await element(by.xpath(linkPath)).isEnabled();
-
-        } catch (error) {
-            return false;
-        }
-    }
-
     async pageHeadingContains(match: string) {
 
         try {
@@ -146,28 +89,10 @@ export class AnyCcdPage extends AnyPage {
         }
     }
 
-    async usernameContains(match: string) {
-
-        try {
-
-            return await element(by.xpath('//*[@id="user-name" and contains(text(), "' + match + '")]'))
-                .isDisplayed();
-
-        } catch (error) {
-            return false;
-        }
-    }
-
     async alertContains(match: string) {
 
         await browser.wait(ExpectedConditions.visibilityOf($('div.alert-message')));
         return (await $('div.alert-message').getText()).includes(match);
-    }
-
-    async notificationContains(match: string) {
-
-        await browser.wait(ExpectedConditions.visibilityOf($('div.notification')));
-        return (await $('div.notification').getText()).includes(match);
     }
 
     async isLoaded() {
