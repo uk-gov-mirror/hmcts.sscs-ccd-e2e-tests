@@ -16,7 +16,7 @@ export class AnyCcdFormPage extends AnyCcdPage {
 
         await collectionContainer
             .all(by.xpath('.//button[normalize-space()="Add new"]'))
-            .first()
+            .last()
             .click();
     }
 
