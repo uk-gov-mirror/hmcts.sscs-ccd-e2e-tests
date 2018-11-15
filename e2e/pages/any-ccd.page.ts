@@ -68,6 +68,13 @@ export class AnyCcdPage extends AnyPage {
         }
     }
 
+    async getFieldValue(fieldLabel: string) {
+        return await element
+            .all(by.xpath('//div[normalize-space()="' + fieldLabel + '"]/../../td'))
+            .first()
+            .getText();
+    }
+
     async pageHeadingContains(match: string) {
 
         try {

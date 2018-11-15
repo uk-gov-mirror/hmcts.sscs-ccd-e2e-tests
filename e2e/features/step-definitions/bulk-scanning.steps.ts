@@ -83,5 +83,10 @@ When(/^I choose the next step "(.+)"$/, {timeout: 30 * 1000}, async function (ac
 });
 
 Then(/^the case should be in "(.+)" state$/, async function (state) {
-    await caseDetailsPage.isFieldValueDisplayed('End state', state);
+    await anyCcdPage.click('Envelope');
+    expect(await anyCcdPage.pageHeadingContains('Envelope meta data')).to.equal(true);
+
+    const caseReference = await anyCcdPage.getFieldValue('Case Reference');
+    await anyCcdPage.get(`/case/SSCS/Benefit/${caseReference}`);
+    expect(await caseDetailsPage.isFieldValueDisplayed('End state', state)).to.equal(true);
 });
