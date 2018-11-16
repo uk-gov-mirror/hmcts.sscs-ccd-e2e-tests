@@ -1,5 +1,5 @@
 {
-  "name": "template-ccd-e2e-tests",
+  "name": "sscs-ccd-e2e-tests",
   "version": "0.1.0",
   "private": true,
   "scripts": {

@@ -8,7 +8,7 @@ const path = require('path');
 exports.config = {
 
   baseUrl: serviceConfig.CcdWebUrl,
-  specs: ['./features/*.feature'],
+  specs: ['./features/**/*.feature'],
 
   capabilities: {
     browserName: 'chrome',
@@ -17,16 +17,17 @@ exports.config = {
         '--disable-dev-shm-usage',
         '--disable-gpu',
         '--no-sandbox',
-        serviceConfig.UseHeadlessBrowser ? '--headless' : '--noop'
+        serviceConfig.UseHeadlessBrowser ? '--headless' : '--noop',
+        serviceConfig.UseHeadlessBrowser ? '--window-size=1920,1080' : '--noop'
       ],
       binary: puppeteer.executablePath()
     },
     acceptInsecureCerts: true,
     maxInstances: 1,
-    proxy: (!serviceConfig.UseProxy) ? {} : {
+    proxy: (!serviceConfig.UseProxy) ? null : {
       proxyType: 'manual',
-      httpProxy: serviceConfig.UseProxy.replace('http://', ''),
-      sslProxy: serviceConfig.UseProxy.replace('http://', '')
+      httpProxy: serviceConfig.ProxyUrl.replace('http://', ''),
+      sslProxy: serviceConfig.ProxyUrl.replace('http://', '')
     },
     loggingPrefs: {
       driver: 'INFO',
@@ -46,7 +47,7 @@ exports.config = {
   frameworkPath: require.resolve('protractor-cucumber-framework'),
 
   cucumberOpts: {
-    require: ['./features/stepDefinitions/**/*.steps.ts'],
+    require: ['./features/step-definitions/**/*.steps.ts'],
     tags: false,
     profile: false,
     'no-source': true
