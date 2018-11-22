@@ -31,10 +31,10 @@ $ yarn install
 ### Running the tests
 
 The tests will need to be given valid credentials for a Case Worker, supplied by
-setting the environment variables `TEST_CASEOFFICER_USERNAME` and `TEST_CASEOFFICER_PASSWORD` and then executing the command
+setting the environment variables `TEST_CASEOFFICER_USERNAME` and `TEST_CASEOFFICER_PASSWORD` and then executing the `e2e` tests, e.g.
 
  ```bash
-$ yarn e2e
+$ TEST_CASEOFFICER_USERNAME=? TEST_CASEOFFICER_PASSWORD=? yarn e2e
  ```
 
 If you wish to see the browser running the tests simply set the `TEST_E2E_HEADLESS` environment variable to *false*
