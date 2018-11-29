@@ -47,7 +47,7 @@ exports.config = {
   frameworkPath: require.resolve('protractor-cucumber-framework'),
 
   cucumberOpts: {
-    require: ['./features/step-definitions/**/*.steps.ts'],
+    require: ['./features/step_definitions/**/*.steps.ts'],
     tags: false,
     profile: false,
     'no-source': true

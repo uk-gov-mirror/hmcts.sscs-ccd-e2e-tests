@@ -2,7 +2,7 @@ module.exports = {
   formData : [
     { question: 'contains_mrn', answer: 'true' },
     { question: 'mrn_date', answer: '09/11/2018' },
-    { question: 'benefit_type_description', answer: 'Employment Support Allowance' },
+    { question: 'benefit_type_description', answer: 'ESA' },
     { question: 'person1_title', answer: 'Mr' },
     { question: 'person1_first_name', answer: 'John' },
     { question: 'person1_last_name', answer: 'Smith' },
@@ -39,7 +39,7 @@ module.exports = {
     { question: 'appeal_late_reason', answer: 'details about the reason' },
     { question: 'is_hearing_type_oral', answer: 'true' },
     { question: 'is_hearing_type_paper', answer: 'false' },
-    { question: 'hearing_options_exclude_dates', answer: '2050-11-14' },
+    { question: 'hearing_options_exclude_dates', answer: '01/01/2050' },
     { question: 'hearing_support_arrangements', answer: 'Wheelchair access' },
     { question: 'hearing_options_hearing_loop', answer: 'Yes' },
     { question: 'hearing_options_accessible_hearing_rooms', answer: 'No' },
