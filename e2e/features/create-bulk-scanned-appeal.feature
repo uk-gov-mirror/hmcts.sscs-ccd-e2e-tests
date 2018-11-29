@@ -1,4 +1,4 @@
-Feature: Create an bulk-scanned appeal
+Feature: Create a bulk-scanned appeal
 
   Scenario: Should end up in "Appeal Created" state when ALL fields are present
     Given I am signed in as a Case Officer

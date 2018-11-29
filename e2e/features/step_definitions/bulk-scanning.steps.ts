@@ -40,7 +40,7 @@ async function checkDataItems() {
     }
 }
 
-Given(/^I have a bulk-scanned document with (?:all fields)$/, {timeout: 120 * 1000}, async function () {
+Given(/^I have a bulk-scanned document with (?:all fields)$/, {timeout: 240 * 1000}, async function () {
     await anyCcdPage.click('Create new case');
     expect(await anyCcdPage.pageHeadingContains('Create Case')).to.equal(true);
     await anyCcdFormPage.setCreateCaseFieldValue('Case type', 'SSCS Bulkscanning v1.0.1_AAT');
