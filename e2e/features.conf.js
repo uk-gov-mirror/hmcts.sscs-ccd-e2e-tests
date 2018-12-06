@@ -9,7 +9,7 @@ exports.config = {
 
   baseUrl: serviceConfig.CcdWebUrl,
   specs: ['./features/**/*.feature'],
-
+  allScriptsTimeout: 60000,
   capabilities: {
     browserName: 'chrome',
     chromeOptions: {
@@ -47,7 +47,10 @@ exports.config = {
   frameworkPath: require.resolve('protractor-cucumber-framework'),
 
   cucumberOpts: {
-    require: ['./features/step_definitions/**/*.steps.ts'],
+    require: [
+      './cucumber.conf.js',
+      './features/step_definitions/**/*.steps.ts'
+    ],
     tags: false,
     profile: false,
     'no-source': true
