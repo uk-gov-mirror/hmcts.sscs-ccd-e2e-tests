@@ -5,7 +5,7 @@ import { Given } from 'cucumber';
 const anyCcdPage = new AnyCcdPage();
 const authenticationFlow = new AuthenticationFlow();
 
-Given(/^I am signed in as a Case Officer$/, {timeout: 30 * 1000}, async function () {
+Given(/^I am signed in as a Case Officer$/, async function () {
     await authenticationFlow.signInAsCaseOfficer();
     await anyCcdPage.waitUntilLoaded();
 });
