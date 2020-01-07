@@ -41,9 +41,8 @@ export class AnyCcdFormPage extends AnyCcdPage {
     }
 
     private async findCollectionContainer(collectionLabel: string) {
-
         return await element
-            .all(by.xpath('//ccd-write-collection-field//h3[normalize-space()="' + collectionLabel + '" or normalize-space()="' +
+            .all(by.xpath('//ccd-write-collection-field//h2[normalize-space()="' + collectionLabel + '" or normalize-space()="' +
                 collectionLabel + ' (Optional)"]/ancestor::ccd-write-collection-field'))
             .first();
     }

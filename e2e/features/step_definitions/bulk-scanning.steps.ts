@@ -43,7 +43,7 @@ async function checkDataItems() {
 Given(/^I have a bulk-scanned document with (?:all fields)$/, {timeout: 600 * 1000}, async function () {
     await anyCcdPage.click('Create new case');
     expect(await anyCcdPage.pageHeadingContains('Create Case')).to.equal(true);
-    await anyCcdFormPage.setCreateCaseFieldValue('Case type', 'SSCS Bulkscanning v1.0.1_AAT');
+    await anyCcdFormPage.setCreateCaseFieldValue('Case type', 'SSCS Bulkscanning');
     await anyCcdPage.click('Start');
     expect(await anyCcdPage.pageHeadingContains('Envelope meta data')).to.equal(true);
 
@@ -79,6 +79,7 @@ When(/^I choose the next step "(.+)"$/, async function (action) {
     expect(await anyCcdPage.pageHeadingContains('Create new case from exception')).to.equal(true);
 
     await anyCcdPage.click('Submit');
+
     expect(await anyCcdPage.pageHeadingContains('History')).to.equal(true);
 });
 
@@ -88,5 +89,8 @@ Then(/^the case should be in "(.+)" state$/, async function (state) {
 
     const caseReference = await anyCcdPage.getFieldValue('Case Reference');
     await anyCcdPage.get(`/case/SSCS/Benefit/${caseReference}`);
+
+    await anyCcdPage.click('History');
     expect(await caseDetailsPage.isFieldValueDisplayed('End state', state)).to.equal(true);
+
 });
