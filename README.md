@@ -6,7 +6,7 @@
 This service is to help people to run End2End Journey Tests for their service,
 without needing to start from scratch.
 
-The repo consists of 2 Cucumber test scenarios for logging into CCD and opening a case.
+The repo consists of Cucumber test scenarios for testing different cases.
 These use Protractor to interact with a Chrome browser (via Puppeteer), which runs without
 showing the browser (i.e. headless) by default.
 
@@ -45,6 +45,7 @@ You need to make changes everywhere there is a `TODO:` comment to make it releva
 * Jenkinsfile_nightly
 * service.conf.js
 
+i.e. changing running enviroment from local to demo or to aat. To run it locally, you need to set docker and other relevant services. Please read ...... (COMIN SOON) .... to set up the local enviroment.
 
 ## Other tasks
 

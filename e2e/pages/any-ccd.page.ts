@@ -33,7 +33,6 @@ export class AnyCcdPage extends AnyPage {
         try {
 
             if (await $$('ccd-create-case-filters').isPresent()) {
-
                 const fieldLabelElement = await element(by.xpath('//label[normalize-space()="' + fieldLabel + '"]'));
                 const fieldElement = await element(by.css('#' + (await fieldLabelElement.getAttribute('for'))));
                 const fieldElementTagName = await fieldElement.getTagName();
@@ -48,15 +47,12 @@ export class AnyCcdPage extends AnyPage {
                 }
 
             } else if ($$('cut-tabs').isPresent()) {
-
                 if ($$('ccd-event-log').isPresent()) {
-
                     return await element(by.xpath('//span[normalize-space()="' + fieldLabel + '"]/../..' +
                         '//td[normalize-space()="' + fieldValue + '"]'))
                         .isDisplayed();
 
                 } else {
-
                     return await element(by.xpath('//div[normalize-space()="' + fieldLabel + '"]/../..' +
                         '//td[normalize-space()="' + fieldValue + '"]'))
                         .isDisplayed();
@@ -76,7 +72,6 @@ export class AnyCcdPage extends AnyPage {
     }
 
     async pageHeadingContains(match: string) {
-
         try {
 
             await browser.wait(
@@ -109,6 +104,11 @@ export class AnyCcdPage extends AnyPage {
 
     async waitUntilLoaded() {
         await browser.waitForAngularEnabled(true);
+        await browser.waitForAngular();
+    }
+
+    async reloadPage() {
+        await browser.navigate().refresh();
         await browser.waitForAngular();
     }
 }
