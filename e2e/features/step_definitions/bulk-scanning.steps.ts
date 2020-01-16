@@ -1,6 +1,7 @@
 import { AnyCcdPage } from '../../pages/any-ccd.page';
 import { AnyCcdFormPage } from '../../pages/any-ccd-form.page';
 import { CaseDetailsPage } from '../../pages/case-details.page';
+import { NIGenerator } from '../../helpers/ni-generator';
 import { Given, Then, When } from 'cucumber';
 import { expect } from 'chai';
 
@@ -8,9 +9,16 @@ const anyCcdPage = new AnyCcdPage();
 const anyCcdFormPage = new AnyCcdFormPage();
 const caseDetailsPage = new CaseDetailsPage();
 const {formData} = require('../data/scanned-case');
+const niGenerator = new NIGenerator();
 
 async function addDataItems() {
     for (let i = 0; i < formData.length; i++) {
+        if (formData[i].question === 'person1_nino' ) {
+            formData[i].answer = niGenerator.myNIYearPrefix() + niGenerator.myNIMonthPrefix() + niGenerator.myNINumberFromDay() + 'A';
+        }
+        if (formData[i].question === 'person2_nino' ) {
+            formData[i].answer = niGenerator.myNIYearPrefix() + niGenerator.myNIMonthPrefix() + niGenerator.myNINumberFromDay() + 'B';
+        }
         await anyCcdFormPage.addNewCollectionItem('Form OCR Data (Optional)');
         await anyCcdFormPage.setCollectionItemFieldValue(
             'Form OCR Data',
@@ -91,6 +99,9 @@ Then(/^the case should be in "(.+)" state$/, async function (state) {
     await anyCcdPage.get(`/case/SSCS/Benefit/${caseReference}`);
 
     await anyCcdPage.click('History');
+    for (let i = 0; i < 500000; i++) {
+    console.log(i);
+}
     expect(await caseDetailsPage.isFieldValueDisplayed('End state', state)).to.equal(true);
 
 });

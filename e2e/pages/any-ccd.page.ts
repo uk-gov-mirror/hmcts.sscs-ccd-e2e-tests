@@ -26,6 +26,16 @@ export class AnyCcdPage extends AnyPage {
             .click();
     }
 
+    async clickElementById(elementId: string) {
+        await element(by.id(elementId)).click();
+    }
+
+    async chooseOptionByElementId(elementId: string, option: string) {
+        await element(by.id(elementId))
+        .element(by.xpath('.//option[normalize-space()="' + option + '"]'))
+        .click();
+    }
+
     async isFieldValueDisplayed(
         fieldLabel: string,
         fieldValue: string

@@ -9,13 +9,17 @@ const caseDetailsPage = new CaseDetailsPage();
 const dwpresponse = new DwpResponsePage();
 
 When(/^I choose "(.+)"$/, async function (action) {
-    await anyCcdPage.reloadPage();
+    if (action === 'Upload response') {
+        await anyCcdPage.reloadPage();
+    }
     await caseDetailsPage.doNextStep(action);
 
     await anyCcdPage.click('Go');
-    expect(await anyCcdPage.pageHeadingContains('Upload response')).to.equal(true);
+    expect(await anyCcdPage.pageHeadingContains(action)).to.equal(true);
+});
 
-    await dwpresponse.uploadResponse();
+When(/^I upload contains further information "(.+)"$/, async function (action) {
+    await dwpresponse.uploadResponse(action);
 
     await anyCcdPage.click('Continue');
     expect(await anyCcdPage.pageHeadingContains('Upload response')).to.equal(true);
