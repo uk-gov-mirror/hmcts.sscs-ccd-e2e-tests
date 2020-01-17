@@ -99,9 +99,6 @@ Then(/^the case should be in "(.+)" state$/, async function (state) {
     await anyCcdPage.get(`/case/SSCS/Benefit/${caseReference}`);
 
     await anyCcdPage.click('History');
-    for (let i = 0; i < 500000; i++) {
-    console.log(i);
-}
     expect(await caseDetailsPage.isFieldValueDisplayed('End state', state)).to.equal(true);
 
 });
