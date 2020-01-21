@@ -10,8 +10,8 @@ export class NIGenerator {
         if (mm < 10) { sMinute = '0' + mm; } else { sMinute = mm; }
         return '' + sDay + sHour + sMinute;
     }
-        //NiNo validation : Neither of the first two letters can be D, F, I, Q, U or V. 
-        //The second letter also cannot be O. The prefixes BG, GB, NK, KN, TN, NT and ZZ are not allocated
+        // NiNo validation : Neither of the first two letters can be D, F, I, Q, U or V.
+        // The second letter also cannot be O. The prefixes BG, GB, NK, KN, TN, NT and ZZ are not allocated
         // Letters to avoid - B, D, F, G, I, K, N, O, Q, T, U, V, Z
     myNIMonthPrefix() {
         let d = new Date();
