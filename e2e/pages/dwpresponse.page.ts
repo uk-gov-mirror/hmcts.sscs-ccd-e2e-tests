@@ -18,7 +18,6 @@ export class DwpResponsePage extends AnyPage {
         } else {
             await anyCcdPage.clickElementById('dwpFurtherInfo-No');
         }
-
         anyCcdPage.chooseOptionByElementId('dwpState', 'Response submitted (DWP)');
     }
 

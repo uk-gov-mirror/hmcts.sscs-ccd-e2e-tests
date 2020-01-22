@@ -3,6 +3,7 @@ import { CaseDetailsPage } from '../../pages/case-details.page';
 import { Then, When } from 'cucumber';
 import { expect } from 'chai';
 import { DwpResponsePage } from '../../pages/dwpresponse.page';
+import { browser } from 'protractor';
 
 const anyCcdPage = new AnyCcdPage();
 const caseDetailsPage = new CaseDetailsPage();
@@ -30,4 +31,5 @@ When(/^I upload contains further information "(.+)"$/, async function (action) {
 Then(/^the case should end "(.+)" state$/, async function (state) {
     await anyCcdPage.click('History');
     expect(await caseDetailsPage.isFieldValueDisplayed('End state', state)).to.equal(true);
+    await browser.sleep(500);
 });

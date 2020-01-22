@@ -16,7 +16,9 @@ exports.config = {
       args: [
         '--disable-dev-shm-usage',
         '--disable-gpu',
-        '--no-sandbox'
+        '--no-sandbox',
+        serviceConfig.UseHeadlessBrowser ? '--headless' : '--noop',
+        serviceConfig.UseHeadlessBrowser ? '--window-size=1920,1080' : '--noop'
       ],
       binary: puppeteer.executablePath()
     },

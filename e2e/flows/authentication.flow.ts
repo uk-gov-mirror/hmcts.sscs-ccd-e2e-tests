@@ -22,4 +22,23 @@ export class AuthenticationFlow {
         await browser.get(serviceConfig.CcdGatewayUrl + '/logout');
         await browser.get(serviceConfig.CcdWebUrl + '/');
     }
+
+    async signInAsDWPResponseWriter() {
+        await this.signOut();
+        await this.idamSignInPage.waitUntilLoaded();
+        await this.idamSignInPage.signIn(
+            serviceConfig.TestDWPResponseWriterUserName,
+            serviceConfig.TestDWPResponseWriterPassword
+        );
+    }
+
+    async signInAsClerk() {
+        await this.signOut();
+        await this.idamSignInPage.waitUntilLoaded();
+        await this.idamSignInPage.signIn(
+            serviceConfig.TestClerkUserName,
+            serviceConfig.TestClerkPassword
+        );
+    }
+
 }
