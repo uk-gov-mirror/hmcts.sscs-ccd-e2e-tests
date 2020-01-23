@@ -10,6 +10,7 @@ exports.config = {
   baseUrl: serviceConfig.CcdWebUrl,
   specs: ['./features/**/*.feature'],
   allScriptsTimeout: 120000,
+  getPageTimeout: 120000,
   capabilities: {
     browserName: 'chrome',
     chromeOptions: {
