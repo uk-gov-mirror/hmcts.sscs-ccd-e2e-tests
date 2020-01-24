@@ -41,4 +41,12 @@ export class AuthenticationFlow {
         );
     }
 
+    async signInAsJudge() {
+        await this.signOut();
+        await this.idamSignInPage.waitUntilLoaded();
+        await this.idamSignInPage.signIn(
+            serviceConfig.TestJudgeUserName,
+            serviceConfig.TestJudgePassword
+        );
+    }
 }

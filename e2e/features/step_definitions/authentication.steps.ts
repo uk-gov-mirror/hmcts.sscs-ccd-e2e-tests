@@ -38,3 +38,12 @@ Given(/^I switch to be a Case Officer$/, async function () {
     await anyCcdPage.waitUntilLoaded();
     await anyCcdPage.get(currentUrl);
 });
+
+Given(/^I switch to be a Judge$/, async function () {
+    await browser.sleep(100);
+    const currentUrl = await browser.driver.getCurrentUrl();
+    await authenticationFlow.signInAsJudge();
+    await browser.sleep(100);
+    await anyCcdPage.waitUntilLoaded();
+    await anyCcdPage.get(currentUrl);
+});

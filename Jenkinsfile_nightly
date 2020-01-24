@@ -4,8 +4,9 @@ properties([
         pipelineTriggers([cron('H 22 * * *')]),
         parameters([
                 string(name: 'URL_TO_TEST', defaultValue: 'https://www-ccd.aat.platform.hmcts.net/list/case?jurisdiction=sscs', description: 'The URL you want to run these tests against'),
-                string(name: 'CCD_USERNAME', defaultValue: '', description: 'The CCD Username you want to run these tests with'),
-                string(name: 'CCD_PASSWORD', defaultValue: '', description: 'The CCD Password you want to run these tests with')
+                string(name: 'CCD_GATEWAY_URL', defaultValue: 'https://gateway-ccd.aat.platform.hmcts.net', description: 'The CCD Gateway URL these tests will need to run'),
+                string(name: 'NUM_TESTS_IN_PARALLEL', defaultValue: '1', description: 'The number of tests to run in parallel'),
+                string(name: 'NIGHTLY_TAG', defaultValue: '--cucumberOpts.tags=@nightly-test', description: 'Tag for nightly build')
         ])
 ])
 
@@ -14,10 +15,35 @@ properties([
 def product = "sscs"
 def component = "ccd-e2e-tests"
 
+def secrets = [
+    'sscs-${env}': [
+
+        secret('test-e2e-caseofficer-username', 'TEST_CASEOFFICER_USERNAME'),
+        secret('test-e2e-caseofficer-password', 'TEST_CASEOFFICER_PASSWORD')
+
+    ]
+]
+
+static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
+    [$class     : 'AzureKeyVaultSecret',
+     secretType : 'Secret',
+     name       : secretName,
+     version    : '',
+     envVariable: envVar
+    ]
+}
+
 withNightlyPipeline("nodejs", product, component) {
+
+    loadVaultSecrets(secrets)
+
     env.TEST_E2E_URL_WEB = params.URL_TO_TEST
-    env.TEST_CASEOFFICER_USERNAME = params.CCD_USERNAME
-    env.TEST_CASEOFFICER_PASSWORD = params.CCD_PASSWORD
+    env.TEST_E2E_URL_GATEWAY = params.CCD_GATEWAY_URL
+    env.TEST_E2E_NUM_BROWSERS = params.NUM_TESTS_IN_PARALLEL
+    env.TEST_E2E_WAIT_FOR_ANGULAR = 'false'
+    env.TEST_E2E_FAIL_FAST = 'false'
+    env.TEST_E2E_ANNOTATION = params.NIGHTLY_TAG
+ 
 
     enableFullFunctionalTest()
 
