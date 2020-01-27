@@ -9,7 +9,10 @@ export class AuthenticationFlow {
 
     async signInAsCaseOfficer() {
         await this.signOut();
-        // await this.idamSignInPage.waitUntilLoaded();
+        await browser.get('https://www-ccd.aat.platform.hmcts.net/list/case?jurisdiction=sscs/');
+        console.log('signout and browser url: ' + await browser.getCurrentUrl());
+        console.log('signout and url: ' + await browser.driver.getCurrentUrl());
+        await this.idamSignInPage.waitUntilLoaded();
         await this.idamSignInPage.signIn(
             serviceConfig.TestCaseOfficerUserName,
             serviceConfig.TestCaseOfficerPassword
