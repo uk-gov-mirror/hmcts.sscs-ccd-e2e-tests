@@ -1,6 +1,6 @@
 
 export enum Wait {
-    short = 1000,
-    normal = 10000,
-    long = 60000
+    short = 10000,
+    normal = 100000,
+    long = 600000
 }
