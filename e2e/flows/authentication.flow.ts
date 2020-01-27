@@ -20,7 +20,9 @@ export class AuthenticationFlow {
         await browser.waitForAngularEnabled(false);
         await browser.driver.manage().deleteAllCookies();
         await browser.get(serviceConfig.CcdGatewayUrl + '/logout');
-        await browser.get(serviceConfig.CcdWebUrl + '/');
+        // await browser.get(serviceConfig.CcdWebUrl + '/');
+        console.log('ccd url:' + serviceConfig.CcdGatewayUrl);
+        await browser.get('https://www-ccd.aat.platform.hmcts.net/list/case?jurisdiction=sscs/');
     }
 
     async signInAsDWPResponseWriter() {
