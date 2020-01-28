@@ -9,7 +9,7 @@ export class AuthenticationFlow {
 
     async signInAsCaseOfficer() {
         await this.signOut();
-        await browser.get('https://www-ccd.aat.platform.hmcts.net/list/case?jurisdiction=sscs/');
+        await browser.get('https://www-ccd.aat.platform.hmcts.net');
         console.log('signout and browser url: ' + await browser.getCurrentUrl());
         console.log('signout and url: ' + await browser.driver.getCurrentUrl());
         await this.idamSignInPage.waitUntilLoaded();
@@ -25,7 +25,7 @@ export class AuthenticationFlow {
         await browser.get(serviceConfig.CcdGatewayUrl + '/logout');
         // await browser.get(serviceConfig.CcdWebUrl + '/');
         console.log('ccd url:' + serviceConfig.CcdGatewayUrl);
-        await browser.get('https://www-ccd.aat.platform.hmcts.net/list/case?jurisdiction=sscs/');
+        await browser.get('https://www-ccd.aat.platform.hmcts.net');
     }
 
     async signInAsDWPResponseWriter() {
