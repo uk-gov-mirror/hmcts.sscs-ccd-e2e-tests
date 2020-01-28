@@ -9,9 +9,7 @@ export class AuthenticationFlow {
 
     async signInAsCaseOfficer() {
         await this.signOut();
-        console.log('signout and browser url: ' + browser.getCurrentUrl());
         await this.idamSignInPage.waitUntilLoaded();
-        console.log('before signIn url: ' + browser.getCurrentUrl());
         await this.idamSignInPage.signIn(
             serviceConfig.TestCaseOfficerUserName,
             serviceConfig.TestCaseOfficerPassword
@@ -23,7 +21,6 @@ export class AuthenticationFlow {
         await browser.driver.manage().deleteAllCookies();
         await browser.get(serviceConfig.CcdGatewayUrl + '/logout');
         await browser.get(serviceConfig.CcdWebUrl + '/');
-        console.log('ccd url:' + serviceConfig.CcdWebUrl);
         await this.idamSignInPage.waitUntilLoaded();
     }
 
