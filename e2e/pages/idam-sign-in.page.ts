@@ -15,12 +15,9 @@ export class IdamSignInPage extends AnyPage {
         emailAddress: string,
         password: string
     ) {
-        console.log('signIn with url: ' + browser.driver.getCurrentUrl());
         await this.waitUntilLoaded();
-        console.log('signIn before replace: ' + browser.driver.getCurrentUrl());
         await this.formFiller.replaceText($(this.username), emailAddress);
         await this.formFiller.replaceText($(this.password), password);
-        console.log('signIn after replace: ' + browser.driver.getCurrentUrl());
         await $(this.signInButton).click();
     }
 
