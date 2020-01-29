@@ -14,6 +14,6 @@ module.exports = {
   FailFast: process.env.TEST_E2E_FAIL_FAST !== 'false',
 
 
-  NightlyTag: process.env.TEST_E2E_ANNOTATION || '--cucumberOpts.tags=@nightly-test'
+  NightlyTag: process.env.TEST_E2E_ANNOTATION || ''
 
 };
