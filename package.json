@@ -6,7 +6,7 @@
     "postinstall": "webdriver-manager update",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "e2e": "yarn test:fullfunctional",
-    "test:fullfunctional": "protractor ./e2e/features.conf.js --cucumberOpts.tags='@nightly-test'",
+    "test:fullfunctional": "protractor ./e2e/features.conf.js --cucumberOpts.tags=@nightly-test",
     "test:nsp": "nsp check"
   },
   "dependencies": {
