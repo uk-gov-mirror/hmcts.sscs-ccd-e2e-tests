@@ -56,6 +56,7 @@ module.exports = {
 
 function getTodaysDate() {
   var d = new Date();
-  var todaysDate =  d.getDate() + "/" + d.getUTCMonth()+1 + "/" + d.getUTCFullYear();
+  var month = 1 + d.getUTCMonth();
+  var todaysDate =  d.getDate() + "/" + month + "/" + d.getUTCFullYear();
   return todaysDate;
 }
