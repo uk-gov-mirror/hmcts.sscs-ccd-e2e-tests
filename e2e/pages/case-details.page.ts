@@ -1,4 +1,4 @@
-import { by, element } from 'protractor';
+import { by, element, browser } from 'protractor';
 import { AnyCcdPage } from './any-ccd.page';
 import { AnyCcdFormPage } from './any-ccd-form.page';
 import { OrdinalToCardinal } from '../helpers/ordinal-to-cardinal';
@@ -49,6 +49,29 @@ export class CaseDetailsPage extends AnyCcdPage {
         } catch (error) {
             return false;
         }
+    }
+
+    async addEnvelopeDataItems(journeyClassification : string, poBox : string, poBoxJurisdiction : string){
+        element(by.id('journeyClassification')).sendKeys(journeyClassification)
+        element(by.id('poBox')).sendKeys(poBox)
+        element(by.id('poBoxJurisdiction')).sendKeys(poBoxJurisdiction)
+    }
+    
+    async addDateItems(dateType : String){
+        browser.driver.sleep(100);
+        const today = new Date();
+        element(by.id(dateType+'-day')).sendKeys(today.getDay())
+        element(by.id(dateType+'-month')).sendKeys(today.getMonth())
+        element(by.id(dateType+'-year')).sendKeys(today.getFullYear() - 10)
+    
+        element(by.id(dateType+'-hour')).sendKeys(today.getHours())
+        element(by.id(dateType+'-minute')).sendKeys(today.getMinutes())
+        element(by.id(dateType+'-second')).sendKeys(today.getSeconds())
+        browser.driver.sleep(100);
+    }
+
+    async addFormType(formType : string){
+        element(by.id('formType')).sendKeys(formType); 
     }
 
     private async findCollectionContainer(collectionLabel: string) {

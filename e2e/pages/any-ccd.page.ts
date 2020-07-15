@@ -121,4 +121,8 @@ export class AnyCcdPage extends AnyPage {
         await browser.navigate().refresh();
         await browser.waitForAngular();
     }
+
+    async selectIssueCode(){
+        element(by.id('issueCode')).element(by.xpath('//*[@id="issueCode"]/option[2]')).click();
+    }
 }
