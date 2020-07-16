@@ -5,7 +5,6 @@ import { NIGenerator } from '../../helpers/ni-generator';
 import { Given, Then, When } from 'cucumber';
 import { expect } from 'chai';
 
-
 const anyCcdPage = new AnyCcdPage();
 const anyCcdFormPage = new AnyCcdFormPage();
 const caseDetailsPage = new CaseDetailsPage();
@@ -20,7 +19,7 @@ async function addDataItems() {
         if (formData[i].question === 'person2_nino' ) {
             formData[i].answer = niGenerator.myNIYearPrefix() + niGenerator.myNIMonthPrefix() + niGenerator.myNINumberFromDay() + 'B';
         }
-      
+
         await anyCcdFormPage.addNewCollectionItem('Form OCR Data (Optional)');
         await anyCcdFormPage.setCollectionItemFieldValue(
             'Form OCR Data',
@@ -35,7 +34,7 @@ async function addDataItems() {
             formData[i].answer
         );
     }
-   
+
 }
 
 async function checkDataItems() {
@@ -58,7 +57,7 @@ Given(/^I have a bulk-scanned document with (?:all fields)$/, {timeout: 600 * 10
     await anyCcdPage.click('Start');
     expect(await anyCcdPage.pageHeadingContains('Envelope meta data')).to.equal(true);
 
-    await caseDetailsPage.addEnvelopeDataItems('NEW_APPLICATION','123456','test_po-box-jurisdiction');
+    await caseDetailsPage.addEnvelopeDataItems('NEW_APPLICATION', '123456', 'test_po-box-jurisdiction');
     await caseDetailsPage.addDateItems('deliveryDate');
     await caseDetailsPage.addDateItems('openingDate');
 
