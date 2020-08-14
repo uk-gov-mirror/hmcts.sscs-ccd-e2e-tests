@@ -51,10 +51,11 @@ export class CaseDetailsPage extends AnyCcdPage {
         }
     }
 
-    async addEnvelopeDataItems(journeyClassification: string, poBox: string, poBoxJurisdiction: string) {
+    async addEnvelopeDataItems(journeyClassification: string, poBox: string, poBoxJurisdiction: string, envelopeId: string) {
         element(by.id('journeyClassification')).sendKeys(journeyClassification)
         element(by.id('poBox')).sendKeys(poBox)
         element(by.id('poBoxJurisdiction')).sendKeys(poBoxJurisdiction)
+        element(by.id('envelopeId')).sendKeys(envelopeId)
     }
 
     async addDateItems(dateType: String) {
