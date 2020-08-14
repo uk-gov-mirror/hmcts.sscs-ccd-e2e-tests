@@ -57,7 +57,7 @@ Given(/^I have a bulk-scanned document with (?:all fields)$/, {timeout: 600 * 10
     await anyCcdPage.click('Start');
     expect(await anyCcdPage.pageHeadingContains('Envelope meta data')).to.equal(true);
 
-    await caseDetailsPage.addEnvelopeDataItems('NEW_APPLICATION', '123456', 'test_po-box-jurisdiction','test_envelope');
+    await caseDetailsPage.addEnvelopeDataItems('NEW_APPLICATION', '123456', 'test_po-box-jurisdiction', 'test_envelope');
     await caseDetailsPage.addDateItems('deliveryDate');
     await caseDetailsPage.addDateItems('openingDate');
 
