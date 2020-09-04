@@ -130,4 +130,9 @@ export class AnyCcdPage extends AnyPage {
         element(by.id('elementsDisputedGeneral_0_issueCode'))
         .element(by.xpath('//*[@id="elementsDisputedGeneral_0_issueCode"]/option[2]')).click();
     }
+
+    async eventsPresentInHistory(linkText: string) {
+        const linkPath = '//*[self::button or self::a][normalize-space()="' + linkText + '"]';
+        return await element(by.xpath(linkPath)).isPresent();
+    }
 }

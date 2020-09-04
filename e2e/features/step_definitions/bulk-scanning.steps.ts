@@ -4,6 +4,7 @@ import { CaseDetailsPage } from '../../pages/case-details.page';
 import { NIGenerator } from '../../helpers/ni-generator';
 import { Given, Then, When } from 'cucumber';
 import { expect } from 'chai';
+import { browser } from 'protractor';
 
 const anyCcdPage = new AnyCcdPage();
 const anyCcdFormPage = new AnyCcdFormPage();
@@ -81,6 +82,9 @@ When(/^I choose the next step "(.+)"$/, async function (action) {
         case 'Create new case from exception':
             await caseDetailsPage.doNextStep(action);
             break;
+        case 'Create a bundle':
+            await caseDetailsPage.doNextStep(action);
+            break;
         default:
             throw new Error(
                 `Do not understand action "${action}"`
@@ -90,9 +94,10 @@ When(/^I choose the next step "(.+)"$/, async function (action) {
     await anyCcdPage.click('Go');
     expect(await anyCcdPage.pageHeadingContains(action)).to.equal(true);
 
-    await anyCcdPage.click('Continue');
-    expect(await anyCcdPage.pageHeadingContains('Create new case from exception')).to.equal(true);
-
+    if(action == "Create new case from exception") {
+        await anyCcdPage.click('Continue');
+        expect(await anyCcdPage.pageHeadingContains('Create new case from exception')).to.equal(true);
+    }
     await anyCcdPage.click('Submit');
 
     expect(await anyCcdPage.pageHeadingContains('History')).to.equal(true);
@@ -109,4 +114,18 @@ Then(/^the case should be in "(.+)" state$/, async function (state) {
     console.log('caseReference :' + caseReference);
     expect(await caseDetailsPage.isFieldValueDisplayed('End state', state)).to.equal(true);
 
+});
+
+Then(/^the bundles should be successfully listed in "(.+)" tab$/, async function(tabName){
+    await caseDetailsPage.reloadPage();
+    await anyCcdPage.click(tabName);
+    expect(await caseDetailsPage.eventsPresentInHistory("Stitching bundle complete")).to.equal(true);
+    expect(await caseDetailsPage.eventsPresentInHistory("Create a bundle")).to.equal(true);
+    await browser.sleep(500);
+});
+
+Then(/^the case bundle details should be listed in "(.+)" tab$/, async function(tabName){
+    await anyCcdPage.click(tabName);
+    expect(await caseDetailsPage.isFieldValueDisplayed('Stitch status', 'DONE')).to.equal(true);
+    expect(await caseDetailsPage.isFieldValueDisplayed('Config used for bundle', 'SSCS Bundle')).to.equal(true);
 });
