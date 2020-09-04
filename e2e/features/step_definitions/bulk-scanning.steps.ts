@@ -94,7 +94,7 @@ When(/^I choose the next step "(.+)"$/, async function (action) {
     await anyCcdPage.click('Go');
     expect(await anyCcdPage.pageHeadingContains(action)).to.equal(true);
 
-    if(action == "Create new case from exception") {
+    if (action === 'Create new case from exception') {
         await anyCcdPage.click('Continue');
         expect(await anyCcdPage.pageHeadingContains('Create new case from exception')).to.equal(true);
     }
@@ -116,15 +116,15 @@ Then(/^the case should be in "(.+)" state$/, async function (state) {
 
 });
 
-Then(/^the bundles should be successfully listed in "(.+)" tab$/, async function(tabName){
+Then(/^the bundles should be successfully listed in "(.+)" tab$/, async function (tabName) {
     await caseDetailsPage.reloadPage();
     await anyCcdPage.click(tabName);
-    expect(await caseDetailsPage.eventsPresentInHistory("Stitching bundle complete")).to.equal(true);
-    expect(await caseDetailsPage.eventsPresentInHistory("Create a bundle")).to.equal(true);
+    expect(await caseDetailsPage.eventsPresentInHistory('Stitching bundle complete')).to.equal(true);
+    expect(await caseDetailsPage.eventsPresentInHistory('Create a bundle')).to.equal(true);
     await browser.sleep(500);
 });
 
-Then(/^the case bundle details should be listed in "(.+)" tab$/, async function(tabName){
+Then(/^the case bundle details should be listed in "(.+)" tab$/, async function (tabName) {
     await anyCcdPage.click(tabName);
     expect(await caseDetailsPage.isFieldValueDisplayed('Stitch status', 'DONE')).to.equal(true);
     expect(await caseDetailsPage.isFieldValueDisplayed('Config used for bundle', 'SSCS Bundle')).to.equal(true);
