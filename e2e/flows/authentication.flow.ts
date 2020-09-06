@@ -10,8 +10,6 @@ export class AuthenticationFlow {
     async signInAsCaseOfficer() {
         await this.signOut();
         await this.idamSignInPage.waitUntilLoaded();
-        console.log('Username is ###### ' + serviceConfig.TestCaseOfficerUserName);
-        console.log('Password is ###### ' + serviceConfig.TestCaseOfficerPassword);
         await this.idamSignInPage.signIn(
             serviceConfig.TestCaseOfficerUserName,
             serviceConfig.TestCaseOfficerPassword
