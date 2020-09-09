@@ -21,17 +21,17 @@ async function addDataItems() {
             formData[i].answer = niGenerator.myNIYearPrefix() + niGenerator.myNIMonthPrefix() + niGenerator.myNINumberFromDay() + 'B';
         }
 
-        await anyCcdFormPage.addNewCollectionItem('Form OCR Data (Optional)');
+        await anyCcdFormPage.addNewCollectionItem('Form OCR Data');
         await anyCcdFormPage.setCollectionItemFieldValue(
             'Form OCR Data',
             i + 1,
-            'Key (Optional)',
+            'Key',
             formData[i].question
         );
         await anyCcdFormPage.setCollectionItemFieldValue(
             'Form OCR Data',
             i + 1,
-            'Value (Optional)',
+            'Value',
             formData[i].answer
         );
     }
@@ -51,11 +51,16 @@ async function checkDataItems() {
     }
 }
 
+function delay(ms: number) {
+    return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
 Given(/^I have a bulk-scanned document with (?:all fields)$/, {timeout: 600 * 1000}, async function () {
     await anyCcdPage.click('Create new case');
     expect(await anyCcdPage.pageHeadingContains('Create Case')).to.equal(true);
     await anyCcdFormPage.setCreateCaseFieldValue('Case type', 'SSCS Bulkscanning');
     await anyCcdPage.click('Start');
+
     expect(await anyCcdPage.pageHeadingContains('Envelope meta data')).to.equal(true);
 
     await caseDetailsPage.addEnvelopeDataItems('NEW_APPLICATION', '123456', 'test_po-box-jurisdiction', 'test_envelope');
@@ -117,6 +122,7 @@ Then(/^the case should be in "(.+)" state$/, async function (state) {
 });
 
 Then(/^the bundles should be successfully listed in "(.+)" tab$/, async function (tabName) {
+    await delay(5000);
     await caseDetailsPage.reloadPage();
     await anyCcdPage.click(tabName);
     expect(await caseDetailsPage.eventsPresentInHistory('Stitching bundle complete')).to.equal(true);
