@@ -23,20 +23,6 @@ When(/^I upload contains further information "(.+)"$/, async function (action) {
     await dwpresponse.uploadResponse(action);
     await anyCcdPage.selectIssueCode();
     await anyCcdPage.click('Continue');
-    expect(await anyCcdPage.pageHeadingContains('Upload response')).to.equal(true);
-    await anyCcdPage.clickElementById('elementsDisputedList-general')
-    await anyCcdPage.click('Continue');
-
-    await anyCcdPage.click('Add new');
-    await anyCcdPage.selectGeneralIssueCode();
-    await anyCcdPage.click('Continue');
-
-    await anyCcdPage.clickElementById('elementsDisputedIsDecisionDisputedByOthers-No');
-    await anyCcdPage.click('Continue');
-
-    await anyCcdPage.clickElementById('jointParty-No');
-    await anyCcdPage.click('Continue');
-
     await anyCcdPage.click('Submit');
     expect(await anyCcdPage.pageHeadingContains('History')).to.equal(true);
 });

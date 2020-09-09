@@ -1,4 +1,4 @@
-@happy-path-user @nightly-test
+@happy-path-user @nightly-test  
 Feature: The happy path
 
   Scenario: Should end up in "Ready to list" state when ALL fields are present
@@ -11,9 +11,6 @@ Feature: The happy path
     When I choose "Upload response"
     And I upload contains further information "NO"
     Then the case should end "Response received" state
-
-    When I switch to be a Case Officer
-    Then the case should end "Ready to list" state
 
   Scenario: Verify create bundle event for cases
     Given I am signed in as a Case Officer
