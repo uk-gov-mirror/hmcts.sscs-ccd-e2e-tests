@@ -122,7 +122,7 @@ Then(/^the case should be in "(.+)" state$/, async function (state) {
 });
 
 Then(/^the bundles should be successfully listed in "(.+)" tab$/, async function (tabName) {
-    await delay(5000);
+    await delay(10000);
     await caseDetailsPage.reloadPage();
     await anyCcdPage.click(tabName);
     expect(await caseDetailsPage.eventsPresentInHistory('Stitching bundle complete')).to.equal(true);
