@@ -6,7 +6,7 @@
     "postinstall": "webdriver-manager update",
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "e2e": "yarn test:fullfunctional",
-    "test:fullfunctional": "protractor ./e2e/features.conf.js --cucumberOpts.tags=@nightly-test",
+    "test:fullfunctional": "yarn install && cross-env TEST_JUDGE_USERNAME='sscs.judge.user@mailinator.com' TEST_JUDGE_PASSWORD='Testing123' TEST_DWP_USERNAME='sscs.dwp.user@mailinator.com' TEST_DWP_PASSWORD='Testing123' TEST_CASEOFFICER_USERNAME='jrich3683@gmail.com' TEST_CASEOFFICER_PASSWORD='Testing123' protractor ./e2e/features.conf.js --cucumberOpts.tags=@nightly-test",
     "test:nsp": "nsp check"
   },
   "dependencies": {
@@ -20,6 +20,7 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "codelyzer": "^4.5.0",
+    "cross-env": "^4.0.0",
     "cucumber": "^5.0.2",
     "jasmine-core": "^3.2.1",
     "jasmine-spec-reporter": "^4.2.1",
