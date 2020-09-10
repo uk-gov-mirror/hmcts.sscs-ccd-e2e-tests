@@ -6,6 +6,8 @@ module.exports = {
   TestCaseOfficerPassword: process.env.TEST_CASEOFFICER_PASSWORD || 'Testing123',
   TestJudgeUserName: process.env.TEST_JUDGE_USERNAME || '',
   TestJudgePassword: process.env.TEST_JUDGE_PASSWORD || '',
+  TestDWPResponseWriterUserName: process.env.TEST_DWP_USERNAME || '',
+  TestDWPResponseWriterPassword: process.env.TEST_DWP_PASSWORD || '',
 
   //CcdGatewayUrl: process.env.TEST_E2E_URL_GATEWAY || 'http://localhost:3453',
   //CcdWebUrl: process.env.TEST_E2E_URL_WEB ||  'http://localhost:3451',

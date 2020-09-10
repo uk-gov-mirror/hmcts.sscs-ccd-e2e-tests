@@ -1,6 +1,6 @@
 Feature: The withdrawal
- 
-  @withdrawal
+
+  @withdrawal @nightly-test
   Scenario: Should end up in "With DWP" state when ALL fields are present
     Given I am signed in as a Case Officer
     And I have a bulk-scanned document with all fields
