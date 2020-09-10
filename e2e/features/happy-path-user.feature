@@ -1,4 +1,4 @@
-@happy-path-user @nightly-test  
+@happy-path-user @nightly-test
 Feature: The happy path
 
   Scenario: Should end up in "Ready to list" state when ALL fields are present
