@@ -117,6 +117,11 @@ export class AnyCcdPage extends AnyPage {
         await browser.waitForAngular();
     }
 
+    async waitForTabToLoad(fieldLabel: string) {
+        await browser.wait(ExpectedConditions.visibilityOf(element(by.xpath('//span[normalize-space()="' + fieldLabel + '"]'))), 30000);
+
+    }
+
     async reloadPage() {
         await browser.navigate().refresh();
         await browser.waitForAngular();

@@ -14,4 +14,4 @@ Feature: The happy path
     Then the case should end "Response received" state
 
     When I switch to be a Case Officer
-    Then the case should end "Response received" state
+    Then the case should end "Ready to list" state
