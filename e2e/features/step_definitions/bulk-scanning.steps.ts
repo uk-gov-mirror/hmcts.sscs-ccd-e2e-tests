@@ -116,6 +116,7 @@ Then(/^the case should be in "(.+)" state$/, async function (state) {
     await anyCcdPage.get(`/case/SSCS/Benefit/${caseReference}`);
 
     await anyCcdPage.click('History');
+    await delay(10000);
     console.log('caseReference :' + caseReference);
     expect(await caseDetailsPage.isFieldValueDisplayed('End state', state)).to.equal(true);
 
