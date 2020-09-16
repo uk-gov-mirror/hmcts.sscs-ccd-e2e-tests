@@ -17,11 +17,12 @@ def component = "ccd-e2e-tests"
 
 def secrets = [
     'sscs-${env}': [
-
         secret('test-e2e-caseofficer-username', 'TEST_CASEOFFICER_USERNAME'),
         secret('test-e2e-caseofficer-password', 'TEST_CASEOFFICER_PASSWORD'),
         secret('test-e2e-judge-username', 'TEST_JUDGE_USERNAME'),
-        secret('test-e2e-judge-password', 'TEST_JUDGE_PASSWORD')
+        secret('test-e2e-judge-password', 'TEST_JUDGE_PASSWORD'),
+        secret('test-e2e-dwp-username', 'TEST_DWP_USERNAME'),
+        secret('test-e2e-dwp-password', 'TEST_DWP_PASSWORD')
     ]
 ]
 
