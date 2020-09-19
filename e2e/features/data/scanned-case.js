@@ -1,3 +1,6 @@
+const faker = require('faker/locale/en_GB');
+var po = 'DA'+faker.random.number({'min': 1,'max': 4})+ ' 5TB';
+
 module.exports = {
   formData : [
     // { question: 'contains_mrn', answer: 'true' },
@@ -51,6 +54,7 @@ module.exports = {
     // { question: 'signature_name', answer: 'Sarah Smith' },
     // { question: 'signature_appeal_date', answer: '01/04/2050' },
     { question: 'office', answer: '3' },
+    // { question: 'office', answer: faker.random.number({'min': 1,'max': 5})},
     ]
 };
 
