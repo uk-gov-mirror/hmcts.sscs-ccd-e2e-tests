@@ -1,10 +1,12 @@
 const faker = require('faker/locale/en_GB');
 var po = 'DA'+faker.random.number({'min': 1,'max': 4})+ ' 5TB';
+const moment = require('moment');
 
 module.exports = {
   formData : [
     // { question: 'contains_mrn', answer: 'true' },
-    { question: 'mrn_date', answer: getTodaysDate() },
+    // { question: 'mrn_date', answer: getTodaysDate() },
+    { question: 'mrn_date', answer: mrnDate() },
     { question: 'benefit_type_description', answer: 'PIP' },
     { question: 'person1_title', answer: 'Mr' },
     { question: 'person1_first_name', answer: 'Mark' },
@@ -60,7 +62,15 @@ module.exports = {
 
 function getTodaysDate() {
   var d = new Date();
-  var month = d.getUTCMonth();
+  var month = 1 + d.getUTCMonth();
   var todaysDate =  d.getDate() + "/" + month + "/" + d.getUTCFullYear();
   return todaysDate;
+}
+
+function getRandomInt(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function mrnDate(){
+  return moment().subtract(getRandomInt(1, 25), 'days').format('DD/MM/YYYY');
 }
