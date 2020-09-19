@@ -24,7 +24,7 @@ exports.config = {
       binary: puppeteer.executablePath()
     },
     acceptInsecureCerts: true,
-    maxInstances: 1,
+    maxInstances: 8,
     proxy: (!serviceConfig.UseProxy) ? null : {
       proxyType: 'manual',
       httpProxy: serviceConfig.ProxyUrl.replace('http://', ''),
@@ -66,7 +66,7 @@ exports.config = {
       .then({
         // noop
       });
-
+    
     tsNode.register({
       project: path.join(__dirname, './tsconfig.e2e.json')
     });
