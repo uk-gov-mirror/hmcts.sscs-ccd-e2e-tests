@@ -140,4 +140,48 @@ export class AnyCcdPage extends AnyPage {
         const linkPath = '//*[self::button or self::a][normalize-space()="' + linkText + '"]';
         return await element(by.xpath(linkPath)).isPresent();
     }
+
+    async contentContains(match: string, wait: Wait = Wait.normal) {
+
+        //const expandedMatch = await this.valueExpander.expand(match);
+
+        const contentPath =
+            '//*[' +
+            'self::h1 or ' +
+            'self::h2 or ' +
+            'self::h3 or ' +
+            'self::h4 or ' +
+            'self::caption or ' +
+            'self::label or ' +
+            'self::p or ' +
+            'self::li                        [contains(text(), "' + match + '")] or ' +  // for bulleted text
+            'self::div                       [contains(text(), "' + match + '")] or ' +  // avoid text in child nodes
+            'self::ccd-read-date-field       [contains(text(), "' + match + '")] or ' +  // for more generic containers
+            'self::dt                        [contains(text(), "' + match + '")] or ' +  // added recently
+            'self::ccd-read-fixed-list-field [contains(text(), "' + match + '")] or ' +  // ..
+            'self::ng-component              [contains(text(), "' + match + '")] or ' +  // ..
+            'self::span                      [contains(text(), "' + match + '")] or ' +  // ..
+            'self::td                        [contains(text(), "' + match + '")]' +      // ..
+            ']' +
+            '[contains(normalize-space(), "' + match + '") and not(ancestor::*[@hidden])]';
+
+        try {
+
+            await browser.wait(
+                async () => {
+                    return (await element
+                        .all(by.xpath(contentPath))
+                        .filter(e => e.isPresent() && e.isDisplayed())
+                        .count()) > 0;
+                },
+                wait
+            );
+
+            return true;
+
+        } catch (error) {
+            return false;
+        }
+    }
+
 }

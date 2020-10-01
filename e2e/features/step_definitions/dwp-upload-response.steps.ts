@@ -24,12 +24,20 @@ When(/^I upload contains further information "(.+)"$/, async function (action) {
     await anyCcdPage.selectIssueCode();
     await anyCcdPage.click('Continue');
     await anyCcdPage.click('Submit');
-    expect(await anyCcdPage.pageHeadingContains('History')).to.equal(true);
 });
 
 Then(/^the case should end "(.+)" state$/, async function (state) {
     await anyCcdPage.click('History');
     await browser.sleep(10000);
     expect(await caseDetailsPage.isFieldValueDisplayed('End state', state)).to.equal(true);
+    await browser.sleep(500);
+});
+
+Then(/^the case should be in "(.+)" appeal status$/, async function (state) {
+    await browser.sleep(3000);
+    await anyCcdPage.reloadPage();
+    expect(await anyCcdPage.contentContains('Ready to list')).to.equal(true);
+    await anyCcdPage.click('Summary');
+
     await browser.sleep(500);
 });
