@@ -45,6 +45,7 @@ module.exports = {
     { question: 'is_hearing_type_oral', answer: 'true' },
     { question: 'is_hearing_type_paper', answer: 'false' },
     { question: 'hearing_type_telephone', answer: 'true' },
+    { question: 'hearing_telephone_number', answer: '07895123456' },
     // { question: 'hearing_options_exclude_dates', answer: '01/01/2050' },
     // { question: 'hearing_support_arrangements', answer: 'Wheelchair access' },
     // { question: 'hearing_options_hearing_loop', answer: 'Yes' },
