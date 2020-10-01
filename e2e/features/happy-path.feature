@@ -11,7 +11,7 @@ Feature: The happy path
     When I switch to be a DWPResponse Writer
     When I choose "Upload response"
     And I upload contains further information "NO"
-    Then the case should end "Response received" state
+    Then the case should be in "Ready to list" appeal status
 
     When I switch to be a Case Officer
     Then the case should end "Ready to list" state
