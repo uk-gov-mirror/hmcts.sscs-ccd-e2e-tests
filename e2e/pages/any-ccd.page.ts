@@ -164,7 +164,6 @@ export class AnyCcdPage extends AnyPage {
             '[contains(normalize-space(), "' + match + '") and not(ancestor::*[@hidden])]';
 
         try {
-          
             await browser.wait(
                 async () => {
                     return (await element
