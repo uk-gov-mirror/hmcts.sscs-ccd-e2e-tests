@@ -35,8 +35,7 @@ Then(/^the case should end "(.+)" state$/, async function (state) {
 Then(/^the case should be in "(.+)" appeal status$/, async function (state) {
     await browser.sleep(3000);
     await anyCcdPage.reloadPage();
-    expect(await anyCcdPage.contentContains('Ready to list')).to.equal(true);
-    await anyCcdPage.click('Summary');
+    expect(await anyCcdPage.contentContains(state)).to.equal(true);
 
     await browser.sleep(500);
 });

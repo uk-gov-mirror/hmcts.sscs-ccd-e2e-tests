@@ -12,5 +12,4 @@ When(/^I choose Requires Interlocutory Review No "(.+)"$/, async function (actio
 When(/^I submit "(.+)"$/, async function (action) {
     expect(await anyCcdPage.pageHeadingContains(action)).to.equal(true);
     await anyCcdPage.click('Submit');
-    expect(await anyCcdPage.pageHeadingContains('History')).to.equal(true);
 });
