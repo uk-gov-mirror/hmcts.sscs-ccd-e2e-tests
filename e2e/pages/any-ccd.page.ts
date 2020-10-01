@@ -143,8 +143,6 @@ export class AnyCcdPage extends AnyPage {
 
     async contentContains(match: string, wait: Wait = Wait.normal) {
 
-        //const expandedMatch = await this.valueExpander.expand(match);
-
         const contentPath =
             '//*[' +
             'self::h1 or ' +
@@ -166,7 +164,7 @@ export class AnyCcdPage extends AnyPage {
             '[contains(normalize-space(), "' + match + '") and not(ancestor::*[@hidden])]';
 
         try {
-
+          
             await browser.wait(
                 async () => {
                     return (await element

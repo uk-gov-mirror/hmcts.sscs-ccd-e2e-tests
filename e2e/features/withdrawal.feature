@@ -1,6 +1,6 @@
 Feature: The withdrawal
 
-  @withdrawal @nightly-test
+  @withdrawal  @nightly-test
   Scenario: Should end up in "With DWP" state when ALL fields are present
     Given I am signed in as a Case Officer
     And I have a bulk-scanned document with all fields
@@ -12,6 +12,7 @@ Feature: The withdrawal
     And I submit "Admin Appeal Withdrawn"
     Then the case should end "Dormant" state
 
+    When I switch to be a DWPResponse Writer
     When I choose "Dwp Action Withdrawal"
     And I submit "Dwp Action Withdrawal"
-    Then the case should end "Dormant" state
+    Then the case should be in "Dormant" appeal status
