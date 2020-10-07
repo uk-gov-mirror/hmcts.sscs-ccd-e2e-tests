@@ -108,7 +108,7 @@ When(/^I write a final decision generate notice yes daily living mobility is yes
   await anyCcdPage.click('Continue');
   await browser.sleep(500);
   await anyCcdPage.click('Continue');
-  //decision generated
+  // decision generated
   await browser.sleep(3000);
   await anyCcdPage.click('Continue');
   await browser.sleep(500);
@@ -123,7 +123,7 @@ When(/^I see "(.+)"$/, async function (notice) {
 });
 
 When(/^I test final decision$/, async function () {
-  const caseReference = "1601983355417609";
+  const caseReference = '1601983355417609';
   await anyCcdPage.get(`/case/SSCS/Benefit/${caseReference}`);
   await browser.sleep(10000);
 });
