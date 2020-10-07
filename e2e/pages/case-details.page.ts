@@ -76,7 +76,7 @@ export class CaseDetailsPage extends AnyCcdPage {
         const today = new Date();
         element(by.id(dateType + '-day')).sendKeys(today.getDay());
         element(by.id(dateType + '-month')).sendKeys(today.getMonth());
-        if (dateType == 'writeFinalDecisionEndDate') {
+        if (dateType === 'writeFinalDecisionEndDate') {
             element(by.id(dateType + '-year')).sendKeys(today.getFullYear() + 1);
         } else {
           element(by.id(dateType + '-year')).sendKeys(today.getFullYear());

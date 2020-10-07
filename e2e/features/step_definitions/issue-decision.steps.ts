@@ -50,12 +50,12 @@ When(/^I write a final decision generate notice yes daily living mobility is no 
       'Reasons for decision',
       0,
       'Reasons for decision',
-      "Some text"
+      'Some text'
   );
   await anyCcdPage.click('Continue');
   await browser.sleep(500);
   await anyCcdPage.click('Continue');
-  //decision generated
+  // decision generated
   await browser.sleep(3000);
   await anyCcdPage.click('Continue');
   await browser.sleep(500);
@@ -103,7 +103,7 @@ When(/^I write a final decision generate notice yes daily living mobility is yes
       'Reasons for decision',
       0,
       'Reasons for decision',
-      "Some text"
+      'Some text'
   );
   await anyCcdPage.click('Continue');
   await browser.sleep(500);
@@ -127,7 +127,6 @@ When(/^I test final decision$/, async function () {
   await anyCcdPage.get(`/case/SSCS/Benefit/${caseReference}`);
   await browser.sleep(10000);
 });
-
 
 When(/^I issue a final decision generate decision no$/, async function () {
   await anyCcdPage.click('Continue');

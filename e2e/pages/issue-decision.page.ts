@@ -18,19 +18,15 @@ export class IssueDecisionPage extends AnyPage {
     }
 
     async addPanelMembers() {
-        element(by.id('writeFinalDecisionDisabilityQualifiedPanelMemberName')).sendKeys("Disability Member");
-        element(by.id('writeFinalDecisionMedicallyQualifiedPanelMemberName')).sendKeys("Medically Member");
+        element(by.id('writeFinalDecisionDisabilityQualifiedPanelMemberName')).sendKeys('Disability Member');
+        element(by.id('writeFinalDecisionMedicallyQualifiedPanelMemberName')).sendKeys('Medically Member');
     }
 
     async pageReference() {
-        element(by.id('writeFinalDecisionPageSectionReference')).sendKeys("20");
+        element(by.id('writeFinalDecisionPageSectionReference')).sendKeys('20');
     }
 
     async fillSummary() {
-        element(by.id('writeFinalDecisionDetailsOfDecision')).sendKeys("This is the summary");
+        element(by.id('writeFinalDecisionDetailsOfDecision')).sendKeys('This is the summary');
     }
-
-
-
-
 }

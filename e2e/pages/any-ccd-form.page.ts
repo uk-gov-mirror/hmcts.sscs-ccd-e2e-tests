@@ -148,8 +148,7 @@ export class AnyCcdFormPage extends AnyCcdPage {
                 fieldValue
             );
 
-        }
-        else if (await fieldContainer.$$('ccd-write-yes-no-field').isPresent()) {
+        } else if (await fieldContainer.$$('ccd-write-yes-no-field').isPresent()) {
 
             await fieldContainer
                 .element(by.xpath('.//label[normalize-space()="' + fieldValue + '"]/../input'))
