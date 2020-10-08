@@ -1,6 +1,6 @@
 Feature: Issue decision
 
-  @issue-decision @nightly-test
+  @issue-decision @nightly-test-1
   Scenario: Should end up in "Dormant" state when decision is issued with generate notice is no
     Given I am signed in as a Case Officer
     And I have a bulk-scanned document with all fields
@@ -23,7 +23,7 @@ Feature: Issue decision
 
     And I see "Final Decision Notice"
 
-  @issue-decision @nightly-test
+  @issue-decision @nightly-test-1
     Scenario: Yes to generate decision but award not about daily living or mobility
       Given I am signed in as a Case Officer
       And I have a bulk-scanned document with all fields
@@ -46,7 +46,7 @@ Feature: Issue decision
 
       And I see "Final Decision Notice"
 
-  @issue-decision @nightly-test
+  @issue-decision @nightly-test-1
     Scenario: Yes to generate decision and award is about daily living or mobility
       Given I am signed in as a Case Officer
       And I have a bulk-scanned document with all fields
@@ -70,7 +70,7 @@ Feature: Issue decision
 
       And I see "Final Decision Notice"
 
-  @issue-decision-4 @nightly-test
+  @issue-decision-4 @nightly-test-1
     Scenario: Award is about daily living or mobility
       Given I am signed in as a Case Officer
       When I switch to be a Judge
