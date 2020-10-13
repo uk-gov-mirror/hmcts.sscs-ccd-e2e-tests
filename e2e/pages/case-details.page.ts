@@ -74,12 +74,16 @@ export class CaseDetailsPage extends AnyCcdPage {
     async addDayItems(dateType: String) {
         browser.driver.sleep(100);
         const today = new Date();
+        element(by.id(dateType + '-day')).clear();
         element(by.id(dateType + '-day')).sendKeys(today.getDay());
+        element(by.id(dateType + '-month')).clear();
         element(by.id(dateType + '-month')).sendKeys(today.getMonth());
         if (dateType === 'writeFinalDecisionEndDate') {
+            element(by.id(dateType + '-year')).clear();
             element(by.id(dateType + '-year')).sendKeys(today.getFullYear() + 1);
         } else {
-          element(by.id(dateType + '-year')).sendKeys(today.getFullYear());
+            element(by.id(dateType + '-year')).clear();
+            element(by.id(dateType + '-year')).sendKeys(today.getFullYear());
         }
 
         browser.driver.sleep(100);
