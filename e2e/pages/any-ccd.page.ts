@@ -36,6 +36,10 @@ export class AnyCcdPage extends AnyPage {
         .click();
     }
 
+    async chooseOptionContainingText(elementId: string, option: string) {
+        await element(by.css(elementId)).element(by.cssContainingText('option', option)).click()
+    }
+
     async isFieldValueDisplayed(
         fieldLabel: string,
         fieldValue: string

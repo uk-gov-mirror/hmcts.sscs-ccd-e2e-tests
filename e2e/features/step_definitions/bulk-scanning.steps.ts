@@ -25,14 +25,14 @@ async function addDataItems() {
         await anyCcdFormPage.setCollectionItemFieldValue(
             'Form OCR Data',
             i + 1,
-            // 'Key (Optional)',
+            //'Key (Optional)',
             'Key',
             formData[i].question
         );
         await anyCcdFormPage.setCollectionItemFieldValue(
             'Form OCR Data',
             i + 1,
-            'Value',
+            'Value (Optional)',
             formData[i].answer
         );
     }
