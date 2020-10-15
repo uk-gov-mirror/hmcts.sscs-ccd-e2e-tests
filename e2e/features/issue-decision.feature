@@ -24,7 +24,7 @@ Feature: Issue decision
     And I see "Final Decision Notice"
 
 
-    @issue-decision @nightly-test
+    @issue-decision @nightly-test-1
     Scenario: Yes to generate decision and award is about daily living or mobility
       Given I am signed in as a Case Officer
       And I have a bulk-scanned document with all fields
