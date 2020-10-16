@@ -1,4 +1,4 @@
-@reinstatement
+@reinstatement @nightly-test
 Feature: The Reinstatement functionality
 
   Scenario: Should end up in "With DWP" state when ALL fields are present
@@ -14,5 +14,7 @@ Feature: The Reinstatement functionality
 
     When I switch to be a Judge
     When I choose "Issue directions notice"
+    And I fill the direction notice form
+    Then the case should be "Granted" permissions to proceed
 
     
