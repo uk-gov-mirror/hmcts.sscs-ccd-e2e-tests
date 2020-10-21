@@ -1,9 +1,9 @@
-import { When, Then } from "cucumber";
+import { When, Then } from 'cucumber';
 import { AnyCcdPage } from '../../pages/any-ccd.page';
-import { browser } from "protractor";
+import { browser } from 'protractor';
 import { expect, assert } from 'chai';
-import { FurtherEvidencePage } from "../../pages/further-evidence.page";
-import { CaseDetailsPage } from "../../pages/case-details.page";
+import { FurtherEvidencePage } from '../../pages/further-evidence.page';
+import { CaseDetailsPage } from '../../pages/case-details.page';
 
 const anyCcdPage = new AnyCcdPage();
 const furtherEvidencePage = new FurtherEvidencePage();
@@ -13,7 +13,7 @@ function delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
 }
 
-When('I fill the further evidence form', async function () {
+When(/^I fill the further evidence form$/, async function () {
     await anyCcdPage.chooseOptionContainingText('#furtherEvidenceAction', 'Other document type');
     await anyCcdPage.click('Add new');
     await browser.sleep(1000);
@@ -50,18 +50,18 @@ When(/^I fill the direction notice form$/, async function () {
 Then(/^the case should be "(.+)" permissions to proceed$/, async function (reinstatement) {
 
     const today = new Date();
-    var day = today.getDate();
-    var month = today.toLocaleString('default', { month: 'short' });
-    var year = today.getFullYear();
+    let day = today.getDate();
+    let month = today.toLocaleString('default', { month: 'short' });
+    let year = today.getFullYear();
 
-    var expDate = day + ' ' + month + ' ' + year;
+    let expDate = day + ' ' + month + ' ' + year;
     await anyCcdPage.click('Appeal Details');
     await anyCcdPage.reloadPage();
     await delay(10000);
-    await caseDetailsPage.getFieldValue('Reinstatement Outcome').then(function(actText){
+    await caseDetailsPage.getFieldValue('Reinstatement Outcome').then(function(actText) {
         assert.equal(reinstatement, actText);
     });
-    await caseDetailsPage.getFieldValue('Reinstatement Registered').then(function(actText){
+    await caseDetailsPage.getFieldValue('Reinstatement Registered').then(function(actText) {
         assert.equal(expDate, actText);
     });
 });
