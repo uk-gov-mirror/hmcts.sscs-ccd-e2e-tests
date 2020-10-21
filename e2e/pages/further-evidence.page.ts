@@ -1,10 +1,7 @@
 import { by, element } from 'protractor';
-import { AnyPage } from "./any.page";
-// import { AnyCcdPage } from './any-ccd.page';
+import { AnyPage } from './any.page';
 import * as path from 'path';
 
-
-// const anyCcdPage = new AnyCcdPage();
 export class FurtherEvidencePage extends AnyPage {
 
     async uploadFile(inputElement: string, fileName: string) {
