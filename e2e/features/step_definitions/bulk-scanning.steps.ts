@@ -12,7 +12,7 @@ const caseDetailsPage = new CaseDetailsPage();
 const {formData} = require('../data/scanned-case');
 const niGenerator = new NIGenerator();
 
-async function addDataItems() {
+async function addDataItems(benefit_code) {
     for (let i = 0; i < formData.length; i++) {
         if (formData[i].question === 'person1_nino' ) {
             formData[i].answer = niGenerator.myNIYearPrefix() + niGenerator.myNIMonthPrefix() + niGenerator.myNINumberFromDay() + 'A';
@@ -20,7 +20,9 @@ async function addDataItems() {
         if (formData[i].question === 'person2_nino' ) {
             formData[i].answer = niGenerator.myNIYearPrefix() + niGenerator.myNIMonthPrefix() + niGenerator.myNINumberFromDay() + 'B';
         }
-
+        if (formData[i].question === 'benefit_type_description' ) {
+            formData[i].answer = benefit_code;
+        }
         await anyCcdFormPage.addNewCollectionItem('Form OCR Data');
         await anyCcdFormPage.setCollectionItemFieldValue(
             'Form OCR Data',
@@ -55,7 +57,7 @@ function delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
 }
 
-Given(/^I have a bulk-scanned document with (?:all fields)$/, {timeout: 600 * 1000}, async function () {
+Given(/^I have a (.+) bulk-scanned document with (?:all fields)$/, {timeout: 600 * 1000}, async function (benefit_code) {
     await anyCcdPage.click('Create new case');
     expect(await anyCcdPage.pageHeadingContains('Create Case')).to.equal(true);
     await anyCcdFormPage.setCreateCaseFieldValue('Case type', 'SSCS Bulkscanning');
@@ -67,7 +69,7 @@ Given(/^I have a bulk-scanned document with (?:all fields)$/, {timeout: 600 * 10
     await caseDetailsPage.addDateItems('deliveryDate');
     await caseDetailsPage.addDateItems('openingDate');
 
-    await addDataItems();
+    await addDataItems(benefit_code);
     await caseDetailsPage.addFormType('test_form_type');
 
     await anyCcdPage.click('Continue');
@@ -113,10 +115,11 @@ Then(/^the case should be in "(.+)" state$/, async function (state) {
     expect(await anyCcdPage.pageHeadingContains('Envelope meta data')).to.equal(true);
 
     const caseReference = await anyCcdPage.getFieldValue('Case Reference');
+    await delay(2000);
     await anyCcdPage.get(`/case/SSCS/Benefit/${caseReference}`);
-
     await anyCcdPage.click('History');
     await delay(10000);
+    await caseDetailsPage.reloadPage();
     console.log('caseReference :' + caseReference);
     expect(await caseDetailsPage.isFieldValueDisplayed('End state', state)).to.equal(true);
 
