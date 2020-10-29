@@ -24,3 +24,7 @@ Feature: Issue decision
     When I choose "Adjourn case"
     And I generate an adjournment notice
     And I see "Draft Adjournment Notice"
+    And I choose "Issue adjournment notice"
+    And I continue
+    And I submit "Issue adjournment notice"
+    Then the case should be in "Ready to list" appeal status
