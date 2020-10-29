@@ -44,6 +44,35 @@ When(/^I generate an adjournment notice$/, async function () {
   await browser.sleep(5000);
 });
 
+When(/^I upload an adjournment notice and issue direction "(.+)"$/, async function (issueDirection) {
+  await anyCcdPage.clickElementById('adjournCaseGenerateNotice-No');
+  await anyCcdPage.click('Continue');
+  await anyCcdPage.clickElementById('adjournCasePanelMembersExcluded-No');
+  await anyCcdPage.click('Continue');
+  await adjournmentPage.addPanelMembers();
+  await anyCcdPage.click('Continue');
+  await anyCcdPage.clickElementById('adjournCaseAreDirectionsBeingMadeToParties-' + issueDirection);
+  await anyCcdPage.click('Continue');
+  if (issueDirection === 'Yes' ) {
+    await anyCcdPage.clickElementById('adjournCaseDirectionsDueDateDaysOffset-14');
+    await anyCcdPage.click('Continue');
+  }
+  await anyCcdPage.clickElementById('adjournCaseTypeOfNextHearing-faceToFace');
+  await anyCcdPage.click('Continue');
+  await anyCcdPage.clickElementById('adjournCaseNextHearingVenue-sameVenue');
+  await anyCcdPage.click('Continue');
+  await anyCcdPage.clickElementById('adjournCaseNextHearingListingDurationType-standardTimeSlot');
+  await anyCcdPage.click('Continue');
+  await anyCcdPage.clickElementById('adjournCaseInterpreterRequired-No');
+  await anyCcdPage.click('Continue');
+  await anyCcdPage.clickElementById('adjournCaseNextHearingDateType-firstAvailableDate');
+  await anyCcdPage.click('Continue');
+  await adjournmentPage.uploadAdjournmentNotice();
+  await anyCcdPage.click('Continue');
+  await anyCcdPage.click('Submit');
+  await browser.sleep(5000);
+});
+
 When(/^I continue$/, async function () {
     anyCcdPage.click('Continue');
 });

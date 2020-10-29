@@ -7,11 +7,11 @@ const anyCcdPage = new AnyCcdPage();
 
 export class AdjournmentPage extends AnyPage {
 
-    async uploadDirection() {
+    async uploadAdjournmentNotice() {
         await browser.waitForAngular();
         let remote = require('selenium-webdriver/remote');
         browser.setFileDetector(new remote.FileDetector());
-        await this.uploadFile('writeFinalDecisionPreviewDocument', 'issue1.pdf');
+        await this.uploadFile('adjournCasePreviewDocument', 'issue1.pdf');
     }
 
     async uploadFile(inputElement: string, fileName: string) {
