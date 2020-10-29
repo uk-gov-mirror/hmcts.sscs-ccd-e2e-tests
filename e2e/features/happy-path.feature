@@ -16,6 +16,23 @@ Feature: The happy path
     When I switch to be a Case Officer
     Then the case should end "Ready to list" state
 
+
+  @happy-path @nightly-test @dwp-upload-response @uc
+  Scenario: Should end up in "Ready to List" state when a UC is not disputed by others
+    Given I am signed in as a Case Officer
+    And I have a UC bulk-scanned document with all fields
+
+    When I choose the next step "Create new case from exception"
+    Then the case should be in "With DWP" state
+
+    When I switch to be a DWPResponse Writer
+    And I choose "Upload response"
+    And I upload UC further information with disputed General disputed by others No and further info No
+    Then the case should be in "Ready to list" appeal status
+
+    When I switch to be a Case Officer
+    Then the case should end "Ready to list" state
+
   @happy-path @nightly-test @dwp-upload-response @uc
   Scenario: Should end up in "Ready to List" state when a UC disputed case has been response reviewed
     Given I am signed in as a Case Officer
@@ -26,7 +43,7 @@ Feature: The happy path
 
     When I switch to be a DWPResponse Writer
     And I choose "Upload response"
-    And I upload UC further information with disputed General
+    And I upload UC further information with disputed General disputed by others Yes and further info Yes
     Then the case should be in "Response received" appeal status
 
     When I switch to be a Case Officer

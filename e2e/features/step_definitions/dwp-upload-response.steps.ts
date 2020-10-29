@@ -27,8 +27,9 @@ When(/^I upload contains further information "(.+)"$/, async function (action) {
     await anyCcdPage.click('Submit');
 });
 
-When(/^I upload UC further information with disputed (.+)$/, async function (disputed) {
-    await dwpresponse.uploadResponseWithJointParty(disputed);
+When(/^I upload UC further information with disputed (.+) disputed by others (.+) and further info (.+)$/,
+    async function (disputed, disputedByOthersYesOrNo, dwpFurtherInfoYesOrNo) {
+    await dwpresponse.uploadResponseWithJointParty(disputed, disputedByOthersYesOrNo, dwpFurtherInfoYesOrNo);
 });
 
 Then(/^the case should end "(.+)" state$/, async function (state) {

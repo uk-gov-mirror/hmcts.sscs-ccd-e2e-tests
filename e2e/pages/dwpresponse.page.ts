@@ -31,15 +31,15 @@ export class DwpResponsePage extends AnyPage {
         await element(by.id(inputElement)).sendKeys(absolutePath);
     }
 
-    async uploadResponseWithJointParty(disputed: string) {
+    async uploadResponseWithJointParty(disputed: string, disputedByOthersYesOrNo: string, dwpFurtherInfoYesOrNo: string) {
         const dwpState = 'NO';
-        await this.uploadResponse('YES', dwpState);
+        await this.uploadResponse(dwpFurtherInfoYesOrNo.toUpperCase(), dwpState);
         await anyCcdFormPage.click('Continue');
         await this.elementsDisputedPage(disputed)
         await anyCcdFormPage.click('Continue');
         await this.issueCodePage(disputed);
         await anyCcdFormPage.click('Continue');
-        await this.disputedPage('Yes', 'reference');
+        await this.disputedPage(disputedByOthersYesOrNo, 'reference');
         await anyCcdFormPage.click('Continue');
         await this.jointParty('Yes');
         await anyCcdFormPage.click('Continue');
@@ -54,6 +54,7 @@ export class DwpResponsePage extends AnyPage {
     }
 
     async elementsDisputedPage(disputed: string) {
+        await browser.sleep(500);
         await anyCcdFormPage.clickElementById('elementsDisputedList-' + disputed.toLowerCase());
     }
 
@@ -65,7 +66,9 @@ export class DwpResponsePage extends AnyPage {
 
     async disputedPage(yesOrNo: string, reference: string) {
         await element(by.id('elementsDisputedIsDecisionDisputedByOthers-' + yesOrNo)).click();
-        await element(by.id('elementsDisputedLinkedAppealRef')).sendKeys(reference)
+        if (yesOrNo === 'Yes') {
+            await element(by.id('elementsDisputedLinkedAppealRef')).sendKeys(reference);
+        }
     }
 
     async jointParty(yesOrNo: string) {
