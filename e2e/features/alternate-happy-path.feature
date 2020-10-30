@@ -10,7 +10,7 @@ Feature: The alternate happy path
     When I switch to be a DWPResponse Writer
     When I choose "Upload response"
     And I upload contains further information "YES"
-    Then the case should end "Response received" state
+    Then the case should be in "Response received" appeal status
 
     When I switch to be a Case Officer
     When I choose "Response reviewed"

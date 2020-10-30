@@ -10,4 +10,4 @@ Feature: The happy path
     When I switch to be a Case Officer
     When I choose "Upload response"
     And I upload contains further information "NO"
-    Then the case should end "Response received" state
+    Then the case should end "Ready to list" state

@@ -7,6 +7,7 @@
     "lint": "tslint -c tslint.json -p tsconfig.json",
     "e2e": "yarn test:fullfunctional",
     "test:fullfunctional": "yarn install && protractor ./e2e/features.parallel.conf.js --cucumberOpts.tags=@nightly-test",
+    "test:prod": "yarn install && protractor ./e2e/features.parallel.conf.js --cucumberOpts.tags=@nightly-test --cucumberOpts.tags=~@issue-decision --cucumberOpts.tags=~@uc --cucumberOpts.tags=~@reinstatement --cucumberOpts.tags=~@bundle",
     "test:nsp": "nsp check"
   },
   "dependencies": {
