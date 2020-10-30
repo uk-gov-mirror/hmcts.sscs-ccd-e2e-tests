@@ -12,11 +12,8 @@ When(/^I choose Requires Interlocutory Review No "(.+)"$/, async function (actio
 });
 
 When(/^I submit "(.+)"$/, async function (action) {
-    console.log("checking heading")
     expect(await anyCcdPage.pageHeadingContains(action)).to.equal(true);
-    console.log("clicking Submit")
     await anyCcdPage.click('Submit');
-    console.log("clicked Submit")
 });
 
 When(/I review the UC received Response$/, async function() {
