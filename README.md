@@ -37,6 +37,11 @@ setting the environment variables `TEST_CASEOFFICER_USERNAME` and `TEST_CASEOFFI
 $ TEST_CASEOFFICER_USERNAME=? TEST_CASEOFFICER_PASSWORD=? yarn e2e
  ```
 
+#### Running the tests against a local prod ccd version
+ ```bash
+$ ./bin/local-prod-test.sh
+ ```
+
 If you wish to see the browser running the tests simply set the `TEST_E2E_HEADLESS` environment variable to *false*
 ### Updating the project for your service
 
@@ -45,7 +50,7 @@ You need to make changes everywhere there is a `TODO:` comment to make it releva
 * Jenkinsfile_nightly
 * service.conf.js
 
-i.e. changing running enviroment from local to demo or to aat. To run it locally, you need to set docker and other relevant services. Please read ...... (COMIN SOON) .... to set up the local enviroment.
+i.e. changing running environment from local to demo or to aat. To run it locally, you need to set docker and other relevant services. Please read ...... (COMIN SOON) .... to set up the local enviroment.
 
 ## Other tasks
 

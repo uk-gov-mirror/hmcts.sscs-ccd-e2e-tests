@@ -33,8 +33,8 @@ When(/^I upload UC further information with disputed (.+) disputed by others (.+
 });
 
 Then(/^the case should end "(.+)" state$/, async function (state) {
-    await anyCcdPage.reloadPage();
     await anyCcdPage.click('History');
+    await anyCcdPage.reloadPage();
     await browser.sleep(10000);
     expect(await caseDetailsPage.isFieldValueDisplayed('End state', state)).to.equal(true);
     await browser.sleep(500);
