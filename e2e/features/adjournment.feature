@@ -18,7 +18,7 @@ Feature: Issue decision
     And I book a hearing
     And I choose "Hearing booked"
     And I submit "Hearing booked"
-    Then the case should be in "Hearing" appeal status
+    Then the case should be in Hearing appeal status
 
     When I switch to be a Judge
     When I choose "Adjourn case"
@@ -47,7 +47,7 @@ Feature: Issue decision
       And I book a hearing
       And I choose "Hearing booked"
       And I submit "Hearing booked"
-      Then the case should be in "Hearing" appeal status
+      Then the case should be in Hearing appeal status
 
       When I switch to be a Judge
       When I choose "Adjourn case"
@@ -76,7 +76,7 @@ Feature: Issue decision
         And I book a hearing
         And I choose "Hearing booked"
         And I submit "Hearing booked"
-        Then the case should be in "Hearing" appeal status
+        Then the case should be in Hearing appeal status
 
         When I switch to be a Judge
         When I choose "Adjourn case"
