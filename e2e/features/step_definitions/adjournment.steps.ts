@@ -4,7 +4,6 @@ import { AnyCcdPage } from '../../pages/any-ccd.page';
 import { AdjournmentPage } from '../../pages/adjournment.page';
 import { expect } from 'chai';
 
-
 const anyCcdPage = new AnyCcdPage();
 const adjournmentPage = new AdjournmentPage();
 
@@ -81,7 +80,7 @@ When(/^I continue$/, async function () {
 Then(/^the case should be in Hearing appeal status$/, async function () {
     await browser.sleep(500);
     await anyCcdPage.reloadPage();
-    expect(await anyCcdPage.contentContains("Hearing")).to.equal(true);
+    expect(await anyCcdPage.contentContains('Hearing')).to.equal(true);
 
     await browser.sleep(5000);
 });
