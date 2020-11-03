@@ -30,7 +30,8 @@ export class AdjournmentPage extends AnyPage {
         await element(by.id('hearings_0_venue_address_county')).sendKeys('County');
         await element(by.id('hearings_0_venue_address_postcode')).sendKeys('EC1N 7RS');
         await element(by.id('hearings_0_venue_address_country')).sendKeys('UK');
-        await element(by.id('hearings_0_venue_googleMapLink')).sendKeys('https://www.google.com/maps/place/4th+Floor+30+Brooke+Street+EC1N+7RS/@51.518706,-0.110348');
+        await element(by.id('hearings_0_venue_googleMapLink'))
+                .sendKeys('https://www.google.com/maps/place/4th+Floor+30+Brooke+Street+EC1N+7RS/@51.518706,-0.110348');
         await element(by.id('hearings_0_judge')).sendKeys('Judge');
         await element(by.id('hearings_0_hearingDate-day')).sendKeys('20');
         await element(by.id('hearings_0_hearingDate-month')).sendKeys('10');
