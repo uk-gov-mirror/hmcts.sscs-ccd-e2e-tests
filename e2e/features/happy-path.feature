@@ -17,7 +17,7 @@ Feature: The happy path
     Then the case should end "Ready to list" state
 
 
-  @happy-path @nightly-test @dwp-upload-response @uc
+  @happy-path @nightly-test-1 @dwp-upload-response @uc
   Scenario: Should end up in "Ready to List" state when a UC is not disputed by others
     Given I am signed in as a Case Officer
     And I have a UC bulk-scanned document with all fields
