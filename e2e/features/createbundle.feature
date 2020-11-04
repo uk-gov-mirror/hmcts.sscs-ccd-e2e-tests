@@ -1,4 +1,4 @@
-@bundle @nightly-test
+@bundle @nightly-test-1
 Feature: Create bundle for a case
 
   Scenario: Verify create bundle event for cases
