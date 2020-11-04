@@ -11,7 +11,7 @@ Feature: Issue decision
     When I switch to be a DWPResponse Writer
     When I choose "Upload response"
     And I upload contains further information "NO"
-    Then the case should be in "Ready to list" appeal status
+    Then the case should end "Ready to list" state
 
     When I switch to be a Judge
     When I choose "Write final decision"
@@ -19,7 +19,7 @@ Feature: Issue decision
 
     When I choose "Issue final decision"
     And I issue a final decision generate decision no
-    Then the case should be in "Dormant" appeal status
+    Then the case should end "Dormant" state
 
     And I see "Final Decision Notice"
 

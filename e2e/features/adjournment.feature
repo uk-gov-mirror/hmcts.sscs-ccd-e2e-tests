@@ -1,6 +1,6 @@
 Feature: Issue decision
 
-  @adjournment @nightly-test
+  @adjournment @nightly-test-5
   Scenario: Should end up in "Ready to list" state when decision is issued with generate notice is no
     Given I am signed in as a Case Officer
     And I have a bulk-scanned document with all fields
@@ -29,7 +29,7 @@ Feature: Issue decision
     And I submit "Issue adjournment notice"
     Then the case should be in "Ready to list" appeal status
 
-    @adjournment @nightly-test
+    @adjournment @nightly-test-5
     Scenario: Should end up in "Ready to list" state when decision is issued with generate notice is yes and issue direction is no
       Given I am signed in as a Case Officer
       And I have a bulk-scanned document with all fields
@@ -58,7 +58,7 @@ Feature: Issue decision
       And I submit "Issue adjournment notice"
       Then the case should be in "Ready to list" appeal status
 
-      @adjournment @nightly-test
+      @adjournment @nightly-test-5
       Scenario: Should end up in "Not listable" state when decision is issued with generate notice is yes and issue direction is yes
         Given I am signed in as a Case Officer
         And I have a bulk-scanned document with all fields
