@@ -21,7 +21,7 @@ Feature: Issue decision
     Then the case should be in Hearing appeal status
 
     When I switch to be a Judge
-    When I choose "Adjourn case"
+    When I choose "Write adjournment notice"
     And I generate an adjournment notice
     And I see "Draft Adjournment Notice"
     And I choose "Issue adjournment notice"
@@ -50,7 +50,7 @@ Feature: Issue decision
       Then the case should be in Hearing appeal status
 
       When I switch to be a Judge
-      When I choose "Adjourn case"
+      When I choose "Write adjournment notice"
       And I upload an adjournment notice and issue direction "No"
       And I see "Draft Adjournment Notice"
       And I choose "Issue adjournment notice"
@@ -79,7 +79,7 @@ Feature: Issue decision
         Then the case should be in Hearing appeal status
 
         When I switch to be a Judge
-        When I choose "Adjourn case"
+        When I choose "Write adjournment notice"
         And I upload an adjournment notice and issue direction "Yes"
         And I see "Draft Adjournment Notice"
         And I choose "Issue adjournment notice"
