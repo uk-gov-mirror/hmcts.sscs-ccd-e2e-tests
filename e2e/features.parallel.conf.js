@@ -1,6 +1,7 @@
 const _ = require('lodash');
 const glob = require('glob');
 const argv = require('yargs').argv;
+const retry = require('protractor-retry').retry;
 const {
   PickleFilter,
   getTestCasesFromFilesystem
@@ -101,6 +102,10 @@ class BaseConfig {
       'no-source': true
     };
 
+    this.onCleanUp = (results) => {
+      retry.onCleanUp(results);
+    }
+
     this.onPrepare = () => {
       // returning the promise makes protractor wait for
       // the reporter config before executing tests
@@ -114,6 +119,12 @@ class BaseConfig {
       tsNode.register({
         project: path.join(__dirname, './tsconfig.e2e.json')
       });
+
+      retry.onPrepare();
+    }
+
+    this.afterLaunch = () => {
+      return retry.afterLaunch(2);
     }
   }
 

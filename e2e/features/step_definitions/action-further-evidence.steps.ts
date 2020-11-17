@@ -33,9 +33,9 @@ Then(/^the case should have successfully processed "(.+)" event$/, async functio
     await delay(1000);
 });
 
-When(/^I fill the direction notice form$/, async function () {
+When(/^I fill the direction notice form with "(.+)"$/, async function (reinstatement) {
 
-    await anyCcdPage.chooseOptionContainingText('#directionTypeDl', 'Grant reinstatement');
+    await anyCcdPage.chooseOptionContainingText('#directionTypeDl', reinstatement);
     await anyCcdPage.clickElementById('generateNotice-No');
     await anyCcdPage.chooseOptionContainingText('#sscsInterlocDirectionDocument_documentType', 'Directions Notice');
     await furtherEvidencePage.uploadFile('sscsInterlocDirectionDocument_documentLink', 'issue2.pdf');
