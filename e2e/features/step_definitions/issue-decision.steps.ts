@@ -135,3 +135,11 @@ When(/^I issue a final decision generate decision no$/, async function () {
   expect(await anyCcdPage.contentContains('Decision in favour of appellant')).to.equal(true);
   await browser.sleep(500);
 });
+
+When(/^I issue a final decision generate decision upheld$/, async function () {
+  await anyCcdPage.click('Continue');
+  await anyCcdPage.click('Submit');
+  await browser.sleep(1000);
+  expect(await anyCcdPage.contentContains('Decision upheld')).to.equal(true);
+  await browser.sleep(500);
+});

@@ -2,6 +2,7 @@ import { AnyCcdPage } from '../../pages/any-ccd.page';
 import { AnyCcdFormPage } from '../../pages/any-ccd-form.page';
 import { CaseDetailsPage } from '../../pages/case-details.page';
 import { NIGenerator } from '../../helpers/ni-generator';
+import { DwpOffice } from '../../helpers/dwp-office';
 import { Given, Then, When } from 'cucumber';
 import { expect } from 'chai';
 import { browser } from 'protractor';
@@ -11,6 +12,7 @@ const anyCcdFormPage = new AnyCcdFormPage();
 const caseDetailsPage = new CaseDetailsPage();
 const {formData} = require('../data/scanned-case');
 const niGenerator = new NIGenerator();
+const dwpOffice = new DwpOffice();
 
 async function addDataItems(benefit_code) {
     for (let i = 0; i < formData.length; i++) {
@@ -22,6 +24,9 @@ async function addDataItems(benefit_code) {
         }
         if (formData[i].question === 'benefit_type_description' ) {
             formData[i].answer = benefit_code;
+        }
+        if (formData[i].question === 'office' ) {
+            formData[i].answer = dwpOffice.officeCode(benefit_code);
         }
         await anyCcdFormPage.addNewCollectionItem('Form OCR Data');
         await anyCcdFormPage.setCollectionItemFieldValue(
