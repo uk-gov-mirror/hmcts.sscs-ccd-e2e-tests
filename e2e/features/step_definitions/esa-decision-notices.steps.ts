@@ -1,16 +1,17 @@
-import {When} from "cucumber";
-import {browser} from "protractor";
-import {AnyCcdPage} from "../../pages/any-ccd.page";
-import {IssueDecisionPage} from "../../pages/issue-decision.page";
-import {CaseDetailsPage} from "../../pages/case-details.page";
-import {AnyCcdFormPage} from "../../pages/any-ccd-form.page";
+import { When } from 'cucumber';
+import { browser } from 'protractor';
+import { AnyCcdPage } from '../../pages/any-ccd.page';
+import { IssueDecisionPage } from '../../pages/issue-decision.page';
+import { CaseDetailsPage } from '../../pages/case-details.page';
+import { AnyCcdFormPage } from '../../pages/any-ccd-form.page';
 
 const anyCcdPage = new AnyCcdPage();
 const issueDecisionPage = new IssueDecisionPage();
 const caseDetailsPage = new CaseDetailsPage();
 const anyCcdFormPage = new AnyCcdFormPage();
 
-When(/^I write a final decision of WCA appeal "(.+)" and Support group "(.+)" To Allowed "(.+)"$/, async function (wcaAppeal, supportGroup, allowed) {
+When(/^I write a final decision of WCA appeal "(.+)" and Support group "(.+)" To Allowed "(.+)"$/,
+    async function (wcaAppeal, supportGroup, allowed) {
     await anyCcdPage.clickElementById('writeFinalDecisionGenerateNotice-Yes');
     await anyCcdPage.click('Continue');
     await browser.sleep(500);
@@ -148,4 +149,3 @@ When(/^I choose manual upload$/, async function () {
     await anyCcdPage.click('Submit');
     await browser.sleep(5000);
 });
-

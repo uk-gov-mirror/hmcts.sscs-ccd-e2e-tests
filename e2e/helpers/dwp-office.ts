@@ -1,8 +1,8 @@
 export class DwpOffice {
     officeMap = new Map([
-        ["ESA", "Sheffield DRT"],
-        ["PIP", "3"],
-        ["UC", "Universal Credit"]
+        ['ESA', 'Sheffield DRT'],
+        ['PIP', '3'],
+        ['UC', 'Universal Credit']
     ]);
 
     officeCode(benefit_code) {
