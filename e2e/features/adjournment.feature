@@ -11,7 +11,7 @@ Feature: Issue decision
     When I switch to be a DWPResponse Writer
     When I choose "Upload response"
     And I upload contains further information "NO"
-    Then the case should end "Ready to list" state
+    Then the case should be in "Ready to list" appeal status
 
     When I switch to be a Case Officer
     When I choose "Add a hearing"
@@ -32,7 +32,7 @@ Feature: Issue decision
     @adjournment @nightly-test-5
     Scenario: Should end up in "Ready to list" state when decision is issued with generate notice is yes and issue direction is no
       Given I am signed in as a Case Officer
-      And I have a bulk-scanned document with all fields
+      And I have a PIP bulk-scanned document with all fields
 
       When I choose the next step "Create new case from exception"
       Then the case should be in "With DWP" state
@@ -61,7 +61,7 @@ Feature: Issue decision
       @adjournment @nightly-test-5
       Scenario: Should end up in "Not listable" state when decision is issued with generate notice is yes and issue direction is yes
         Given I am signed in as a Case Officer
-        And I have a bulk-scanned document with all fields
+        And I have a PIP bulk-scanned document with all fields
 
         When I choose the next step "Create new case from exception"
         Then the case should be in "With DWP" state
