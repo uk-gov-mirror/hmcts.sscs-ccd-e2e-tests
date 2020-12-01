@@ -1,6 +1,6 @@
 Feature: Issue decision
 
-  @issue-decision @nightly-test-1
+  @issue-decision @nightly-test
   Scenario: Should end up in "Dormant" state when decision is issued with generate notice is no
     Given I am signed in as a Case Officer
     And I have a PIP bulk-scanned document with all fields

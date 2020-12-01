@@ -11,6 +11,7 @@ const anyCcdPage = new AnyCcdPage();
 const anyCcdFormPage = new AnyCcdFormPage();
 const caseDetailsPage = new CaseDetailsPage();
 const {formData} = require('../data/scanned-case');
+const {incompFormData} = require('../data/incomplete-scanned-case');
 const niGenerator = new NIGenerator();
 const dwpOffice = new DwpOffice();
 
@@ -45,6 +46,28 @@ async function addDataItems(benefit_code) {
 
 }
 
+async function addIncompleteDataItems() {
+    for (let i = 0; i < incompFormData.length; i++) {
+        if (incompFormData[i].question === 'person1_nino' ) {
+            incompFormData[i].answer = niGenerator.myNIYearPrefix() + niGenerator.myNIMonthPrefix() + niGenerator.myNINumberFromDay() + 'A';
+        }
+        await anyCcdFormPage.addNewCollectionItem('Form OCR Data');
+        await anyCcdFormPage.setCollectionItemFieldValue(
+            'Form OCR Data',
+            i + 1,
+            'Key',
+            incompFormData[i].question
+        );
+        await anyCcdFormPage.setCollectionItemFieldValue(
+            'Form OCR Data',
+            i + 1,
+            'Value (Optional)',
+            incompFormData[i].answer
+        );
+    }
+
+}
+
 async function checkDataItems() {
     for (let i = 0; i < formData.length; i++) {
         expect(
@@ -53,6 +76,19 @@ async function checkDataItems() {
             i + 1,
             'Key',
             formData[i].question
+            )
+        ).to.equal(true);
+    }
+}
+
+async function checkIncompDataItems() {
+    for (let i = 0; i < incompFormData.length; i++) {
+        expect(
+            await caseDetailsPage.isCollectionItemFieldValueDisplayed(
+            'Form OCR Data',
+            i + 1,
+            'Key',
+            incompFormData[i].question
             )
         ).to.equal(true);
     }
@@ -76,7 +112,6 @@ Given(/^I have a (.+) bulk-scanned document with (?:all fields)$/, {timeout: 600
 
     await addDataItems(benefit_code);
     await caseDetailsPage.addFormType('test_form_type');
-
     await anyCcdPage.click('Continue');
     await anyCcdPage.click('Submit');
     expect(await caseDetailsPage.alertContains('has been created')).to.equal(true);
@@ -84,9 +119,50 @@ Given(/^I have a (.+) bulk-scanned document with (?:all fields)$/, {timeout: 600
         'Event',
         'Create an exception record'
     )).to.equal(true);
-
     await anyCcdPage.click('Form OCR');
     await checkDataItems()
+});
+
+Given('I have a PIP bulk-scanned document with incomplete fields', async function () {
+    await anyCcdPage.click('Create new case');
+    expect(await anyCcdPage.pageHeadingContains('Create Case')).to.equal(true);
+    await anyCcdFormPage.setCreateCaseFieldValue('Case type', 'SSCS Bulkscanning');
+    await anyCcdPage.click('Start');
+
+    expect(await anyCcdPage.pageHeadingContains('Envelope meta data')).to.equal(true);
+
+    await caseDetailsPage.addEnvelopeDataItems('NEW_APPLICATION', '123456', 'test_po-box-jurisdiction', 'test_envelope');
+    await caseDetailsPage.addDateItems('deliveryDate');
+    await caseDetailsPage.addDateItems('openingDate');
+
+    await addIncompleteDataItems();
+    await caseDetailsPage.addFormType('test_form_type');
+    await anyCcdPage.click('Continue');
+    await anyCcdPage.click('Submit');
+
+    expect(await caseDetailsPage.alertContains('has been created')).to.equal(true);
+    expect(await caseDetailsPage.isFieldValueDisplayed(
+        'Event',
+        'Create an exception record'
+    )).to.equal(true);
+
+    await anyCcdPage.click('Form OCR');
+    await checkIncompDataItems();
+
+});
+
+When(/^I choose "(.+)" for an incomplete application$/, async function (action) {
+    await caseDetailsPage.doNextStep(action);
+    await anyCcdPage.click('Go');
+    expect(await anyCcdPage.pageHeadingContains(action)).to.equal(true);
+
+    await anyCcdPage.click('Continue');
+    expect(await anyCcdPage.pageHeadingContains('Create new case from exception')).to.equal(true);
+
+    await anyCcdPage.click('Submit');
+    await anyCcdPage.click('Ignore Warning and Go');
+    // expect(await anyCcdPage.pageHeadingContains('History')).to.equal(true);
+
 });
 
 When(/^I choose the next step "(.+)"$/, async function (action) {
