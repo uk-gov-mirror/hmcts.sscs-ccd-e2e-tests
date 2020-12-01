@@ -40,6 +40,10 @@ export class AnyCcdPage extends AnyPage {
         await element(by.css(elementId)).element(by.cssContainingText('option', option)).click()
     }
 
+    async fillValues(elementId: string, actText: string) {
+        await element(by.id(elementId)).sendKeys(actText);
+    }
+
     async isFieldValueDisplayed(
         fieldLabel: string,
         fieldValue: string
@@ -143,6 +147,10 @@ export class AnyCcdPage extends AnyPage {
     async eventsPresentInHistory(linkText: string) {
         const linkPath = '//*[self::button or self::a][normalize-space()="' + linkText + '"]';
         return await element(by.xpath(linkPath)).isPresent();
+    }
+
+    async fillNote() {
+        element(by.id('appealNotePad_notesCollection_0_noteDetail')).sendKeys('This is a test');
     }
 
     async contentContains(match: string, wait: Wait = Wait.normal) {
