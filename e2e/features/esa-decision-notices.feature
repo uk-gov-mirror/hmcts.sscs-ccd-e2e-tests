@@ -1,6 +1,6 @@
 Feature: ESA Final Decision Notices
 
-  @esa-decision @nightly-test @ESA-DN-1
+  @esa-decision @nightly-test-10 @ESA-DN-1
   Scenario: Write ESA final decision WCA and refuse all
     Given I am signed in as a Case Officer
     And I have a ESA bulk-scanned document with all fields
@@ -53,7 +53,7 @@ Feature: ESA Final Decision Notices
 
     And I see "Final Decision Notice"
 
-  @esa-decision @nightly-test @ESA-DN-3
+  @esa-decision @nightly-test-10 @ESA-DN-3
   Scenario: Write ESA final decision WCA and Support group, >= points for schedule 2, No Schedule 3, reg 35 YES and allow
     Given I am signed in as a Case Officer
     And I have a ESA bulk-scanned document with all fields
