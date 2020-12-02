@@ -116,7 +116,7 @@ When(/^I continue writing final decision WCA appeal$/, async function () {
 });
 
 When(/^I provide reasons and check answers To Allowed "(.+)"$/, async function (allowed) {
-    if (allowed == 'YES') {
+    if (allowed === 'YES') {
       await anyCcdPage.clickElementById('dwpReassessTheAward-noRecommendation');
       await anyCcdPage.click('Continue');
       await browser.sleep(500);
