@@ -38,9 +38,10 @@ When(/^I write a final decision of WCA appeal "(.+)" and Support group "(.+)" To
     } else {
         await anyCcdPage.clickElementById('wcaAppeal-No');
     }
+    await browser.sleep(500);
     if (supportGroup === 'YES') {
         await anyCcdPage.clickElementById('supportGroupOnlyAppeal-Yes');
-    } else {
+    } else if (wcaAppeal === 'YES') {
         await anyCcdPage.clickElementById('supportGroupOnlyAppeal-No');
     }
     await anyCcdPage.click('Continue');
@@ -114,10 +115,12 @@ When(/^I continue writing final decision WCA appeal$/, async function () {
     await browser.sleep(500);
 });
 
-When(/^I provide reasons and check answers$/, async function () {
-    await anyCcdPage.clickElementById('dwpReassessTheAward-noRecommendation');
-    await anyCcdPage.click('Continue');
-    await browser.sleep(500);
+When(/^I provide reasons and check answers To Allowed "(.+)"$/, async function (allowed) {
+    if (allowed == 'YES') {
+      await anyCcdPage.clickElementById('dwpReassessTheAward-noRecommendation');
+      await anyCcdPage.click('Continue');
+      await browser.sleep(500);
+    }
     await anyCcdFormPage.addNewCollectionItem('Reasons for decision');
     await browser.sleep(500);
     await anyCcdFormPage.setCollectionItemFieldValue(
