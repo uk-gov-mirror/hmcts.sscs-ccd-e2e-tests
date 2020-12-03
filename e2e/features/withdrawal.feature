@@ -12,7 +12,6 @@ Feature: The withdrawal
     And I submit "Admin Appeal Withdrawn"
     Then the case should end "Dormant" state
 
-    When I switch to be a DWPResponse Writer
     When I choose "Dwp Action Withdrawal"
     And I submit "Dwp Action Withdrawal"
     Then the case should end "Dormant" state
