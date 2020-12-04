@@ -13,12 +13,12 @@ function delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
 }
 
-When(/^I fill the further evidence form$/, async function () {
+When(/^I fill the further evidence form with "(.+)"$/, async function (requestType) {
     await anyCcdPage.chooseOptionContainingText('#furtherEvidenceAction', 'Other document type');
     await anyCcdPage.click('Add new');
     await browser.sleep(1000);
 
-    await anyCcdPage.chooseOptionContainingText('#scannedDocuments_0_type', 'Reinstatement request');
+    await anyCcdPage.chooseOptionContainingText('#scannedDocuments_0_type', requestType);
     await furtherEvidencePage.uploadFile('scannedDocuments_0_url', 'issue1.pdf');
     await furtherEvidencePage.enterFileName('scannedDocuments_0_fileName', 'testfile.pdf');
     await browser.sleep(3000);
@@ -46,7 +46,7 @@ When(/^I fill the direction notice form with "(.+)"$/, async function (reinstate
     await anyCcdPage.click('Submit');
 });
 
-Then(/^the case should be "(.+)" permissions to proceed$/, async function (reinstatement) {
+Then(/^the case should be "(.+)" permissions for "(.+)"$/, async function (reinstatement, directionType) {
 
     const today = new Date();
     let day = today.getDate();
@@ -57,10 +57,12 @@ Then(/^the case should be "(.+)" permissions to proceed$/, async function (reins
     await anyCcdPage.click('Appeal Details');
     await anyCcdPage.reloadPage();
     await delay(10000);
-    await caseDetailsPage.getFieldValue('Reinstatement Outcome').then(function(actText) {
+    let outcomeText = (directionType === 'Reinstatement') ? 'Outcome' : 'outcome';
+    let regText = (directionType === 'Reinstatement') ? 'Registered' : 'registered';
+    await caseDetailsPage.getFieldValue(`${directionType} ${outcomeText}`).then(function(actText) {
         assert.equal(reinstatement, actText);
     });
-    await caseDetailsPage.getFieldValue('Reinstatement Registered').then(function(actText) {
+    await caseDetailsPage.getFieldValue(`${directionType} ${regText}`).then(function(actText) {
         assert.equal(expDate, actText);
     });
 });

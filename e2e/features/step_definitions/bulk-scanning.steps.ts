@@ -14,6 +14,7 @@ const {formData} = require('../data/scanned-case');
 const {incompFormData} = require('../data/incomplete-scanned-case');
 const niGenerator = new NIGenerator();
 const dwpOffice = new DwpOffice();
+let caseReference: string;
 
 async function addDataItems(benefit_code) {
     for (let i = 0; i < formData.length; i++) {
@@ -195,7 +196,7 @@ Then(/^the case should be in "(.+)" state$/, async function (state) {
     await anyCcdPage.click('Envelope');
     expect(await anyCcdPage.pageHeadingContains('Envelope meta data')).to.equal(true);
 
-    const caseReference = await anyCcdPage.getFieldValue('Case Reference');
+    caseReference = await anyCcdPage.getFieldValue('Case Reference');
     await delay(2000);
     await anyCcdPage.get(`/case/SSCS/Benefit/${caseReference}`);
     await anyCcdPage.click('History');
@@ -219,4 +220,10 @@ Then(/^the case bundle details should be listed in "(.+)" tab$/, async function 
     await anyCcdPage.click(tabName);
     expect(await caseDetailsPage.isFieldValueDisplayed('Stitch status', 'DONE')).to.equal(true);
     expect(await caseDetailsPage.isFieldValueDisplayed('Config used for bundle', 'SSCS Bundle')).to.equal(true);
+});
+
+Given(/^navigate to an existing case$/, async function () {
+     console.log(`the saved case id is ################## ${caseReference}`);
+     await anyCcdPage.get(`/case/SSCS/Benefit/${caseReference}`);
+     await delay(10000);
 });

@@ -1,7 +1,7 @@
-@reinstatement @nightly-test
-Feature: The Reinstatement functionality
+@urgent-hearing @nightly-test
+Feature: Urgent hearing functionality
 
-  Scenario: Grant reinstatement 
+  Scenario: Grant urgent hearing for a case 
     Given I am signed in as a Case Officer
     And I have a PIP bulk-scanned document with all fields
     When I choose the next step "Create new case from exception"
@@ -9,24 +9,22 @@ Feature: The Reinstatement functionality
 
     When I switch to be a DWPResponse Writer
     When I choose "Action further evidence"
-    And I fill the further evidence form with "Reinstatement request"
+    And I fill the further evidence form with "Urgent hearing request"
     Then the case should have successfully processed "Action further evidence" event
 
     When I switch to be a Judge
     When I choose "Issue directions notice"
-    And I fill the direction notice form with "Grant reinstatement"
-    Then the case should be "Granted" permissions for "Reinstatement"
+    And I fill the direction notice form with "Grant urgent hearing"
+    Then the case should be "Granted" permissions for "Urgent hearing"
 
-  Scenario: Refuse reinstatement 
+  Scenario: Refuse urgent hearing for a case
     Given I am signed in as a Case Officer
     And navigate to an existing case
     When I choose "Action further evidence"
-    And I fill the further evidence form with "Reinstatement request"
+    And I fill the further evidence form with "Urgent hearing request"
     Then the case should have successfully processed "Action further evidence" event
 
     When I switch to be a Judge
     When I choose "Issue directions notice"
-    And I fill the direction notice form with "Refuse reinstatement"
-    Then the case should be "Refused" permissions for "Reinstatement"
-
-    
+    And I fill the direction notice form with "Refuse urgent hearing"
+    Then the case should be "Refused" permissions for "Urgent hearing"
