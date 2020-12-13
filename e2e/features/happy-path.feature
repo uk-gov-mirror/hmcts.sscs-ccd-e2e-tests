@@ -3,7 +3,7 @@ Feature: The happy path
   @happy-path @nightly-test @dwp-upload-response
   Scenario: Should end up in "Ready to list" state when ALL fields are present
     Given I am signed in as a Case Officer
-    And I have a PIP bulk-scanned document with all fields
+    And I have a PIP bulk-scanned document with SSCSPE fields
 
     When I choose the next step "Create new case from exception"
     Then the case should be in "With DWP" state
@@ -20,7 +20,7 @@ Feature: The happy path
   @happy-path @nightly-test-1 @dwp-upload-response @uc
   Scenario: Should end up in "Ready to List" state when a UC is not disputed by others
     Given I am signed in as a Case Officer
-    And I have a UC bulk-scanned document with all fields
+    And I have a UC bulk-scanned document with SSCSPE fields
 
     When I choose the next step "Create new case from exception"
     Then the case should be in "With DWP" state
@@ -36,7 +36,7 @@ Feature: The happy path
   @happy-path @nightly-test-1 @dwp-upload-response @uc
   Scenario: Should end up in "Ready to List" state when a UC disputed case has been response reviewed
     Given I am signed in as a Case Officer
-    And I have a UC bulk-scanned document with all fields
+    And I have a UC bulk-scanned document with SSCSPE fields
 
     When I choose the next step "Create new case from exception"
     Then the case should be in "With DWP" state

@@ -3,7 +3,7 @@ Feature: Urgent hearing functionality
 
   Scenario: Grant urgent hearing for a case 
     Given I am signed in as a Case Officer
-    And I have a PIP bulk-scanned document with all fields
+    And I have a PIP bulk-scanned document with SSCSPE fields
     When I choose the next step "Create new case from exception"
     Then the case should be in "With DWP" state
 
