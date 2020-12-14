@@ -15,7 +15,7 @@ module.exports = {
     { question: 'person1_address_line2', answer: 'Town Name' },
     { question: 'person1_address_line3', answer: 'City Name' },
     { question: 'person1_address_line4', answer: 'County Name' },
-    { question: 'person1_postcode', answer: 'TS1 1ST' },
+    { question: 'person1_postcode', answer: 'DA7 5DX' },
     // { question: 'person1_phone', answer: '02099999999' },
     // { question: 'person1_mobile', answer: '07777777777' },
     // { question: 'person1_dob', answer: '01/01/1980' },
