@@ -19,11 +19,25 @@ When(/^I choose "(.+)"$/, async function (action) {
     expect(await anyCcdPage.pageHeadingContains(action)).to.equal(true);
 });
 
-When(/^I upload contains further information "(.+)"$/, async function (action) {
+When(/^I upload contains further information (.+) for "(.+)"$/, async function (action, benefitCode) {
     const dwpState = 'YES';
     await dwpresponse.uploadResponse(action, dwpState);
-    await anyCcdPage.selectIssueCode();
+    if (benefitCode != "UC") {
+        await anyCcdPage.selectIssueCode();
+    }
     await anyCcdPage.click('Continue');
+    if (benefitCode === "UC") {
+      await anyCcdPage.clickElementById('elementsDisputedList-general');
+      await anyCcdPage.click('Continue');
+      await anyCcdPage.addNewCollectionItem('General');
+      await anyCcdPage.selectGeneralIssueCode();
+      await anyCcdPage.click('Continue');
+      await anyCcdPage.clickElementById('elementsDisputedIsDecisionDisputedByOthers-No');
+      await anyCcdPage.click('Continue');
+      await anyCcdPage.clickElementById('jointParty-No');
+      await anyCcdPage.click('Continue');
+
+    }
     await anyCcdPage.click('Submit');
     await anyCcdPage.click('Summary');
 });

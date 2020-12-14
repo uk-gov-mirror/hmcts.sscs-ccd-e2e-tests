@@ -10,8 +10,8 @@ const issueDecisionPage = new IssueDecisionPage();
 const caseDetailsPage = new CaseDetailsPage();
 const anyCcdFormPage = new AnyCcdFormPage();
 
-When(/^I write a final decision of WCA appeal "(.+)" and Support group "(.+)" To Allowed "(.+)"$/,
-    async function (wcaAppeal, supportGroup, allowed) {
+When(/^I write a final decision of "(.+)" appeal "(.+)" and Support group "(.+)" To Allowed "(.+)"$/,
+    async function (appealType, wcaAppeal, supportGroup, allowed) {
     await anyCcdPage.clickElementById('writeFinalDecisionGenerateNotice-Yes');
     await anyCcdPage.click('Continue');
     await browser.sleep(500);
@@ -34,9 +34,9 @@ When(/^I write a final decision of WCA appeal "(.+)" and Support group "(.+)" To
     await anyCcdPage.click('Continue');
     await browser.sleep(2000);
     if (wcaAppeal === 'YES') {
-        await anyCcdPage.clickElementById('wcaAppeal-Yes');
+        await anyCcdPage.clickElementById(appealType + 'Appeal-Yes');
     } else {
-        await anyCcdPage.clickElementById('wcaAppeal-No');
+        await anyCcdPage.clickElementById(appealType + 'Appeal-No');
     }
     await browser.sleep(500);
     if (supportGroup === 'YES') {
