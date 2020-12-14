@@ -3,7 +3,7 @@ Feature: Issue decision
   @adjournment @nightly-test
   Scenario: Should end up in "Ready to list" state when decision is issued with generate notice is no
     Given I am signed in as a Case Officer
-    And I have a PIP bulk-scanned document with all fields
+    And I have a PIP bulk-scanned document with SSCSPE fields
 
     When I choose the next step "Create new case from exception"
     Then the case should be in "With DWP" state
