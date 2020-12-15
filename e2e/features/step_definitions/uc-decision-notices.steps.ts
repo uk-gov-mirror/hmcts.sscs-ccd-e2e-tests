@@ -6,8 +6,6 @@ import { IssueDecisionPage } from '../../pages/issue-decision.page';
 const anyCcdPage = new AnyCcdPage();
 const issueDecisionPage = new IssueDecisionPage();
 
-
-
 When(/^I select schedule 6 activities with <15 points and schedule 8 para 4 "(.+)"$/, async function (para4Apply) {
     await anyCcdPage.clickElementById('ucWriteFinalDecisionPhysicalDisabilitiesQuestion-mobilisingUnaided');
     await anyCcdPage.click('Continue');
@@ -33,7 +31,6 @@ When(/^I select schedule 6 activities with >=15 points$/, async function () {
     await anyCcdPage.clickElementById('ucWriteFinalDecisionMobilisingUnaidedQuestion-mobilisingUnaided1a');
     await anyCcdPage.click('Continue');
     await browser.sleep(500);
-    //await browser.sleep(500);
 });
 
 When(/^I select schedule 7 activities$/, async function () {
