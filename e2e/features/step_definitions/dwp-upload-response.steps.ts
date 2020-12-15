@@ -26,7 +26,7 @@ When(/^I upload contains further information (.+) for "(.+)"$/, async function (
         await anyCcdPage.selectIssueCode();
     }
     await anyCcdPage.click('Continue');
-    if (benefitCode === "UC") {
+    if (benefitCode === 'UC') {
       await anyCcdPage.clickElementById('elementsDisputedList-general');
       await anyCcdPage.click('Continue');
       await anyCcdPage.addNewCollectionItem('General');
