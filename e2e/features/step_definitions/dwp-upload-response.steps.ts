@@ -22,7 +22,7 @@ When(/^I choose "(.+)"$/, async function (action) {
 When(/^I upload contains further information (.+) for "(.+)"$/, async function (action, benefitCode) {
     const dwpState = 'YES';
     await dwpresponse.uploadResponse(action, dwpState);
-    if (benefitCode != "UC") {
+    if (benefitCode !== 'UC') {
         await anyCcdPage.selectIssueCode();
     }
     await anyCcdPage.click('Continue');
