@@ -139,6 +139,25 @@ When(/^I provide reasons and check answers To Allowed "(.+)"$/, async function (
     await browser.sleep(5000);
 });
 
+When(/^I provide reasons and check answers for non WCA To Allowed "(.+)"$/, async function (allowed) {
+    await anyCcdFormPage.addNewCollectionItem('Reasons for decision');
+    await browser.sleep(500);
+    await anyCcdFormPage.setCollectionItemFieldValue(
+        'Reasons for decision',
+        0,
+        'Reasons for decision',
+        'Some Reason'
+    );
+    await anyCcdPage.click('Continue');
+    await browser.sleep(500);
+    await anyCcdPage.click('Continue');
+    await browser.sleep(500);
+    await anyCcdPage.click('Continue');
+    await browser.sleep(500);
+    await anyCcdPage.click('Submit');
+    await browser.sleep(5000);
+});
+
 When(/^I choose manual upload$/, async function () {
     await anyCcdPage.clickElementById('writeFinalDecisionGenerateNotice-No');
     await anyCcdPage.click('Continue');

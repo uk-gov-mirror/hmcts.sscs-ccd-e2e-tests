@@ -24,7 +24,7 @@ Feature: Issue decision
     And I see "Final Decision Notice"
 
 
-  @issue-decision @nightly-test @PIP-DN-2
+  @issue-decision @nightly-test-1 @PIP-DN-2
   Scenario: Yes to generate decision and award is about daily living or mobility
     Given I am signed in as a Case Officer
     And I have a PIP bulk-scanned document with all fields
@@ -47,7 +47,7 @@ Feature: Issue decision
 
     And I see "Final Decision Notice"
 
-    @issue-decision @nightly-test @PIP-DN-3
+    @issue-decision @nightly-test-1 @PIP-DN-3
     Scenario: Yes to generate decision and award is about daily living or mobility
       Given I am signed in as a Case Officer
       And I have a PIP bulk-scanned document with all fields
@@ -70,4 +70,3 @@ Feature: Issue decision
       Then the case should be in "Dormant" appeal status
 
       And I see "Final Decision Notice"
-
