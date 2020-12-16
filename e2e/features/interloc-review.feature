@@ -9,16 +9,16 @@ Feature: The interloc review
 
     When I switch to be a DWPResponse Writer
     When I choose "Upload response"
-    And I upload contains further information "YES" for "PIP"
-    Then the case should end "Response received" state
+    And I upload contains further information YES for "PIP"
+    Then the case should be in "Response received" appeal status
 
     When I switch to be a Case Officer
     When I choose "Response reviewed"
     And I choose Requires Interlocutory Review Yes "Response reviewed"
     And I submit "Response reviewed"
-    Then the case should end "Response received" state
+    Then the case should be in "Response received" appeal status
 
     When I choose "Action direction"
     And I set DWP State to No action "Action direction"
     And I submit "Action direction"
-    Then the case should end "Response received" state
+    Then the case should be in "Response received" appeal status
