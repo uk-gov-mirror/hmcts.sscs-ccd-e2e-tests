@@ -10,7 +10,7 @@ Feature: Issue decision award
 
       When I switch to be a DWPResponse Writer
       When I choose "Upload response"
-      And I upload contains further information "NO"
+      And I upload contains further information "NO" for "PIP"
       Then the case should be in "Ready to list" appeal status
 
       When I switch to be a Judge
