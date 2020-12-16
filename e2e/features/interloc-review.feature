@@ -9,7 +9,7 @@ Feature: The interloc review
 
     When I switch to be a DWPResponse Writer
     When I choose "Upload response"
-    And I upload contains further information "YES"
+    And I upload contains further information YES for "PIP"
     Then the case should end "Response received" state
 
     When I switch to be a Case Officer

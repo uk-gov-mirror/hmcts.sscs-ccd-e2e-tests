@@ -10,7 +10,7 @@ Feature: Issue decision
 
     When I switch to be a DWPResponse Writer
     When I choose "Upload response"
-    And I upload contains further information "NO"
+    And I upload contains further information "NO" for "PIP"
     Then the case should end "Ready to list" state
 
     When I switch to be a Case Officer

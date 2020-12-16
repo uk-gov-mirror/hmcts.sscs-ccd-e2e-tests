@@ -15,14 +15,14 @@ module.exports = {
     { question: 'person1_address_line4', answer: 'County Name' },
     { question: 'person1_postcode', answer: 'TS1 1ST' },
     { question: 'person1_nino', answer: ''},
+    { question: 'office', answer: '3' },
+    { question: 'hearing_telephone_number', answer: '07895123456' },
     { question: 'is_hearing_type_oral', answer: 'true' },
     { question: 'is_hearing_type_paper', answer: 'false' },
-    { question: 'hearing_type_telephone', answer: 'true' },
-    { question: 'hearing_type_video', answer: 'false' },
-    { question: 'hearing_type_face_to_face', answer: 'false' },
-    { question: 'hearing_telephone_number', answer: '07895123456' },
-    { question: 'office', answer: '3' }
-    ]
+    { question: 'hearing_type_telephone', answer: 'true' }
+    // { question: 'hearing_type_video', answer: 'false' }
+    // { question: 'hearing_type_face_to_face', answer: 'false' }
+  ]
 };
 
 function getTodaysDate() {

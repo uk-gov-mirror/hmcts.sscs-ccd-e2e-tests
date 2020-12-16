@@ -3,7 +3,7 @@ Feature: UC Final Decision Notices
   @uc-decision @nightly-test @UC-DN-1
   Scenario: Write UC final decision WCA and refuse all
     Given I am signed in as a Case Officer
-    And I have a UC bulk-scanned document with all fields
+    And I have a UC bulk-scanned document with SSCSPE fields
     When I choose the next step "Create new case from exception"
     Then the case should be in "With DWP" state
 
@@ -29,7 +29,7 @@ Feature: UC Final Decision Notices
   @uc-decision @nightly-test @UC-DN-2
   Scenario: Write ESA final decision WCA and Support group, >= points for schedule 2, No Schedule 3, No reg 35 and refuse
     Given I am signed in as a Case Officer
-    And I have a UC bulk-scanned document with all fields
+    And I have a UC bulk-scanned document with SSCSPE fields
     When I choose the next step "Create new case from exception"
     Then the case should be in "With DWP" state
 
