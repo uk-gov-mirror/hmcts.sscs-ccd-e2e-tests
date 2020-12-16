@@ -12,17 +12,16 @@ const anyCcdFormPage = new AnyCcdFormPage();
 const caseDetailsPage = new CaseDetailsPage();
 const {formData} = require('../data/scanned-case');
 const {incompFormData} = require('../data/incomplete-scanned-case');
+const {sscsPeuFormData} = require('../data/sscs1peu-case');
 const niGenerator = new NIGenerator();
 const dwpOffice = new DwpOffice();
 let caseReference: string;
 
-async function addDataItems(benefit_code) {
-    for (let i = 0; i < formData.length; i++) {
-        if (formData[i].question === 'person1_nino' ) {
-            formData[i].answer = niGenerator.myNIYearPrefix() + niGenerator.myNIMonthPrefix() + niGenerator.myNINumberFromDay() + 'A';
-        }
-        if (formData[i].question === 'person2_nino' ) {
-            formData[i].answer = niGenerator.myNIYearPrefix() + niGenerator.myNIMonthPrefix() + niGenerator.myNINumberFromDay() + 'B';
+async function addDataItems(benefit_code: string, formType: string) {
+    let testData = (formType === 'SSCSPE') ? await formData : await sscsPeuFormData;
+    for (let i = 0; i < testData.length; i++) {
+        if (testData[i].question === 'person1_nino' ) {
+            testData[i].answer = niGenerator.myNIYearPrefix() + niGenerator.myNIMonthPrefix() + niGenerator.myNINumberFromDay() + 'A';
         }
         if (formData[i].question === 'benefit_type_description' ) {
             formData[i].answer = benefit_code;
@@ -35,13 +34,13 @@ async function addDataItems(benefit_code) {
             'Form OCR Data',
             i + 1,
             'Key',
-            formData[i].question
+            testData[i].question
         );
         await anyCcdFormPage.setCollectionItemFieldValue(
             'Form OCR Data',
             i + 1,
             'Value (Optional)',
-            formData[i].answer
+            testData[i].answer
         );
     }
 
@@ -69,14 +68,15 @@ async function addIncompleteDataItems() {
 
 }
 
-async function checkDataItems() {
-    for (let i = 0; i < formData.length; i++) {
+async function checkDataItems(formType: string) {
+    let testData = (formType === 'SSCSPE') ? await formData : await sscsPeuFormData;
+    for (let i = 0; i < testData.length; i++) {
         expect(
             await caseDetailsPage.isCollectionItemFieldValueDisplayed(
             'Form OCR Data',
             i + 1,
             'Key',
-            formData[i].question
+            testData[i].question
             )
         ).to.equal(true);
     }
@@ -99,7 +99,7 @@ function delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
 }
 
-Given(/^I have a (.+) bulk-scanned document with (?:all fields)$/, {timeout: 600 * 1000}, async function (benefit_code) {
+Given(/^I have a (.+) bulk-scanned document with (.+) fields$/, {timeout: 600 * 1000}, async function (benefit_code, formType) {
     await anyCcdPage.click('Create new case');
     expect(await anyCcdPage.pageHeadingContains('Create Case')).to.equal(true);
     await anyCcdFormPage.setCreateCaseFieldValue('Case type', 'SSCS Bulkscanning');
@@ -111,8 +111,8 @@ Given(/^I have a (.+) bulk-scanned document with (?:all fields)$/, {timeout: 600
     await caseDetailsPage.addDateItems('deliveryDate');
     await caseDetailsPage.addDateItems('openingDate');
 
-    await addDataItems(benefit_code);
-    await caseDetailsPage.addFormType('test_form_type');
+    await addDataItems(benefit_code, formType);
+    (formType === 'SSCSPE') ? await caseDetailsPage.addFormType('SSCS1PE') : await caseDetailsPage.addFormType('SSCS1PEU');
     await anyCcdPage.click('Continue');
     await anyCcdPage.click('Submit');
     expect(await caseDetailsPage.alertContains('has been created')).to.equal(true);
@@ -121,10 +121,10 @@ Given(/^I have a (.+) bulk-scanned document with (?:all fields)$/, {timeout: 600
         'Create an exception record'
     )).to.equal(true);
     await anyCcdPage.click('Form OCR');
-    await checkDataItems()
+    await checkDataItems(formType);
 });
 
-Given('I have a PIP bulk-scanned document with incomplete fields', async function () {
+Given('I have a PIP bulk-scanned document filled with incomplete fields', async function() {
     await anyCcdPage.click('Create new case');
     expect(await anyCcdPage.pageHeadingContains('Create Case')).to.equal(true);
     await anyCcdFormPage.setCreateCaseFieldValue('Case type', 'SSCS Bulkscanning');
@@ -146,10 +146,8 @@ Given('I have a PIP bulk-scanned document with incomplete fields', async functio
         'Event',
         'Create an exception record'
     )).to.equal(true);
-
     await anyCcdPage.click('Form OCR');
     await checkIncompDataItems();
-
 });
 
 When(/^I choose "(.+)" for an incomplete application$/, async function (action) {

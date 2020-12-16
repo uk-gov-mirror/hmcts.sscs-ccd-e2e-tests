@@ -3,7 +3,7 @@ Feature: Issue decision award
     @issue-decision @nightly-test-1
     Scenario: Yes to generate decision and award is about daily living or mobility
       Given I am signed in as a Case Officer
-      And I have a PIP bulk-scanned document with all fields
+      And I have a PIP bulk-scanned document with SSCSPE fields
 
       When I choose the next step "Create new case from exception"
       Then the case should be in "With DWP" state

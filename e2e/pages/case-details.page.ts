@@ -75,7 +75,7 @@ export class CaseDetailsPage extends AnyCcdPage {
         browser.driver.sleep(100);
         const today = new Date();
         element(by.id(dateType + '-day')).clear();
-        element(by.id(dateType + '-day')).sendKeys(today.getDay());
+        element(by.id(dateType + '-day')).sendKeys(today.getDay() + 1);
         element(by.id(dateType + '-month')).clear();
         element(by.id(dateType + '-month')).sendKeys(today.getMonth());
         if (dateType === 'writeFinalDecisionEndDate') {
