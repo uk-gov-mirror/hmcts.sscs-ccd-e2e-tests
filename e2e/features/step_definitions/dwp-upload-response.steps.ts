@@ -19,7 +19,7 @@ When(/^I choose "(.+)"$/, async function (action) {
     expect(await anyCcdPage.pageHeadingContains(action)).to.equal(true);
 });
 
-When(/^I upload contains further information (.+) for "(.+)"$/, async function (action, benefitCode) {
+When(/^I upload contains further information (.+) for "(.+)"$/, async function (action: string, benefitCode: string) {
     const dwpState = 'YES';
     await dwpresponse.uploadResponse(action, dwpState);
     if (benefitCode !== 'UC') {
@@ -57,6 +57,7 @@ Then(/^the case should end "(.+)" state$/, async function (state) {
 
 Then(/^the case should be in "(.+)" appeal status$/, async function (state) {
     await browser.sleep(1000);
+    await anyCcdPage.click('Summary');
     await anyCcdPage.reloadPage();
     expect(await anyCcdPage.contentContains(state)).to.equal(true);
 

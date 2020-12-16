@@ -13,7 +13,7 @@ module.exports = {
     { question: 'person1_address_line2', answer: 'Town Name' },
     { question: 'person1_address_line3', answer: 'City Name' },
     { question: 'person1_address_line4', answer: 'County Name' },
-    { question: 'person1_postcode', answer: 'TS1 1ST' },
+    { question: 'person1_postcode', answer: 'DA7 5DX' },
     { question: 'person1_nino', answer: ''},
     { question: 'is_hearing_type_oral', answer: 'true' },
     { question: 'is_hearing_type_paper', answer: 'false' },
