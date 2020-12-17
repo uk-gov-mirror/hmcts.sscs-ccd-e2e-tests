@@ -10,7 +10,7 @@ const caseDetailsPage = new CaseDetailsPage();
 const dwpresponse = new DwpResponsePage();
 
 When(/^I choose "(.+)"$/, async function (action) {
-    if (action === 'Upload response') {
+    if (action === 'Upload response' || action === 'Write adjournment notice') {
         await anyCcdPage.reloadPage();
     }
     await caseDetailsPage.doNextStep(action);
@@ -47,7 +47,7 @@ When(/^I upload UC further information with disputed (.+) disputed by others (.+
     await dwpresponse.uploadResponseWithJointParty(disputed, disputedByOthersYesOrNo, dwpFurtherInfoYesOrNo);
 });
 
-Then(/^the case should end "(.+)" state$/, async function (state) {
+Then(/^the case should end in "(.+)" state$/, async function (state) {
     await anyCcdPage.click('History');
     await anyCcdPage.reloadPage();
     await browser.sleep(10000);

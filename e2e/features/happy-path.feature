@@ -11,10 +11,10 @@ Feature: The happy path
     When I switch to be a DWPResponse Writer
     When I choose "Upload response"
     And I upload contains further information "NO" for "PIP"
-    Then the case should end "Ready to list" state
+    Then the case should end in "Ready to list" state
 
     When I switch to be a Case Officer
-    Then the case should end "Ready to list" state
+    Then the case should end in "Ready to list" state
 
 
   @happy-path @nightly-test-1 @dwp-upload-response @uc
