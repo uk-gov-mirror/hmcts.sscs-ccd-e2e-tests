@@ -9,11 +9,11 @@ Feature: The alternate happy path
 
     When I switch to be a DWPResponse Writer
     When I choose "Upload response"
-    And I upload contains further information 'YES' for "PIP"
-    Then the case should be in "Response received" appeal status
+    And I upload contains further information YES for "PIP"
+    Then the case should end in "Response received" state
 
     When I switch to be a Case Officer
     When I choose "Response reviewed"
     And I choose Requires Interlocutory Review No "Response reviewed"
     And I submit "Response reviewed"
-    Then the case should be in "Ready to list" appeal status
+    Then the case should end in "Ready to list" state

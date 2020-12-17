@@ -9,9 +9,9 @@ Feature: Issue direction
 
     When I choose "Send to interloc - pre-valid"
     And I submit the interloc reason
-    Then the case should end "Interlocutory Review - Pre-Valid" state
+    Then the case should end in "Interlocutory Review - Pre-Valid" state
 
     When I switch to be a Judge
     And I choose "Issue directions notice"
     When I allow the appeal to proceed
-    Then the case should end "With DWP" state
+    Then the case should end in "With DWP" state

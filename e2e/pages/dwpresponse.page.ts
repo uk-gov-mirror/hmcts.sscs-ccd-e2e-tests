@@ -16,8 +16,10 @@ export class DwpResponsePage extends AnyPage {
         await this.uploadFile('dwpAT38Document_documentLink', 'issue2.pdf');
         await this.uploadFile('dwpEvidenceBundleDocument_documentLink', 'issue3.pdf');
         if (action === 'YES') {
+            await browser.sleep(10000);
             await anyCcdFormPage.clickElementById('dwpFurtherInfo-Yes');
         } else {
+            await browser.sleep(10000);
             await anyCcdFormPage.clickElementById('dwpFurtherInfo-No');
         }
         if (dwpState === 'YES') {
