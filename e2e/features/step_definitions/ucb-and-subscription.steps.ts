@@ -19,15 +19,15 @@ When(/^I populate fields and continue$/, async function () {
 
 Then(/^I set UCB flag to "(.+)"$/, async function (ucbFlag) {
 
-   if(ucbFlag === 'Yes'){
+   if (ucbFlag === 'Yes') {
    await anyCcdPage.clickElementById('dwpUCB-Yes');
-   }else{
+   } else {
      await anyCcdPage.clickElementById('dwpUCB-No');
    }
    await anyCcdPage.click('Continue');
    await anyCcdPage.click('Submit');
    await browser.sleep(10);
-   if(ucbFlag === 'Yes'){
+   if (ucbFlag === 'Yes') {
    await anyCcdPage.click('Listing Requirements');
    await browser.sleep(10);
    expect(await anyCcdPage.contentContains(ucbFlag)).to.equal(true);
@@ -37,10 +37,10 @@ Then(/^I set UCB flag to "(.+)"$/, async function (ucbFlag) {
 
 Then(/^I enter date of appellant death with "(.+)" to appointee$/, async function (hasAppointee) {
    caseDetailsPage.addPastDate('dateOfAppellantDeath')
-   if(hasAppointee === 'No'){
+   if (hasAppointee === 'No') {
    await anyCcdPage.clickElementById('appeal_appellant_isAppointee-No');
    await anyCcdPage.click('Continue');
-   }else{
+   } else {
      await anyCcdPage.clickElementById('appeal_appellant_isAppointee-Yes');
      await appointeePage.addAppointeeDetails()
      browser.driver.sleep(10);
@@ -54,8 +54,6 @@ Then(/^I enter date of appellant death with "(.+)" to appointee$/, async functio
    expect(await anyCcdPage.contentContains('No')).to.equal(true);
 
 });
-
-
 
 When(/^I upload a UCB doc contains further information "(.+)" for "(.+)"$/, async function (action: string, benefitCode: string) {
     const dwpState = 'YES';
@@ -98,25 +96,24 @@ Then(/^I should see UCB flag$/, async function () {
    expect(await anyCcdPage.contentContains('Yes')).to.equal(true);
 });
 
-
-
 Then(/^not listable reason is "(.+)" on summary page$/, async function (isVisible) {
 
-   if(isVisible === 'Visible'){
+   if (isVisible === 'Visible') {
     await browser.sleep(100);
    expect(await anyCcdPage.contentContains('reason for not listable goes here')).to.equal(true);
    }
 });
 
-When(/^I choose not listable direction full filled to "(.+)" and interloc review to "(.+)"$/, async function (isDirectionFullFilled, isReview) {
-  if(isDirectionFullFilled === 'YES'){
+When(/^I choose not listable direction full filled to "(.+)" and interloc review to "(.+)"$/,
+ async function (isDirectionFullFilled, isReview) {
+  if (isDirectionFullFilled === 'YES') {
    await anyCcdPage.clickElementById('updateNotListableDirectionsFulfilled-Yes');
    await anyCcdPage.click('Continue');
    await anyCcdPage.click('Submit');
-       }else{
+       } else {
         await anyCcdPage.clickElementById('updateNotListableDirectionsFulfilled-No');
         await anyCcdPage.click('Continue');
-            if(isReview === 'YES'){
+            if (isReview === 'YES') {
                     await anyCcdPage.clickElementById('updateNotListableInterlocReview-Yes');
                     await anyCcdPage.chooseOptionByElementId('updateNotListableWhoReviewsCase', 'A Judge');
                     await anyCcdPage.click('Continue');
@@ -142,48 +139,47 @@ Then(/^I subscribed to all parties to "(.+)"$/, async function (isSubscribed) {
  const action = isSubscribed;
  console.log('Subscribed to parties : ' + action)
 
- if (action === 'Yes'){
-   await anyCcdPage.clickElementById('subscriptions_appellantSubscription_wantSmsNotifications-'+action);
-   await anyCcdPage.setValueByElementId('subscriptions_appellantSubscription_tya','appellant123')
-   await anyCcdPage.setValueByElementId('subscriptions_appellantSubscription_email','appellant-test@mailinator.com')
-   await anyCcdPage.setValueByElementId('subscriptions_appellantSubscription_mobile','01234567890')
-   await anyCcdPage.clickElementById('subscriptions_appellantSubscription_subscribeEmail-'+action);
-   await anyCcdPage.clickElementById('subscriptions_appellantSubscription_subscribeSms-'+action);
+ if (action === 'Yes') {
+   await anyCcdPage.clickElementById('subscriptions_appellantSubscription_wantSmsNotifications-' + action);
+   await anyCcdPage.setValueByElementId('subscriptions_appellantSubscription_tya', 'appellant123')
+   await anyCcdPage.setValueByElementId('subscriptions_appellantSubscription_email', 'appellant-test@mailinator.com')
+   await anyCcdPage.setValueByElementId('subscriptions_appellantSubscription_mobile', '01234567890')
+   await anyCcdPage.clickElementById('subscriptions_appellantSubscription_subscribeEmail-' + action);
+   await anyCcdPage.clickElementById('subscriptions_appellantSubscription_subscribeSms-' + action);
 
-  await anyCcdPage.clickElementById('subscriptions_representativeSubscription_wantSmsNotifications-'+action);
-  await anyCcdPage.setValueByElementId('subscriptions_representativeSubscription_tya','representative123')
-  await anyCcdPage.setValueByElementId('subscriptions_representativeSubscription_email','representative-test@mailinator.com')
-  await anyCcdPage.setValueByElementId('subscriptions_representativeSubscription_mobile','01234567890')
-  await anyCcdPage.clickElementById('subscriptions_representativeSubscription_subscribeEmail-'+action);
-  await anyCcdPage.clickElementById('subscriptions_representativeSubscription_subscribeSms-'+action);
+  await anyCcdPage.clickElementById('subscriptions_representativeSubscription_wantSmsNotifications-' + action);
+  await anyCcdPage.setValueByElementId('subscriptions_representativeSubscription_tya', 'representative123')
+  await anyCcdPage.setValueByElementId('subscriptions_representativeSubscription_email', 'representative-test@mailinator.com')
+  await anyCcdPage.setValueByElementId('subscriptions_representativeSubscription_mobile', '01234567890')
+  await anyCcdPage.clickElementById('subscriptions_representativeSubscription_subscribeEmail-' + action);
+  await anyCcdPage.clickElementById('subscriptions_representativeSubscription_subscribeSms-' + action);
 
-  await anyCcdPage.clickElementById('subscriptions_appointeeSubscription_wantSmsNotifications-'+action);
-  await anyCcdPage.setValueByElementId('subscriptions_appointeeSubscription_tya','appointee123')
-  await anyCcdPage.setValueByElementId('subscriptions_appointeeSubscription_email','appointee-test@mailinator.com')
-  await anyCcdPage.setValueByElementId('subscriptions_appointeeSubscription_mobile','01234567890')
-  await anyCcdPage.clickElementById('subscriptions_appointeeSubscription_subscribeEmail-'+action);
-  await anyCcdPage.clickElementById('subscriptions_appointeeSubscription_subscribeSms-'+action);
+  await anyCcdPage.clickElementById('subscriptions_appointeeSubscription_wantSmsNotifications-' + action);
+  await anyCcdPage.setValueByElementId('subscriptions_appointeeSubscription_tya', 'appointee123')
+  await anyCcdPage.setValueByElementId('subscriptions_appointeeSubscription_email', 'appointee-test@mailinator.com')
+  await anyCcdPage.setValueByElementId('subscriptions_appointeeSubscription_mobile', '01234567890')
+  await anyCcdPage.clickElementById('subscriptions_appointeeSubscription_subscribeEmail-' + action);
+  await anyCcdPage.clickElementById('subscriptions_appointeeSubscription_subscribeSms-' + action);
 
-  await anyCcdPage.clickElementById('subscriptions_jointPartySubscription_wantSmsNotifications-'+action);
-  await anyCcdPage.setValueByElementId('subscriptions_jointPartySubscription_tya','jointParty123')
-  await anyCcdPage.setValueByElementId('subscriptions_jointPartySubscription_email','jointparty-test@mailinator.com')
-  await anyCcdPage.setValueByElementId('subscriptions_jointPartySubscription_mobile','01234567890')
-  await anyCcdPage.clickElementById('subscriptions_jointPartySubscription_subscribeEmail-'+action);
-  await anyCcdPage.clickElementById('subscriptions_jointPartySubscription_subscribeSms-'+action);
+  await anyCcdPage.clickElementById('subscriptions_jointPartySubscription_wantSmsNotifications-' + action);
+  await anyCcdPage.setValueByElementId('subscriptions_jointPartySubscription_tya', 'jointParty123')
+  await anyCcdPage.setValueByElementId('subscriptions_jointPartySubscription_email', 'jointparty-test@mailinator.com')
+  await anyCcdPage.setValueByElementId('subscriptions_jointPartySubscription_mobile', '01234567890')
+  await anyCcdPage.clickElementById('subscriptions_jointPartySubscription_subscribeEmail-' + action);
+  await anyCcdPage.clickElementById('subscriptions_jointPartySubscription_subscribeSms-' + action);
 
+  } else {
+     await anyCcdPage.clickElementById('subscriptions_appellantSubscription_wantSmsNotifications-' + action);
+     await anyCcdPage.clickElementById('subscriptions_appellantSubscription_subscribeEmail-' + action);
 
-  }else{
-     await anyCcdPage.clickElementById('subscriptions_appellantSubscription_wantSmsNotifications-'+action);
-     await anyCcdPage.clickElementById('subscriptions_appellantSubscription_subscribeEmail-'+action);
+   await anyCcdPage.clickElementById('subscriptions_representativeSubscription_wantSmsNotifications-' + action);
+    await anyCcdPage.clickElementById('subscriptions_representativeSubscription_subscribeEmail-' + action);
 
-   await anyCcdPage.clickElementById('subscriptions_representativeSubscription_wantSmsNotifications-'+action);
-    await anyCcdPage.clickElementById('subscriptions_representativeSubscription_subscribeEmail-'+action);
+   await anyCcdPage.clickElementById('subscriptions_appointeeSubscription_wantSmsNotifications-' + action);
+    await anyCcdPage.clickElementById('subscriptions_appointeeSubscription_subscribeEmail-' + action);
 
-   await anyCcdPage.clickElementById('subscriptions_appointeeSubscription_wantSmsNotifications-'+action);
-    await anyCcdPage.clickElementById('subscriptions_appointeeSubscription_subscribeEmail-'+action);
-
-   await anyCcdPage.clickElementById('subscriptions_jointPartySubscription_wantSmsNotifications-'+action);
-   await anyCcdPage.clickElementById('subscriptions_jointPartySubscription_subscribeEmail-'+action);
+   await anyCcdPage.clickElementById('subscriptions_jointPartySubscription_wantSmsNotifications-' + action);
+   await anyCcdPage.clickElementById('subscriptions_jointPartySubscription_subscribeEmail-' + action);
   }
     await anyCcdPage.click('Continue');
     await anyCcdPage.click('Submit');
@@ -194,6 +190,3 @@ Then(/^I subscribed to all parties to "(.+)"$/, async function (isSubscribed) {
     expect(await anyCcdPage.contentContains(action)).to.equal(true);
 
 });
-
-
-

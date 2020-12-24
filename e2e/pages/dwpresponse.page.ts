@@ -43,7 +43,6 @@ export class DwpResponsePage extends AnyPage {
                  await anyCcdFormPage.clickElementById('dwpFurtherInfo-Yes');
                  await browser.sleep(1000);
 
-
             } else {
                 await browser.sleep(1000);
                 await anyCcdFormPage.clickElementById('dwpFurtherInfo-No');

@@ -81,8 +81,8 @@ export class CaseDetailsPage extends AnyCcdPage {
     async addFutureDate(dateType: String) {
                     const tomorrow = new Date();
                     tomorrow.setDate(new Date().getDate() + 1)
-                    element(by.id(dateType + '-day')).sendKeys(tomorrow.getDate()+1)
-                    element(by.id(dateType + '-month')).sendKeys(tomorrow.getMonth()+1)
+                    element(by.id(dateType + '-day')).sendKeys(tomorrow.getDate() + 1)
+                    element(by.id(dateType + '-month')).sendKeys(tomorrow.getMonth() + 1)
                     element(by.id(dateType + '-year')).sendKeys(tomorrow.getFullYear())
                     await this.click('Continue');
       }
@@ -90,8 +90,8 @@ export class CaseDetailsPage extends AnyCcdPage {
        async addPastDate(dateType: String) {
                           const tomorrow = new Date();
                           tomorrow.setDate(new Date().getDate() - 1)
-                          element(by.id(dateType + '-day')).sendKeys(tomorrow.getDate()-1)
-                          element(by.id(dateType + '-month')).sendKeys(tomorrow.getMonth()-1)
+                          element(by.id(dateType + '-day')).sendKeys(tomorrow.getDate() - 1)
+                          element(by.id(dateType + '-month')).sendKeys(tomorrow.getMonth() - 1)
                           element(by.id(dateType + '-year')).sendKeys(tomorrow.getFullYear())
             }
 
