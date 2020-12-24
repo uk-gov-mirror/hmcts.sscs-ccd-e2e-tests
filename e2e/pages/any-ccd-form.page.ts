@@ -20,6 +20,10 @@ export class AnyCcdFormPage extends AnyCcdPage {
             .click();
     }
 
+   async setValueByElementId(key: string, value: string) {
+          element(by.id(key)).sendKeys(value);
+   }
+
     async setCollectionItemFieldValue(
         collectionLabel: string,
         collectionItemNumber: string | number,
