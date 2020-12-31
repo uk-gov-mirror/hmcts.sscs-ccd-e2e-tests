@@ -172,6 +172,9 @@ When(/^I choose the next step "(.+)"$/, async function (action) {
         case 'Create a bundle':
             await caseDetailsPage.doNextStep(action);
             break;
+        case 'Admin - send to Ready to List':
+            await caseDetailsPage.doNextStep(action);
+            break;
         default:
             throw new Error(
                 `Do not understand action "${action}"`

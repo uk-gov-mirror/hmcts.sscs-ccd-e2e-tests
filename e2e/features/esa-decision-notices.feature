@@ -29,14 +29,8 @@ Feature: ESA Final Decision Notices
   @esa-decision @nightly-test @ESA-DN-2
   Scenario: Write ESA final decision WCA and Support group, >= points for schedule 2, No Schedule 3, No reg 35 and refuse
     Given I am signed in as a Case Officer
-    And I have a ESA bulk-scanned document with SSCSPE fields
-    When I choose the next step "Create new case from exception"
-    Then the case should be in "With DWP" state
-
-    When I switch to be a DWPResponse Writer
-    When I choose "Upload response"
-    And I upload contains further information "NO" for "ESA"
-    Then the case should end in "Ready to list" state
+    And navigate to an existing case
+    When I choose the next step "Admin - send to Ready to List"
 
     When I switch to be a Judge
     When I choose "Write final decision"
