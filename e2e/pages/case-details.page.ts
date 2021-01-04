@@ -62,7 +62,7 @@ export class CaseDetailsPage extends AnyCcdPage {
         browser.driver.sleep(100);
         const today = new Date();
         element(by.id(dateType + '-day')).sendKeys(today.getDay() + 1)
-        element(by.id(dateType + '-month')).sendKeys(today.getMonth())
+        element(by.id(dateType + '-month')).sendKeys(today.getMonth() + 1)
         element(by.id(dateType + '-year')).sendKeys(today.getFullYear() - 10)
 
         element(by.id(dateType + '-hour')).sendKeys(today.getHours())
@@ -77,7 +77,7 @@ export class CaseDetailsPage extends AnyCcdPage {
         element(by.id(dateType + '-day')).clear();
         element(by.id(dateType + '-day')).sendKeys(today.getDay() + 1);
         element(by.id(dateType + '-month')).clear();
-        element(by.id(dateType + '-month')).sendKeys(today.getMonth());
+        element(by.id(dateType + '-month')).sendKeys(today.getMonth() + 1);
         if (dateType === 'writeFinalDecisionEndDate') {
             element(by.id(dateType + '-year')).clear();
             element(by.id(dateType + '-year')).sendKeys(today.getFullYear() + 1);
