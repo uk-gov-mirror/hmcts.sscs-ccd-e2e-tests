@@ -1,6 +1,6 @@
 Feature: The Update subscriptions
 
-@update-subscriptions @nightly-test11
+@update-subscriptions @nightly-test
   Scenario: Update Subscription
     Given I am signed in as a Case Officer
     And I have a UC bulk-scanned document with SSCSPE fields

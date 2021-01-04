@@ -1,6 +1,6 @@
 Feature: Record the death of an appellant
 
-@death-of-appellant @nightly-test11
+@death-of-appellant @nightly-test
   Scenario: Record the death of an appellant : No Appointee
     Given I am signed in as a Case Officer
     And I have a PIP bulk-scanned document with SSCSPE fields
@@ -14,7 +14,7 @@ Feature: Record the death of an appellant
     Then I see field "Want SMS Notifications" with value "No" in "Subscriptions" tab
     Then I see field "Subscribed to Email" with value "No" in "Subscriptions" tab
 
-  @death-of-appellant @nightly-test11
+  @death-of-appellant @nightly-test
   Scenario: Record the death of an appellant : Appointee
     Given I am signed in as a Case Officer
     And I have a PIP bulk-scanned document with SSCSPE fields

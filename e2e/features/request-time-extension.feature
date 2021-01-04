@@ -1,4 +1,4 @@
-@request-time-extension @nightly-test11
+@request-time-extension @nightly-test
 Feature: The Request time extension functionality
 
   Scenario: Request time extension

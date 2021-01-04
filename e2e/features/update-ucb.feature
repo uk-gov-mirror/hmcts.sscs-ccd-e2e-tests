@@ -1,6 +1,6 @@
 Feature: The Update UCB
 
-@update-ucb @nightly-test11
+@update-ucb @nightly-test
   Scenario: Update UCB flag with upload response Granted and Refused
     Given I am signed in as a Case Officer
     And I have a PIP bulk-scanned document with SSCSPE fields
