@@ -49,9 +49,13 @@ Then(/^I enter date of appellant death with "(.+)" to appointee$/, async functio
     browser.driver.sleep(10);
    await anyCcdPage.click('Appeal Details');
    expect(await anyCcdPage.contentContains('Date of appellant death')).to.equal(true);
-   await anyCcdPage.click('Subscriptions');
-    browser.driver.sleep(10);
-   expect(await anyCcdPage.contentContains('No')).to.equal(true);
+   if (hasAppointee === 'No') {
+   browser.driver.sleep(10);
+   expect(await anyCcdPage.contentContains('Appointee details needed')).to.equal(true);
+   }
+   browser.driver.sleep(10);
+   await anyCcdPage.click('History');
+   expect(await anyCcdPage.contentContains('Awaiting Admin Action')).to.equal(true);
 
 });
 
@@ -86,8 +90,22 @@ When(/^I upload a doc$/, async function () {
     await browser.driver.sleep(300);
     await anyCcdPage.click('Continue');
     await anyCcdPage.click('Submit');
-    await anyCcdPage.click('Summary');
+});
+
+Then(/^I see "(.+)" event in case fields$/, async function (expectedEvent) {
+    await anyCcdPage.click('History');
+   // await anyCcdPage.reloadPage();
+    await browser.sleep(50);
+    expect(await caseDetailsPage.isFieldValueDisplayed('Event', expectedEvent)).to.equal(true);
     await browser.driver.sleep(50);
+});
+
+Then(/^I see field "(.+)" with value "(.+)" in "(.+)" tab$/, async function (key, value, tab) {
+    await anyCcdPage.click(tab);
+    await anyCcdPage.reloadPage();
+    await browser.sleep(60);
+    expect(await caseDetailsPage.isFieldValueDisplayed(key, value)).to.equal(true);
+    await browser.driver.sleep(60);
 });
 
 Then(/^I should see UCB flag$/, async function () {
@@ -97,7 +115,6 @@ Then(/^I should see UCB flag$/, async function () {
 });
 
 Then(/^not listable reason is "(.+)" on summary page$/, async function (isVisible) {
-
    if (isVisible === 'Visible') {
     await browser.sleep(100);
    expect(await anyCcdPage.contentContains('reason for not listable goes here')).to.equal(true);

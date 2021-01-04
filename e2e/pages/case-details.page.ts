@@ -58,11 +58,11 @@ export class CaseDetailsPage extends AnyCcdPage {
         element(by.id('envelopeId')).sendKeys(envelopeId)
     }
 
-    async addDateItems(dateType: String) {
+        async addDateItems(dateType: String) {
         browser.driver.sleep(100);
         const today = new Date();
         element(by.id(dateType + '-day')).sendKeys(today.getDay() + 1)
-        element(by.id(dateType + '-month')).sendKeys(today.getMonth())
+        element(by.id(dateType + '-month')).sendKeys(today.getMonth() + 1)
         element(by.id(dateType + '-year')).sendKeys(today.getFullYear() - 10)
 
         element(by.id(dateType + '-hour')).sendKeys(today.getHours())
@@ -91,7 +91,7 @@ export class CaseDetailsPage extends AnyCcdPage {
                           const tomorrow = new Date();
                           tomorrow.setDate(new Date().getDate() - 1)
                           element(by.id(dateType + '-day')).sendKeys(tomorrow.getDate() - 1)
-                          element(by.id(dateType + '-month')).sendKeys(tomorrow.getMonth() - 1)
+                          element(by.id(dateType + '-month')).sendKeys(tomorrow.getMonth() + 1)
                           element(by.id(dateType + '-year')).sendKeys(tomorrow.getFullYear())
             }
 

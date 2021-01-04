@@ -1,5 +1,5 @@
-@request-time-extension @nightly-test
-Feature: The Reinstatement functionality
+@request-time-extension @nightly-test11
+Feature: The Request time extension functionality
 
   Scenario: Request time extension
     Given I am signed in as a Case Officer
@@ -10,6 +10,7 @@ Feature: The Reinstatement functionality
     When I switch to be a DWPResponse Writer
     When I choose "Request time extension"
     And I upload a doc
+    Then I see field "Event" with value "Request time extension" in "History" tab
 
 
 
