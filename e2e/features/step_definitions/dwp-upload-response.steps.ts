@@ -10,7 +10,10 @@ const caseDetailsPage = new CaseDetailsPage();
 const dwpresponse = new DwpResponsePage();
 
 When(/^I choose "(.+)"$/, async function (action) {
-    if (action === 'Upload response' || action === 'Write adjournment notice') {
+    if (action === 'Upload response' || action === 'Write adjournment notice'
+    || action === 'Request time extension' || action === 'Not listable'
+    || action === 'Death of appellant' || action === 'Update not listable'
+    || action === 'Update subscription') {
         await anyCcdPage.reloadPage();
     }
     await caseDetailsPage.doNextStep(action);

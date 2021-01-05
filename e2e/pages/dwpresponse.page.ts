@@ -27,6 +27,41 @@ export class DwpResponsePage extends AnyPage {
         }
     }
 
+   async uploadResponseWithUcbAndPhme(action: string, dwpState: string, docLink: string, isUCB: boolean, isPHME: boolean) {
+            await browser.waitForAngular();
+            let remote = require('selenium-webdriver/remote');
+            browser.setFileDetector(new remote.FileDetector());
+            await this.uploadFile('dwpResponseDocument_documentLink', 'issue1.pdf');
+            await this.uploadFile('dwpAT38Document_documentLink', 'issue2.pdf');
+            await this.uploadFile('dwpEvidenceBundleDocument_documentLink', 'issue3.pdf');
+            if (action === 'YES') {
+                 await browser.sleep(1000);
+                 await anyCcdFormPage.clickElementById('dwpUCB-Yes');
+                 console.log('uploading ucb doc....')
+                 await this.uploadFile(docLink, 'issue3.pdf');
+                 await browser.sleep(10000);
+                 await anyCcdFormPage.clickElementById('dwpFurtherInfo-Yes');
+                 await browser.sleep(1000);
+
+            } else {
+                await browser.sleep(1000);
+                await anyCcdFormPage.clickElementById('dwpFurtherInfo-No');
+            }
+            if (dwpState === 'YES') {
+                anyCcdFormPage.chooseOptionByElementId('dwpState', 'Response submitted (DWP)');
+            }
+        }
+
+    async uploadDoc(docLink: string) {
+      console.log('uploading a single doc...')
+        await browser.waitForAngular();
+        let remote = require('selenium-webdriver/remote');
+        browser.setFileDetector(new remote.FileDetector());
+        await this.uploadFile(docLink, 'issue1.pdf');
+        await browser.sleep(100);
+
+    }
+
     async uploadFile(inputElement: string, fileName: string) {
         let fileToUpload = '../dwpResponse/' + fileName,
         absolutePath = path.resolve(__dirname, fileToUpload);
