@@ -89,8 +89,8 @@ export class CaseDetailsPage extends AnyCcdPage {
 
        async addPastDate(dateType: String) {
                           const tomorrow = new Date();
-                          tomorrow.setDate(new Date().getDate() - 1)
-                          element(by.id(dateType + '-day')).sendKeys(tomorrow.getDate() - 1)
+                          tomorrow.setDate(new Date().getDate() - 2)
+                          element(by.id(dateType + '-day')).sendKeys(tomorrow.getDate() - 2)
                           element(by.id(dateType + '-month')).sendKeys(tomorrow.getMonth() + 1)
                           element(by.id(dateType + '-year')).sendKeys(tomorrow.getFullYear())
             }
@@ -99,7 +99,7 @@ export class CaseDetailsPage extends AnyCcdPage {
         browser.driver.sleep(100);
         const today = new Date();
         element(by.id(dateType + '-day')).clear();
-        element(by.id(dateType + '-day')).sendKeys(today.getDay() + 1);
+        element(by.id(dateType + '-day')).sendKeys(today.getDay() - 1);
         element(by.id(dateType + '-month')).clear();
         element(by.id(dateType + '-month')).sendKeys(today.getMonth() + 1);
         if (dateType === 'writeFinalDecisionEndDate') {

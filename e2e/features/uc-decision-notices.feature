@@ -14,7 +14,7 @@ Feature: UC Final Decision Notices
 
     When I switch to be a Judge
     When I choose "Write final decision"
-    And I write a final decision of "lcwa" appeal "YES" and Support group "NO" To Allowed "NO"
+    And I write a final decision of "wca" appeal "YES" and Support group "NO" To Allowed "NO"
     And I select schedule 6 activities with <15 points and schedule 8 para 4 "NO"
     And I continue writing final decision LCWA appeal
     And I provide reasons and check answers To Allowed "NO"
@@ -34,7 +34,7 @@ Feature: UC Final Decision Notices
 
     When I switch to be a Judge
     When I choose "Write final decision"
-    And I write a final decision of "lcwa" appeal "YES" and Support group "YES" To Allowed "NO"
+    And I write a final decision of "wca" appeal "YES" and Support group "YES" To Allowed "NO"
     And I opt out schedule 7 activities and schedule 9 para 4 "NO"
     And I continue writing final decision LCWA appeal
     And I provide reasons and check answers To Allowed "NO"
