@@ -1,6 +1,6 @@
 Feature: Issue decision
 
-  @adjournment @nightly-test
+  @adjournment @nightly-test-5-disabled-due-to-ccd-bug-SSCS-8628
   Scenario: Should end up in "Ready to list" state when decision is issued with generate notice is no
     Given I am signed in as a Case Officer
     And I have a PIP bulk-scanned document with SSCSPE fields
