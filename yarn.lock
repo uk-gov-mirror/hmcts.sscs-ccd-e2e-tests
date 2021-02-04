@@ -2,17 +2,17 @@
 # yarn lockfile v1
 
 
-"@angular/compiler@^7.0.0":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-7.0.1.tgz#29271bfdc9ac98f2f93c473a0cd82d6a043cf6e3"
-  integrity sha512-X/q51ZAFd0GBJyuZTOKpieyePhlNBAfYCPRi57S2BpxG6i9QjjeM+sPwzjsMmU1P6Qyt/pPpVG738mLocPvdpA==
+"@angular/compiler@^7.2.16":
+  version "7.2.16"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-7.2.16.tgz#081f58e9f50399ff0eef346fff37c9c6201cda8d"
+  integrity sha512-8iX+E9Cnet2167RdP8wM5PGPoEnw/jZNvHrtTRHs4g53n/Rg45iLmE9qFzxCqXGBmUO9LXKYdcXnettFKFLifg==
   dependencies:
     tslib "^1.9.0"
 
-"@angular/core@^7.0.0":
-  version "7.0.1"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-7.0.1.tgz#42f52bf04bf88759d4f4b9e03cb9b312508233a0"
-  integrity sha512-u/3Xx+tIddVC1wANjK1F102uG8fQrNd4Y9nlz3vtKcnFX66b2SQlnjWd18L8FmzYtzaI44RxSWWTPQB0eTx1xw==
+"@angular/core@^7.2.16":
+  version "7.2.16"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-7.2.16.tgz#317f707bc75ca5a90ba470c34e49e6adb7026e85"
+  integrity sha512-z1RuBinuYeC4KLv8Z95YOgIQLd4nkoApdxkIZaWALwSkgeBuHJn4bCBn2cL0gJ/KO2x18TiTU5HuC+uyBt0AVQ==
   dependencies:
     tslib "^1.9.0"
 
