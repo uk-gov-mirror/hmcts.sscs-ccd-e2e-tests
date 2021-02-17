@@ -35,6 +35,17 @@ Then(/^I set UCB flag to "(.+)"$/, async function (ucbFlag) {
    expect(await anyCcdPage.contentContains(ucbFlag)).to.equal(true);
 });
 
+Then(/^I set PHME Granted flag to "(.+)"$/, async function (phmeGranted) {
+    if (phmeGranted === 'Yes') {
+        await anyCcdPage.clickElementById('phmeGranted-Yes');
+    } else {
+        await anyCcdPage.clickElementById('phmeGranted-No');
+    }
+    await anyCcdPage.click('Continue');
+    await anyCcdPage.click('Submit');
+    await browser.sleep(10);
+});
+
 Then(/^I enter date of appellant death with "(.+)" to appointee$/, async function (hasAppointee) {
    caseDetailsPage.addPastDate('dateOfAppellantDeath')
    if (hasAppointee === 'No') {
@@ -59,10 +70,13 @@ Then(/^I enter date of appellant death with "(.+)" to appointee$/, async functio
 
 });
 
-When(/^I upload a UCB doc contains further information "(.+)" for "(.+)"$/, async function (action: string, benefitCode: string) {
+When(/^I upload a "(.+)" doc contains further information "(.+)" for "(.+)"$/, async function (docType: string, action: string, benefitCode: string) {
     const dwpState = 'YES';
     const docLink = 'dwpUcbEvidenceDocument'
-    await dwpresponse.uploadResponseWithUcbAndPhme(action, dwpState, docLink, true, false);
+    const isContainsFurtherInfo = action === 'YES'
+    const isUCB = docType === 'UCB'
+    const isPHME = docType === 'PHME'
+    await dwpresponse.uploadResponseWithUcbAndPhme(dwpState, docLink, isUCB, isPHME, isContainsFurtherInfo);
     if (benefitCode !== 'UC') {
         await anyCcdPage.selectIssueCode();
     }
@@ -111,7 +125,19 @@ Then(/^I see field "(.+)" with value "(.+)" in "(.+)" tab$/, async function (key
 Then(/^I should see UCB flag$/, async function () {
    await anyCcdPage.click('Listing Requirements');
    await browser.sleep(50);
-   expect(await anyCcdPage.contentContains('Yes')).to.equal(true);
+   expect(await anyCcdPage.contentContains('Unacceptable Customer Behaviour (UCB)')).to.equal(true);
+});
+
+Then(/^I should see PHME flag as "(.+)"$/, async function (state) {
+    await anyCcdPage.click('Summary');
+    await browser.sleep(50);
+
+    if(state === "Under Review") {
+        expect(await anyCcdPage.contentContains('PHME on this case: Under Review')).to.equal(true);
+    } else if (state === "Granted") {
+        expect(await anyCcdPage.contentContains('PHME on this case: Granted')).to.equal(true);
+    }
+
 });
 
 Then(/^not listable reason is "(.+)" on summary page$/, async function (isVisible) {

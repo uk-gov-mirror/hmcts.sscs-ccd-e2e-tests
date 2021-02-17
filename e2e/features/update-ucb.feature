@@ -9,7 +9,7 @@ Feature: The Update UCB
 
     When I switch to be a DWPResponse Writer
     And I choose "Upload response"
-    And I upload a UCB doc contains further information "YES" for "PIP"
+    And I upload a "UCB" doc contains further information "YES" for "PIP"
     Then the case should end in "Response received" state
     Then I should see UCB flag
 

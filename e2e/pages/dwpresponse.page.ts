@@ -27,22 +27,33 @@ export class DwpResponsePage extends AnyPage {
         }
     }
 
-   async uploadResponseWithUcbAndPhme(action: string, dwpState: string, docLink: string, isUCB: boolean, isPHME: boolean) {
+   async uploadResponseWithUcbAndPhme(dwpState: string, docLink: string, isUCB: boolean, isPHME: boolean, containsFurtherInfo) {
             await browser.waitForAngular();
             let remote = require('selenium-webdriver/remote');
             browser.setFileDetector(new remote.FileDetector());
             await this.uploadFile('dwpResponseDocument_documentLink', 'issue1.pdf');
             await this.uploadFile('dwpAT38Document_documentLink', 'issue2.pdf');
             await this.uploadFile('dwpEvidenceBundleDocument_documentLink', 'issue3.pdf');
-            if (action === 'YES') {
+            if (isUCB) {
                  await browser.sleep(1000);
                  await anyCcdFormPage.clickElementById('dwpUCB-Yes');
                  console.log('uploading ucb doc....')
                  await this.uploadFile(docLink, 'issue3.pdf');
                  await browser.sleep(10000);
-                 await anyCcdFormPage.clickElementById('dwpFurtherInfo-Yes');
-                 await browser.sleep(1000);
+            }
 
+            if (isPHME) {
+                await browser.sleep(1000);
+                anyCcdFormPage.chooseOptionByElementId('dwpEditedEvidenceReason', 'Potentially harmful medical evidence');
+                console.log('uploading edited doc....');
+                await this.uploadFile('dwpEditedResponseDocument_documentLink', 'issue1.pdf');
+                await this.uploadFile('dwpEditedEvidenceBundleDocument_documentLink', 'issue2.pdf');
+                await this.uploadFile('appendix12Doc_documentLink', 'issue3.pdf');
+            }
+
+            if (containsFurtherInfo) {
+                await anyCcdFormPage.clickElementById('dwpFurtherInfo-Yes');
+                await browser.sleep(1000);
             } else {
                 await browser.sleep(1000);
                 await anyCcdFormPage.clickElementById('dwpFurtherInfo-No');

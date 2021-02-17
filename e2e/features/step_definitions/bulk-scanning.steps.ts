@@ -217,6 +217,14 @@ Then(/^the bundles should be successfully listed in "(.+)" tab$/, async function
     await browser.sleep(500);
 });
 
+Then(/^The edited bundles should be successfully listed in "(.+)" tab$/, async function (tabName) {
+    await delay(10000);
+    await caseDetailsPage.reloadPage();
+    await anyCcdPage.click(tabName);
+    expect(await caseDetailsPage.eventsPresentInHistory('Create an edited bundle')).to.equal(true);
+    await browser.sleep(500);
+});
+
 Then(/^the case bundle details should be listed in "(.+)" tab$/, async function (tabName) {
     await anyCcdPage.click(tabName);
     expect(await caseDetailsPage.isFieldValueDisplayed('Stitch status', 'DONE')).to.equal(true);
