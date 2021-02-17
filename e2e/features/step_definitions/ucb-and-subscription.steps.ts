@@ -70,7 +70,8 @@ Then(/^I enter date of appellant death with "(.+)" to appointee$/, async functio
 
 });
 
-When(/^I upload a "(.+)" doc contains further information "(.+)" for "(.+)"$/, async function (docType: string, action: string, benefitCode: string) {
+When(/^I upload a "(.+)" doc contains further information "(.+)" for "(.+)"$/,
+    async function (docType: string, action: string, benefitCode: string) {
     const dwpState = 'YES';
     const docLink = 'dwpUcbEvidenceDocument'
     const isContainsFurtherInfo = action === 'YES'
@@ -132,9 +133,9 @@ Then(/^I should see PHME flag as "(.+)"$/, async function (state) {
     await anyCcdPage.click('Summary');
     await browser.sleep(50);
 
-    if(state === "Under Review") {
+    if (state === 'Under Review') {
         expect(await anyCcdPage.contentContains('PHME on this case: Under Review')).to.equal(true);
-    } else if (state === "Granted") {
+    } else if (state === 'Granted') {
         expect(await anyCcdPage.contentContains('PHME on this case: Granted')).to.equal(true);
     }
 
