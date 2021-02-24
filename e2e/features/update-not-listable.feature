@@ -1,6 +1,6 @@
 Feature: The Update Not Listable
 
-  @update-not-listable @nightly-test555
+  @update-not-listable @nightly-test
   Scenario: Update not listable : Yes to direction full filled and end to Ready to list
 
     Given I am signed in as a Case Officer
@@ -20,7 +20,7 @@ Feature: The Update Not Listable
     Then the case should end in "Ready to list" state
 
 
-  @update-not-listable @nightly-test555
+  @update-not-listable @nightly-test
   Scenario: Update not listable : No to direction full filled and interloc review to NO
     And navigate to an existing case
     And I choose "Not listable"
@@ -33,7 +33,7 @@ Feature: The Update Not Listable
     Then the case should be in "With DWP" appeal status
 
 
-  @update-not-listable @nightly-test555
+  @update-not-listable @nightly-test
   Scenario: Update not listable : No to direction full filled and interloc review to YES
     And navigate to an existing case
     And I choose "Not listable"
