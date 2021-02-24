@@ -44,3 +44,7 @@ Feature: The Update Not Listable
     And I choose "Update not listable case"
     And I choose not listable direction full filled to "NO" and interloc review to "YES"
     Then the case should be in "Not listable" appeal status
+
+    And I choose "Provide appointee details"
+    And I enter "Yes" to appointee and continue
+    Then I see field "Event" with value "Provide appointee details" in "History" tab

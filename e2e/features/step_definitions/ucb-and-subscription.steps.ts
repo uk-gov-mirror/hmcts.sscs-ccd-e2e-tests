@@ -70,6 +70,19 @@ Then(/^I enter date of appellant death with "(.+)" to appointee$/, async functio
 
 });
 
+Then(/^I enter "(.+)" to appointee and continue$/, async function (hasAppointee) {
+     await anyCcdPage.clickElementById('appeal_appellant_isAppointee-Yes');
+     await appointeePage.addAppointeeDetails()
+     browser.driver.sleep(10);
+     await anyCcdPage.click('Submit');
+     browser.driver.sleep(10);
+     await anyCcdPage.click('History');
+
+     expect(await anyCcdPage.contentContains('Awaiting Admin Action')).to.equal(true);
+     browser.driver.sleep(5);
+     expect(await anyCcdPage.contentContains('Provide appointee details')).to.equal(true);
+});
+
 When(/^I upload a "(.+)" doc contains further information "(.+)" for "(.+)"$/,
     async function (docType: string, action: string, benefitCode: string) {
     const dwpState = 'YES';
