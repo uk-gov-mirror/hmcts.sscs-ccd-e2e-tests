@@ -21,6 +21,7 @@ When(/^I fill the further evidence form with "(.+)"$/, async function (requestTy
     await anyCcdPage.chooseOptionContainingText('#scannedDocuments_0_type', requestType);
     await furtherEvidencePage.uploadFile('scannedDocuments_0_url', 'issue1.pdf');
     await furtherEvidencePage.enterFileName('scannedDocuments_0_fileName', 'testfile.pdf');
+    await furtherEvidencePage.enterScannedDate('20', '1', '2021');
     await browser.sleep(3000);
 
     await anyCcdPage.click('Continue');
