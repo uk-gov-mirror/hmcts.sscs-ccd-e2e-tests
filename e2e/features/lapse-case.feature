@@ -12,7 +12,7 @@ Feature: The lapse
     And I submit "Lapse appeal"
     Then the case should end in "With DWP" state
 
-    When I switch to be a Judge
+    When I switch to be a Case Officer
     When I choose "Confirm lapsed"
     And I submit "Confirm lapsed"
     Then the case should end in "Dormant" state
