@@ -30,6 +30,10 @@ export class AnyCcdPage extends AnyPage {
         await element(by.id(elementId)).click();
     }
 
+   async clickElementByIdXPath(xPathStr: string) {
+            await element(by.xpath(xPathStr)).click();
+   }
+
     async chooseOptionByElementId(elementId: string, option: string) {
         await element(by.id(elementId))
         .element(by.xpath('.//option[normalize-space()="' + option + '"]'))
