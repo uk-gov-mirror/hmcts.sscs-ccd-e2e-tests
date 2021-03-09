@@ -6,6 +6,7 @@ import { DwpResponsePage } from '../../pages/dwpresponse.page';
 import { AnyCcdFormPage } from '../../pages/any-ccd-form.page';
 import { IssueDecisionPage } from '../../pages/issue-decision.page';
 import { CaseDetailsPage } from '../../pages/case-details.page';
+import { FurtherEvidencePage } from '../../pages/further-evidence.page';
 
 import { expect } from 'chai';
 
@@ -15,6 +16,7 @@ const dwpResponse = new DwpResponsePage();
 const anyCcdFormPage = new AnyCcdFormPage();
 const issueDecisionPage = new IssueDecisionPage();
 const caseDetailsPage = new CaseDetailsPage();
+const furtherEvidencePage = new FurtherEvidencePage();
 
 When(/^I select schedule 6 activities with <15 points and schedule 8 para 4 "(.+)"$/, async function (para4Apply) {
     await issueDecisionPage.schedule6PageFieldsAreInTheCorrectOrder();
@@ -79,7 +81,6 @@ When(/^I continue writing final decision non LCWA appeal$/, async function () {
     await browser.sleep(500);
 });
 
-
 When(/^I update joint party to "(.+)" for UC$/, async function (hasJointParty) {
     if (hasJointParty === 'YES') {
     await anyCcdPage.clickElementById('jointParty-Yes');
@@ -98,10 +99,10 @@ When(/^I update joint party to "(.+)" for UC$/, async function (hasJointParty) {
 
 When(/^I update the scanned document for "(.+)"$/, async function (originator) {
  await anyCcdPage.chooseOptionByElementId('furtherEvidenceAction', 'Send to Interloc - Review by Judge');
- if(originator === 'Appellant'){
- await anyCcdPage.chooseOptionByElementId('originalSender', 'Appellant (or Appointee)');
- }else if(originator === 'JointParty'){
- await anyCcdPage.chooseOptionByElementId('originalSender', 'Joint party');
+ if (originator === 'Appellant') {
+    await anyCcdPage.chooseOptionByElementId('originalSender', 'Appellant (or Appointee)');
+ } else if (originator === 'JointParty') {
+    await anyCcdPage.chooseOptionByElementId('originalSender', 'Joint party');
  }
  await anyCcdPage.clickElementByIdXPath('//button[@type="button"]');
  await anyCcdPage.chooseOptionByElementId('scannedDocuments_0_type', 'Confidentiality request');
@@ -109,7 +110,7 @@ When(/^I update the scanned document for "(.+)"$/, async function (originator) {
  await browser.driver.sleep(300);
 
  await anyCcdFormPage.setValueByElementId('scannedDocuments_0_fileName', 'test-confidentiality-file');
- await browser.sleep(10);
+ await furtherEvidencePage.enterScannedDate('20', '1', '2021');
  await anyCcdPage.click('Continue');
  await browser.sleep(10);
  await anyCcdPage.click('Submit');
@@ -126,4 +127,6 @@ When(/^I select Granted for Appellant and Refused for Joint Party as a confident
     await anyCcdPage.click('Submit');
     await anyCcdPage.click('History');
     expect(await anyCcdPage.contentContains('Awaiting Admin Action')).to.equal(true);
+    expect(await caseDetailsPage.eventsPresentInHistory('Action further evidence')).to.equal(true);
+    expect(await caseDetailsPage.eventsPresentInHistory('Review confidentiality request')).to.equal(true);
 });
