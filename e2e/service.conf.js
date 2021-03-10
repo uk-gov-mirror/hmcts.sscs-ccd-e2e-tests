@@ -1,7 +1,10 @@
 module.exports = {
   CcdGatewayUrl: process.env.TEST_E2E_URL_GATEWAY || 'https://gateway-ccd.aat.platform.hmcts.net',
-  CcdWebUrl: process.env.TEST_E2E_URL_WEB || 'https://www-ccd.aat.platform.hmcts.net/list/case?jurisdiction=sscs',
-  UseHeadlessBrowser: process.env.TEST_E2E_HEADLESS !== 'false',
+  // CcdWebUrl: process.env.TEST_E2E_URL_WEB || 'https://www-ccd.aat.platform.hmcts.net/list/case?jurisdiction=sscs',
+  CcdWebUrl: process.env.TEST_E2E_URL_WEB || 'https://manage-case.aat.platform.hmcts.net/list/case?jurisdiction=sscs',
+  TribunalApiUri: 'http://sscs-tribunals-api-aat.service.core-compute-aat.internal',
+  ApiCallTimeout: 40000,
+  UseHeadlessBrowser: process.env.TEST_E2E_HEADLESS == 'false',
   TestCaseOfficerUserName: process.env.TEST_CASEOFFICER_USERNAME || '',
   TestCaseOfficerPassword: process.env.TEST_CASEOFFICER_PASSWORD || '',
   TestJudgeUserName: process.env.TEST_JUDGE_USERNAME || '',
