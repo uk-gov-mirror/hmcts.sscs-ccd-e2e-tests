@@ -1,10 +1,12 @@
-@request-time-extension @nightly-test
+@request-time-extension @nightly-test @migrated-to-exui
 Feature: The Request time extension functionality
 
   Scenario: Request time extension
-    Given I am signed in as a Case Officer
-    And I have a PIP bulk-scanned document with SSCSPE fields
-    When I choose the next step "Create new case from exception"
+    Given I preset up a test case
+    And I am signed in as a Case Officer
+    Given I navigate to an existing case
+    And I choose "Admin - send to With DWP"
+    Given I complete the event
     Then the case should be in "With DWP" state
 
     When I switch to be a DWPResponse Writer
