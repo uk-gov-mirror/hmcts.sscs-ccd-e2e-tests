@@ -23,7 +23,10 @@ export class DwpResponsePage extends AnyPage {
             await anyCcdFormPage.clickElementById('dwpFurtherInfo-No');
         }
         if (dwpState === 'YES') {
-            anyCcdFormPage.chooseOptionByElementId('dwpState', 'Response submitted (DWP)');
+            await anyCcdFormPage.chooseOptionByElementId('benefitCode', '001');
+            await anyCcdFormPage.clickElementById('dwpUCB-No');
+            await anyCcdFormPage.chooseOptionByElementId('dwpFurtherEvidenceStates', 'No action');
+            await anyCcdFormPage.chooseOptionByElementId('dwpState', 'Response submitted (DWP)');
         }
     }
 

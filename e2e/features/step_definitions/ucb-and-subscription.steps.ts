@@ -115,7 +115,7 @@ When(/^I upload a "(.+)" doc contains further information "(.+)" for "(.+)"$/,
 When(/^I upload a doc$/, async function () {
    const docLink = 'tl1Form_documentLink';
     await dwpresponse.uploadDoc(docLink);
-    await browser.driver.sleep(300);
+    await browser.sleep(2000);
     await anyCcdPage.click('Continue');
     await anyCcdPage.click('Submit');
 });
@@ -129,9 +129,8 @@ Then(/^I see "(.+)" event in case fields$/, async function (expectedEvent) {
 });
 
 Then(/^I see field "(.+)" with value "(.+)" in "(.+)" tab$/, async function (key, value, tab) {
-    await anyCcdPage.click(tab);
-    await anyCcdPage.reloadPage();
-    await browser.sleep(60);
+    await browser.sleep(5000);
+    await anyCcdPage.clickTab(tab);
     expect(await caseDetailsPage.isFieldValueDisplayed(key, value)).to.equal(true);
     await browser.driver.sleep(60);
 });

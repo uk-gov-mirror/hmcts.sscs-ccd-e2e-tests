@@ -6,6 +6,7 @@ import { DwpOffice } from '../../helpers/dwp-office';
 import { Given, Then, When } from 'cucumber';
 import { expect } from 'chai';
 import { browser } from 'protractor';
+import * as ccd  from "../../helpers/ccd";
 
 const anyCcdPage = new AnyCcdPage();
 const anyCcdFormPage = new AnyCcdFormPage();
@@ -194,18 +195,10 @@ When(/^I choose the next step "(.+)"$/, async function (action) {
 });
 
 Then(/^the case should be in "(.+)" state$/, async function (state) {
-    await anyCcdPage.click('Envelope');
-    expect(await anyCcdPage.pageHeadingContains('Envelope meta data')).to.equal(true);
-
-    caseReference = await anyCcdPage.getFieldValue('Case Reference');
+    await delay(5000);
+    await anyCcdPage.clickTab('History');
     await delay(2000);
-    await anyCcdPage.get(`/case/SSCS/Benefit/${caseReference}`);
-    await anyCcdPage.click('History');
-    await delay(10000);
-    // await caseDetailsPage.reloadPage();
-    console.log('caseReference :' + caseReference);
     expect(await caseDetailsPage.isFieldValueDisplayed('End state', state)).to.equal(true);
-
 });
 
 Then(/^the bundles should be successfully listed in "(.+)" tab$/, async function (tabName) {
@@ -231,8 +224,18 @@ Then(/^the case bundle details should be listed in "(.+)" tab$/, async function 
     expect(await caseDetailsPage.isFieldValueDisplayed('Config used for bundle', 'SSCS Bundle')).to.equal(true);
 });
 
-Given(/^navigate to an existing case$/, async function () {
-     console.log(`the saved case id is ################## ${caseReference}`);
-     await anyCcdPage.get(`/case/SSCS/Benefit/${caseReference}`);
-     await delay(10000);
+Given('I preset up a test case', async function () {
+
+    const ccdCreatedCase = await ccd.createCase('oral');
+    caseReference = ccdCreatedCase.id;
+});
+
+Given(/^I navigate to an existing case$/, async function () {
+    console.log(`the saved case id is ################## ${caseReference}`);
+    await anyCcdPage.get(`/v2/case/${caseReference}`);
+    await delay(10000);
+});
+
+Given(/^I complete the event$/, async function () {
+    await anyCcdPage.click('Submit');
 });

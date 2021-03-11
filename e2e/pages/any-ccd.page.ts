@@ -30,6 +30,10 @@ export class AnyCcdPage extends AnyPage {
         await element(by.id(elementId)).click();
     }
 
+    async clickTab(tabTitle: string) {
+        await element(by.xpath('//div[text()="'+ tabTitle +'"]')).click();
+    }
+
     async chooseOptionByElementId(elementId: string, option: string) {
         await element(by.id(elementId))
         .element(by.xpath('.//option[normalize-space()="' + option + '"]'))
@@ -121,7 +125,7 @@ export class AnyCcdPage extends AnyPage {
     }
 
     async waitUntilLoaded() {
-        await browser.waitForAngularEnabled(true);
+        await browser.waitForAngularEnabled(false);
         await browser.waitForAngular();
     }
 
