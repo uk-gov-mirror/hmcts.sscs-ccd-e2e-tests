@@ -53,19 +53,17 @@ Then(/^I enter date of appellant death with "(.+)" to appointee$/, async functio
    await anyCcdPage.click('Continue');
    } else {
      await anyCcdPage.clickElementById('appeal_appellant_isAppointee-Yes');
-     await appointeePage.addAppointeeDetails()
-     browser.driver.sleep(10);
+     await appointeePage.addAppointeeDetails();
+     await anyCcdPage.click('Continue');
    }
    await anyCcdPage.click('Submit');
-    browser.driver.sleep(10);
-   await anyCcdPage.click('Appeal Details');
+   await anyCcdPage.clickTab('Appeal Details');
    expect(await anyCcdPage.contentContains('Date of appellant death')).to.equal(true);
    if (hasAppointee === 'No') {
    browser.driver.sleep(10);
    expect(await anyCcdPage.contentContains('Appointee details needed')).to.equal(true);
    }
-   browser.driver.sleep(10);
-   await anyCcdPage.click('History');
+   await anyCcdPage.clickTab('History');
    expect(await anyCcdPage.contentContains('Awaiting Admin Action')).to.equal(true);
 
 });
