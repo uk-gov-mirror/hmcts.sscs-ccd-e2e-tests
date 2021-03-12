@@ -11,8 +11,7 @@ const dwpresponse = new DwpResponsePage();
 
 When(/^I choose "(.+)"$/, async function (action) {
     if (action === 'Write adjournment notice'
-    || action === 'Not listable'
-    || action === 'Death of appellant' || action === 'Update not listable'
+    || action === 'Not listable' || action === 'Update not listable'
     || action === 'Update subscription') {
         await anyCcdPage.reloadPage();
     }

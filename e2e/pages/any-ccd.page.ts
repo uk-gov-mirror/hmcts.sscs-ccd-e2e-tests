@@ -31,6 +31,7 @@ export class AnyCcdPage extends AnyPage {
     }
 
     async clickTab(tabTitle: string) {
+        await browser.wait(ExpectedConditions.visibilityOf(element(by.xpath('//div[text()="'+ tabTitle +'"]'))), 30000);
         await element(by.xpath('//div[text()="'+ tabTitle +'"]')).click();
     }
 
