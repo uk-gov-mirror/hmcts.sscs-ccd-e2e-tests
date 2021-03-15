@@ -1,10 +1,12 @@
-@urgent-hearing @nightly-test
+@urgent-hearing @nightly-test @migrated-to-exui
 Feature: Urgent hearing functionality
 
   Scenario: Grant urgent hearing for a case 
-    Given I am signed in as a Case Officer
-    And I have a PIP bulk-scanned document with SSCSPE fields
-    When I choose the next step "Create new case from exception"
+    Given I preset up a test case
+    And I am signed in as a Case Officer
+    Given I navigate to an existing case
+    And I choose "Admin - send to With DWP"
+    Given I complete the event
     Then the case should be in "With DWP" state
 
     When I switch to be a DWPResponse Writer
@@ -18,8 +20,9 @@ Feature: Urgent hearing functionality
     Then the case should be "Granted" permissions for "Urgent hearing"
 
   Scenario: Refuse urgent hearing for a case
-    Given I am signed in as a Case Officer
-    And navigate to an existing case
+    Given I preset up a test case
+    And I am signed in as a Case Officer
+    Given I navigate to an existing case
     When I choose "Action further evidence"
     And I fill the further evidence form with "Urgent hearing request"
     Then the case should have successfully processed "Action further evidence" event
