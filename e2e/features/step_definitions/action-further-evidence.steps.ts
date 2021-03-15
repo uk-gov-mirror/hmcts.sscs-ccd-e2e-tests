@@ -1,7 +1,7 @@
 import { When, Then } from 'cucumber';
 import { AnyCcdPage } from '../../pages/any-ccd.page';
 import { browser } from 'protractor';
-import { assert } from 'chai';
+import { assert, expect } from 'chai';
 import { FurtherEvidencePage } from '../../pages/further-evidence.page';
 import { CaseDetailsPage } from '../../pages/case-details.page';
 
@@ -15,6 +15,7 @@ function delay(ms: number) {
 
 When(/^I fill the further evidence form with "(.+)"$/, async function (requestType) {
     await anyCcdPage.chooseOptionContainingText('#furtherEvidenceAction', 'Other document type');
+    await anyCcdPage.chooseOptionContainingText('#originalSender', 'DWP');
     await anyCcdPage.click('Add new');
     await browser.sleep(1000);
 
@@ -29,8 +30,9 @@ When(/^I fill the further evidence form with "(.+)"$/, async function (requestTy
 });
 
 Then(/^the case should have successfully processed "(.+)" event$/, async function (event) {
-
-    await anyCcdPage.click('History');
+    await delay(5000);
+    await anyCcdPage.clickTab('History');
+    expect(await caseDetailsPage.eventsPresentInHistory(event)).to.equal(true);
     await delay(1000);
 });
 
@@ -55,7 +57,8 @@ Then(/^the case should be "(.+)" permissions for "(.+)"$/, async function (reins
     let year = today.getFullYear();
 
     let expDate = day + ' ' + month + ' ' + year;
-    await anyCcdPage.click('Appeal Details');
+    await delay(5000);
+    await anyCcdPage.clickTab('Appeal Details');
     await anyCcdPage.reloadPage();
     await delay(10000);
     let outcomeText = (directionType === 'Reinstatement') ? 'Outcome' : 'outcome';
