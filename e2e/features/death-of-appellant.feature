@@ -1,13 +1,11 @@
-@migrated-to-exui-1
+@migrated-to-exui
 Feature: Record the death of an appellant
 
   @death-of-appellant @nightly-test
   Scenario: Record the death of an appellant : No Appointee
-    Given I preset up a test case
+    Given I presetup an "PIP" SYA case
     And I am signed in as a Case Officer
     Given I navigate to an existing case
-    And I choose "Admin - send to With DWP"
-    Given I complete the event
     Then the case should be in "With DWP" state
    
     When I switch to be a DWPResponse Writer
@@ -20,11 +18,9 @@ Feature: Record the death of an appellant
 
   @death-of-appellant @nightly-test
   Scenario: Record the death of an appellant : No Appointee
-    Given I preset up a test case
+    Given I presetup an "PIP" SYA case
     And I am signed in as a Case Officer
     Given I navigate to an existing case
-    And I choose "Admin - send to With DWP"
-    Given I complete the event
     Then the case should be in "With DWP" state
 
     When I switch to be a DWPResponse Writer

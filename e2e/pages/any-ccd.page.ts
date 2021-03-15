@@ -27,6 +27,14 @@ export class AnyCcdPage extends AnyPage {
     }
 
     async clickElementById(elementId: string) {
+        await browser.wait(
+            async () => {
+                return await element(by.id(elementId))
+                            .isPresent();
+            },
+            Wait.normal,
+            'Button did not show in time'
+        );
         await element(by.id(elementId)).click();
     }
 
@@ -42,6 +50,14 @@ export class AnyCcdPage extends AnyPage {
     }
 
     async chooseOptionContainingText(elementId: string, option: string) {
+        await browser.wait(
+            async () => {
+                return await element(by.css(elementId))
+                            .isPresent();
+            },
+            Wait.normal,
+            'Button did not show in time'
+        );
         await element(by.css(elementId)).element(by.cssContainingText('option', option)).click()
     }
 

@@ -14,6 +14,7 @@ export class AnyCcdFormPage extends AnyCcdPage {
 
         const collectionContainer = await this.findCollectionContainer(collectionLabel);
 
+        await browser.wait(ExpectedConditions.elementToBeClickable(element(by.xpath('.//button[normalize-space()="Add new"]'))), 5000);
         await collectionContainer
             .all(by.xpath('.//button[normalize-space()="Add new"]'))
             .last()
@@ -160,6 +161,7 @@ export class AnyCcdFormPage extends AnyCcdPage {
 
         } else if (await fieldContainer.$$('select.ccd-dropdown').isPresent()) {
 
+            await fieldContainer.$$('select.ccd-dropdown').click();
             await fieldContainer
                 .element(by.xpath('.//option[normalize-space()="' + fieldValue + '"]'))
                 .click();

@@ -195,9 +195,8 @@ When(/^I choose the next step "(.+)"$/, async function (action) {
 });
 
 Then(/^the case should be in "(.+)" state$/, async function (state) {
-    await delay(5000);
     await anyCcdPage.clickTab('History');
-    await delay(2000);
+    await delay(5000);
     expect(await caseDetailsPage.isFieldValueDisplayed('End state', state)).to.equal(true);
 });
 
@@ -228,6 +227,11 @@ Given('I preset up a test case', async function () {
 
     const ccdCreatedCase = await ccd.createCase('oral');
     caseReference = ccdCreatedCase.id;
+});
+
+Given(/^I presetup an "(.+)" SYA case$/, async function (caseType) {
+   
+    caseReference = await ccd.createSYACase(caseType);
 });
 
 Given(/^I navigate to an existing case$/, async function () {
