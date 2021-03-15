@@ -19,8 +19,10 @@ export class DwpResponsePage extends AnyPage {
             await browser.sleep(10000);
             await anyCcdFormPage.clickElementById('dwpFurtherInfo-Yes');
         } else {
-            await browser.sleep(10000);
+            await browser.sleep(5000);
             await anyCcdFormPage.clickElementById('dwpFurtherInfo-No');
+            await anyCcdFormPage.clickElementById('dwpUCB-No');
+            await browser.sleep(3000);
         }
         if (dwpState === 'YES') {
             await anyCcdFormPage.chooseOptionByElementId('benefitCode', '001');
@@ -105,7 +107,6 @@ export class DwpResponsePage extends AnyPage {
     }
 
     async elementsDisputedPage(disputed: string) {
-        await browser.sleep(500);
         await anyCcdFormPage.clickElementById('elementsDisputedList-' + disputed.toLowerCase());
     }
 
@@ -116,14 +117,14 @@ export class DwpResponsePage extends AnyPage {
     }
 
     async disputedPage(yesOrNo: string, reference: string) {
-        await element(by.id('elementsDisputedIsDecisionDisputedByOthers-' + yesOrNo)).click();
+        await anyCcdFormPage.clickElementById('elementsDisputedIsDecisionDisputedByOthers-' + yesOrNo);
         if (yesOrNo === 'Yes') {
             await element(by.id('elementsDisputedLinkedAppealRef')).sendKeys(reference);
         }
     }
 
     async jointParty(yesOrNo: string) {
-        await element(by.id('jointParty-' + yesOrNo)).click();
+        await anyCcdFormPage.clickElementById('jointParty-' + yesOrNo);
     }
 
     async jointPartyName() {
@@ -133,6 +134,7 @@ export class DwpResponsePage extends AnyPage {
     }
 
     async jointPartyIdentityDetails() {
+        await browser.sleep(2000);
         await element(by.id('jointPartyIdentity_dob-day')).sendKeys('20')
         await element(by.id('jointPartyIdentity_dob-month')).sendKeys('12')
         await element(by.id('jointPartyIdentity_dob-year')).sendKeys('1980')
@@ -142,6 +144,6 @@ export class DwpResponsePage extends AnyPage {
     }
 
     async jointPartyAddress(yesOrNo: string) {
-        await element(by.id('jointPartyAddressSameAsAppellant-' + yesOrNo)).click();
+        await anyCcdFormPage.clickElementById('jointPartyAddressSameAsAppellant-' + yesOrNo);
     }
 }
