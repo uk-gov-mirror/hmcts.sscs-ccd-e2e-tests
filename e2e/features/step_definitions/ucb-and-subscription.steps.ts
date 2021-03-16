@@ -106,8 +106,7 @@ When(/^I upload a "(.+)" doc contains further information "(.+)" for "(.+)"$/,
 
     }
     await anyCcdPage.click('Submit');
-    await anyCcdPage.click('Summary');
-     browser.driver.sleep(30);
+    browser.driver.sleep(30);
 });
 
 When(/^I upload a doc$/, async function () {
@@ -134,7 +133,7 @@ Then(/^I see field "(.+)" with value "(.+)" in "(.+)" tab$/, async function (key
 });
 
 Then(/^I should see UCB flag$/, async function () {
-   await anyCcdPage.click('Listing Requirements');
+   await anyCcdPage.clickTab('Listing Requirements');
    await browser.sleep(50);
    expect(await anyCcdPage.contentContains('Unacceptable Customer Behaviour (UCB)')).to.equal(true);
 });
