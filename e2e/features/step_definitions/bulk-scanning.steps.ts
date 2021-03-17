@@ -6,7 +6,7 @@ import { DwpOffice } from '../../helpers/dwp-office';
 import { Given, Then, When } from 'cucumber';
 import { expect } from 'chai';
 import { browser } from 'protractor';
-import * as ccd  from "../../helpers/ccd";
+import * as ccd  from '../../helpers/ccd';
 
 const anyCcdPage = new AnyCcdPage();
 const anyCcdFormPage = new AnyCcdFormPage();
@@ -230,7 +230,7 @@ Given('I preset up a test case', async function () {
 });
 
 Given(/^I presetup an "(.+)" SYA case$/, async function (caseType) {
-   
+
     caseReference = await ccd.createSYACase(caseType);
 });
 
