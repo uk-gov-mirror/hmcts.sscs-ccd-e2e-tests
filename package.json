@@ -30,7 +30,7 @@
     "moment": "^2.28.0",
     "nsp": "^3.2.1",
     "path": "^0.12.7",
-    "protractor": "^5.4.1",
+    "protractor": "^5.4.2",
     "protractor-beautiful-reporter": "^1.2.5",
     "protractor-cucumber-framework": "^6.1.1",
     "protractor-multiple-cucumber-html-reporter-plugin": "^1.8.1",
