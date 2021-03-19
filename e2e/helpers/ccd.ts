@@ -52,10 +52,6 @@ async function createSYACase(caseType: string) {
     } else {
         throw 'Unsupported case type passed';
     }
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/bkpatel81-patch-1
     await rp.post(options)
             .then(function (response) {
                 let locationUrl = response.headers['location'];
