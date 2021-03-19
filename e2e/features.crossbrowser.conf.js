@@ -9,7 +9,7 @@ const config = {
   cucumberOpts: {
     require: [
       './cucumber.conf.js',
-      './features/stepDefinitions/**/*.steps.ts'
+      './features/step_definitions/**/*.steps.ts'
     ],
     keepAlive: false,
     tags: false,
@@ -44,7 +44,7 @@ const config = {
       options: {
         automaticallyGenerateReport: true,
         removeExistingJsonReportFile: true,
-        reportName: 'IA Service Cross Browser Test',
+        reportName: 'SSCS Service Cross Browser Test',
         jsonDir: 'reports/tests/crossbrowser',
         reportPath: 'reports/tests/crossbrowser'
 
@@ -68,7 +68,7 @@ const config = {
     return browser.getProcessedConfig().then(function (c) {
       return browser.getSession().then(function (session) {
         // required to be here so saucelabs picks up reports to put in jenkins
-        console.log('SauceOnDemandSessionID=' + session.getId() + ' job-name=ia-ccd-e2e-tests');
+        console.log('SauceOnDemandSessionID=' + session.getId() + ' job-name=sscs-ccd-e2e-tests');
       });
     });
   }
