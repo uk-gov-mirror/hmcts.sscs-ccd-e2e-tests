@@ -1,6 +1,6 @@
 Feature: The alternate happy path
 
-  @alt-happy-path @nightly-test
+  @alt-happy-path @nightly-test @crossbrowser1
   Scenario: Should end up in "With DWP" state when ALL fields are present
     Given I am signed in as a Case Officer
     And I have a PIP bulk-scanned document with SSCSPE fields
