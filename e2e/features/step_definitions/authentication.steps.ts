@@ -28,7 +28,6 @@ Given(/^I switch to be a DWPResponse Writer$/, async function () {
     await browser.sleep(100);
     await anyCcdPage.waitUntilLoaded();
     await anyCcdPage.get(currentUrl);
-    await browser.sleep(5000);
 });
 
 Given(/^I switch to be a Case Officer$/, async function () {
