@@ -12,6 +12,8 @@ export class ResponseReviewedPage extends AnyPage {
         await anyCcdPage.click('Continue');
         // Issue codes page
         await anyCcdPage.click('Continue');
+        // Reference appeal  page
+        await anyCcdPage.click('Continue');
         // Check your Answers
         await anyCcdPage.click('Submit');
     }

@@ -230,7 +230,6 @@ Given('I preset up a test case', async function () {
 });
 
 Given(/^I presetup an "(.+)" SYA case$/, async function (caseType) {
-
     caseReference = await ccd.createSYACase(caseType);
 });
 
