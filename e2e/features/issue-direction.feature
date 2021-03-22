@@ -1,9 +1,12 @@
+@issue-direction
 Feature: Issue direction
-  
-  @issue-direction  @nightly-test
+
+  Background
+    Given I presetup an "PIP" SYA case
+    And I am signed in as a Case Officer
+
+  @nightly-test @TA-580
   Scenario: Judge should be able to proceed incomplete application without mrn-date
-    Given I am signed in as a Case Officer
-    And I have a PIP bulk-scanned document filled with incomplete fields
     When I choose "Create new case from exception" for an incomplete application
     Then the case should be in "Incomplete Application" state
 
