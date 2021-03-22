@@ -38,8 +38,8 @@ export class AnyCcdPage extends AnyPage {
         await element(by.id(elementId)).click();
     }
 
-    async clickTab(tabTitle: string) {
-        await browser.wait(ExpectedConditions.visibilityOf(element(by.xpath('//div[text()="' + tabTitle + '"]'))), 30000);
+    async clickTab(tabTitle: string, waitTime: number = 30000) {
+        await browser.wait(ExpectedConditions.visibilityOf(element(by.xpath('//div[text()="' + tabTitle + '"]'))), waitTime);
         await element(by.xpath('//div[text()="' + tabTitle + '"]')).click();
     }
 
