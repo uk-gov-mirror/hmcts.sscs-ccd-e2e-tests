@@ -53,3 +53,11 @@ Then(/^the case should be in "(.+)" appeal status$/, async function (state) {
     await anyCcdPage.reloadPage();
     expect(await anyCcdPage.contentContains(state)).to.equal(true);
 });
+
+Then(/^the case should end in "(.+)" state$/, async function (state) {
+    await anyCcdPage.click('History');
+    await anyCcdPage.reloadPage();
+    await browser.sleep(10000);
+    expect(await caseDetailsPage.isFieldValueDisplayed('End state', state)).to.equal(true);
+    await browser.sleep(500);
+});
