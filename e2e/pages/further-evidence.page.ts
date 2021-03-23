@@ -6,7 +6,7 @@ const serviceConfig = require('../service.conf');
 export class FurtherEvidencePage extends AnyPage {
 
     async uploadFile(inputElement: string, fileName: string) {
-        let absolutePath, fileToUpload = './../dwpResponse/' + fileName;
+        let absolutePath, fileToUpload = 'e2e/dwpResponse/' + fileName;
         if (serviceConfig.TestsForCrossBrowser) {
             absolutePath = fileToUpload;
         } else {
