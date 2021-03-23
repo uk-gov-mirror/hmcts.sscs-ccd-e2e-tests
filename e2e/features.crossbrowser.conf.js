@@ -47,7 +47,6 @@ const config = {
         reportName: 'SSCS Service Cross Browser Test',
         jsonDir: 'reports/tests/crossbrowser',
         reportPath: 'reports/tests/crossbrowser'
-
       }
     }
   ],

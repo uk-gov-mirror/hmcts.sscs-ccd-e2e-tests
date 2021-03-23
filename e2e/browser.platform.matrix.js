@@ -7,6 +7,7 @@ module.exports = {
           name: 'sscs-chrome-windows-test',
           tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel',
           extendedDebugging: true,
+          capturePerformance: true,
           sharedTestFiles: false,
           maxInstances: 1
         },
@@ -17,6 +18,7 @@ module.exports = {
           name: 'sscs-firefox-windows-test',
           tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel',
           extendedDebugging: true,
+          capturePerformance: true,
           sharedTestFiles: false,
           maxInstances: 1
         },
@@ -27,6 +29,7 @@ module.exports = {
           name: 'sscs-chrome-mac-test',
           tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel',
           extendedDebugging: true,
+          capturePerformance: true,
           sharedTestFiles: false,
           maxInstances: 1
         },
@@ -37,6 +40,7 @@ module.exports = {
           name: 'sscs-firefox-mac-test',
           tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel',
           extendedDebugging: true,
+          capturePerformance: true,
           sharedTestFiles: false,
           maxInstances: 1
         },
@@ -47,6 +51,7 @@ module.exports = {
           name: 'sscs-safari-mac-test',
           tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel',
           extendedDebugging: true,
+          capturePerformance: true,
           sharedTestFiles: false,
           maxInstances: 1,
         },
@@ -57,6 +62,7 @@ module.exports = {
           name: 'sscs-microsoft-edge-windows-test',
           tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel',
           extendedDebugging: true,
+          capturePerformance: true,
           sharedTestFiles: false,
           maxInstances: 1
         },
@@ -67,6 +73,7 @@ module.exports = {
           name: 'sscs-ie11-windows-test',
           tunnelIdentifier: process.env.TUNNEL_IDENTIFIER || 'reformtunnel',
           extendedDebugging: true,
+          capturePerformance: true,
           sharedTestFiles: false,
           maxInstances: 1
         },
