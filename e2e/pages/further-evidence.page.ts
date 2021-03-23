@@ -1,12 +1,18 @@
 import { by, element } from 'protractor';
 import { AnyPage } from './any.page';
 import * as path from 'path';
+const serviceConfig = require('../service.conf');
 
 export class FurtherEvidencePage extends AnyPage {
 
     async uploadFile(inputElement: string, fileName: string) {
-        let fileToUpload = './../dwpResponse/' + fileName,
-        absolutePath = path.resolve(__dirname, fileToUpload);
+        let absolutePath, fileToUpload = './../dwpResponse/' + fileName;
+        if (serviceConfig.TestsForCrossBrowser) {
+            absolutePath = fileToUpload;
+        } else {
+            absolutePath = path.resolve(__dirname, fileToUpload);
+        }
+        console.log('Absolute path is..', absolutePath);
         await element(by.id(inputElement)).sendKeys(absolutePath);
     }
 
