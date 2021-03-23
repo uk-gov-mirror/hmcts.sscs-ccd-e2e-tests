@@ -24,6 +24,8 @@ export class AnyCcdPage extends AnyPage {
             .all(by.xpath(linkPath))
             .first()
             .click();
+
+        await this.smartWait(2000);
     }
 
     async clickElementById(elementId: string) {
@@ -36,6 +38,19 @@ export class AnyCcdPage extends AnyPage {
             'Button did not show in time'
         );
         await element(by.id(elementId)).click();
+    }
+
+    async clickAction(elementId: string) {
+        await browser.wait(
+            async () => {
+                return await element(by.xpath(elementId))
+                    .isPresent();
+            },
+            Wait.normal,
+            'Button did not show in time'
+        );
+        await element(by.xpath(elementId)).click();
+        await this.smartWait(2000)
     }
 
     async clickTab(tabTitle: string) {
@@ -214,4 +229,8 @@ export class AnyCcdPage extends AnyPage {
         }
     }
 
+    async smartWait(number) {
+        await browser.driver.sleep(number)
+
+    }
 }
