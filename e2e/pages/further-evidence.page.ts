@@ -5,7 +5,7 @@ import * as path from 'path';
 export class FurtherEvidencePage extends AnyPage {
 
     async uploadFile(inputElement: string, fileName: string) {
-        let fileToUpload = '../dwpResponse/' + fileName,
+        let fileToUpload = './../dwpResponse/' + fileName,
         absolutePath = path.resolve(__dirname, fileToUpload);
         await element(by.id(inputElement)).sendKeys(absolutePath);
     }
