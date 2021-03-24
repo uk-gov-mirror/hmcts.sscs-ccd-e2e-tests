@@ -57,6 +57,8 @@ const config = {
       .window()
       .maximize();
     browser.waitForAngularEnabled(true);
+    let remote = require('selenium-webdriver/remote');
+    browser.setFileDetector(new remote.FileDetector());
 
     tsNode.register({
       project: path.join(__dirname, './tsconfig.e2e.json')
