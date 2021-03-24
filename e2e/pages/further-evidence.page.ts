@@ -1,14 +1,14 @@
 import { browser, by, element } from 'protractor';
 import { AnyPage } from './any.page';
 import * as path from 'path';
-import conf from '../service.conf'
+const serviceConfig = require('../service.conf');
 
 export class FurtherEvidencePage extends AnyPage {
 
     async uploadFile(inputElement: string, fileName: string) {
-        let fileToUpload = 'e2e/dwpResponse/' + fileName,
+        let fileToUpload = '../dwpResponse/' + fileName,
         absolutePath = path.resolve(__dirname, fileToUpload);
-        if (conf.TestsForCrossBrowser) {
+        if (serviceConfig.TestsForCrossBrowser) {
             let remote = require('selenium-webdriver/remote');
             browser.setFileDetector(new remote.FileDetector());
         }
