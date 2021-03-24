@@ -55,7 +55,7 @@ Then(/^the case should be in "(.+)" appeal status$/, async function (state) {
 });
 
 Then(/^the case should end in "(.+)" state$/, async function (state) {
-    await anyCcdPage.click('History');
+    await anyCcdPage.clickTab('History');
     await anyCcdPage.reloadPage();
     await browser.sleep(10000);
     expect(await caseDetailsPage.isFieldValueDisplayed('End state', state)).to.equal(true);

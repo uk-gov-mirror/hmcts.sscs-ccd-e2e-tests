@@ -1,10 +1,13 @@
+@migrated-to-exui
 Feature: The lapse
 
-@lapse @nightly-test @crossbrowser1
+Background:
+  Given I presetup an "PIP" SYA case
+  And I am signed in as a Case Officer
+  And I navigate to an existing case
+
+@lapse @nightly-test @crossbrowser
   Scenario: Should end up in "With DWP" state when ALL fields are present
-    Given I am signed in as a Case Officer
-    And I have a PIP bulk-scanned document with SSCSPE fields
-    When I choose the next step "Create new case from exception"
     Then the case should be in "With DWP" state
 
     When I choose "Lapse appeal"
