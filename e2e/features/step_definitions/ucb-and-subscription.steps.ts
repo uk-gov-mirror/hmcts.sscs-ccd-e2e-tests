@@ -82,18 +82,18 @@ Then(/^I enter "(.+)" to appointee and continue$/, async function (hasAppointee)
 });
 
 When(/^I upload a "(.+)" doc contains further information "(.+)" for "(.+)"$/,
-    async function (docType: string, action: string, benefitCode: string) {
+    async function (docType: string, action: string, benefitType: string) {
     const dwpState = 'YES';
     const docLink = 'dwpUcbEvidenceDocument'
     const isContainsFurtherInfo = action === 'YES'
     const isUCB = docType === 'UCB'
     const isPHME = docType === 'PHME'
     await dwpresponse.uploadResponseWithUcbAndPhme(dwpState, docLink, isUCB, isPHME, isContainsFurtherInfo);
-    if (benefitCode !== 'UC') {
+    if (benefitType !== 'UC') {
         await anyCcdPage.selectIssueCode();
     }
     await anyCcdPage.click('Continue');
-    if (benefitCode === 'UC') {
+    if (benefitType === 'UC') {
       await anyCcdPage.clickElementById('elementsDisputedList-general');
       await anyCcdPage.click('Continue');
       await anyCcdPage.addNewCollectionItem('General');

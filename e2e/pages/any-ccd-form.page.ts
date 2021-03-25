@@ -149,7 +149,7 @@ export class AnyCcdFormPage extends AnyCcdPage {
         } else if (await fieldContainer.$$('ccd-write-text-area-field').isPresent()) {
 
             await this.formFiller.replaceText(
-                await fieldContainer.element(by.xpath('.//textarea[@id="writeFinalDecisionReasons_0"]')),
+                await fieldContainer.element(by.xpath('.//textarea[@id="writeFinalDecisionReasons_value"]')),
                 fieldValue
             );
 

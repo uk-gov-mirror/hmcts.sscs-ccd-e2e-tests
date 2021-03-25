@@ -37,6 +37,7 @@ When(/^I write a final decision generate notice yes daily living mobility is no 
   await anyCcdPage.click('Continue');
   await issueDecisionPage.addPanelMembers();
   await anyCcdPage.click('Continue');
+  await browser.sleep(1000);
   await caseDetailsPage.addDayItems('writeFinalDecisionDateOfDecision');
   await browser.sleep(3000);
   await anyCcdPage.click('Continue');
@@ -85,6 +86,7 @@ When(/^I write a final decision generate notice yes daily living mobility is yes
   await anyCcdPage.click('Continue');
   await issueDecisionPage.addPanelMembers();
   await anyCcdPage.click('Continue');
+  await browser.sleep(2000)
   await caseDetailsPage.addDayItems('writeFinalDecisionDateOfDecision');
   await anyCcdPage.click('Continue');
   await browser.sleep(3000);
@@ -117,7 +119,7 @@ When(/^I write a final decision generate notice yes daily living mobility is yes
 });
 
 When(/^I see "(.+)"$/, async function (notice) {
-  await anyCcdPage.click('Documents');
+  await anyCcdPage.clickTab('Documents');
   await browser.sleep(500);
   expect(await anyCcdPage.contentContains(notice)).to.equal(true);
 });

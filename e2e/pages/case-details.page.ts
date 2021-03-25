@@ -1,4 +1,4 @@
-import { by, element, browser } from 'protractor';
+import { by, element, browser, ExpectedConditions } from 'protractor';
 import { AnyCcdPage } from './any-ccd.page';
 import { AnyCcdFormPage } from './any-ccd-form.page';
 import { OrdinalToCardinal } from '../helpers/ordinal-to-cardinal';
@@ -99,6 +99,7 @@ export class CaseDetailsPage extends AnyCcdPage {
     async addDayItems(dateType: String) {
         browser.driver.sleep(100);
         const today = new Date();
+        await browser.wait(ExpectedConditions.presenceOf(element(by.id('writeFinalDecisionDateOfDecision-day'))), 5000);
         element(by.id(dateType + '-day')).clear();
         element(by.id(dateType + '-day')).sendKeys(today.getDate() - 1);
         element(by.id(dateType + '-month')).clear();
