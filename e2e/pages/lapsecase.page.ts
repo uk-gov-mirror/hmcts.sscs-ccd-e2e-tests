@@ -9,7 +9,7 @@ export class LapseCasePage extends AnyPage {
     async uploadResponse(action: string) {
         await browser.waitForAngular();
         let remote = require('selenium-webdriver/remote');
-        browser.setFileDetector(new remote.FileDetector());
+        browser.setFileDetector(new remote.LocalFileDetector());
         await this.uploadFile('dwpLT203_documentLink', 'issue1.pdf');
         await this.uploadFile('dwpLapseLetter_documentLink', 'issue2.pdf');
         await browser.sleep(5000);
