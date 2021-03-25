@@ -184,5 +184,4 @@ class BaseConfig {
 
 }
 
-
 exports.config = new BaseConfig();

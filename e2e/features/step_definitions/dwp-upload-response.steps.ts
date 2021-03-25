@@ -40,7 +40,7 @@ When(/^I upload contains further information (.+) for "(.+)"$/, async function (
       await anyCcdPage.click('Continue');
 
     }
-    await anyCcdPage.click('Submit');
+    await anyCcdPage.scrollBar('//button[@type=\'submit\']');
 });
 
 When(/^I upload UC further information with disputed (.+) disputed by others (.+) and further info (.+)$/,

@@ -233,4 +233,12 @@ export class AnyCcdPage extends AnyPage {
         await browser.driver.sleep(number)
 
     }
+
+    async scrollBar(locator: string) {
+        let button = await element(by.xpath(locator));
+        await browser.executeScript('arguments[0].scrollIntoView();', button);
+        await this.smartWait(1000);
+        button.click();
+        await this.smartWait(2000);
+    }
 }
