@@ -1,6 +1,7 @@
 import { $, $$, browser, by, element, ExpectedConditions } from 'protractor';
 import { AnyPage } from './any.page';
 import { Wait } from '../enums/wait';
+const serviceConfig = require('../service.conf');
 
 export class AnyCcdPage extends AnyPage {
 
@@ -53,8 +54,11 @@ export class AnyCcdPage extends AnyPage {
         await this.smartWait(2000)
     }
 
-    async clickTab(tabTitle: string) {
-        await browser.wait(ExpectedConditions.visibilityOf(element(by.xpath('//div[text()="' + tabTitle + '"]'))), 30000);
+    async clickTab(tabTitle: string, waitTime = 30000) {
+        if (serviceConfig.TestsForCrossBrowser) {
+            waitTime = 90000;
+        }
+        await browser.wait(ExpectedConditions.visibilityOf(element(by.xpath('//div[text()="' + tabTitle + '"]'))), waitTime);
         await element(by.xpath('//div[text()="' + tabTitle + '"]')).click();
     }
 
