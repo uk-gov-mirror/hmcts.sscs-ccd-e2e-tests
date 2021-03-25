@@ -6,7 +6,7 @@ Background:
   And I am signed in as a Case Officer
   And I navigate to an existing case
 
-@lapse @nightly-test @crossbrowser
+@lapse @nightly-test @crossbrowser1
   Scenario: Should end up in "With DWP" state when ALL fields are present
     Then the case should be in "With DWP" state
 

@@ -1,7 +1,6 @@
 @urgent-hearing @nightly-test @migrated-to-exui
 Feature: Urgent hearing functionality
 
-  @crossbrowser
   Scenario: Grant urgent hearing for a case 
     Given I preset up a test case
     And I am signed in as a Case Officer

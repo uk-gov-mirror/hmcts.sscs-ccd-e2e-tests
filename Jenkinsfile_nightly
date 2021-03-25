@@ -62,7 +62,7 @@ withNightlyPipeline("nodejs", product, component) {
         ])
     }
 
-        after('fullFunctionalTest') {
+    after('fullFunctionalTest') {
         publishHTML([
             allowMissing         : true,
             alwaysLinkToLastBuild: true,
