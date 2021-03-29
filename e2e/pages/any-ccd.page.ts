@@ -166,9 +166,9 @@ export class AnyCcdPage extends AnyPage {
     }
 
     async waitForTabToLoad(fieldLabel: string) {
-        await browser.wait(ExpectedConditions.visibilityOf(element(by.xpath('//span[normalize-space()="' + fieldLabel + '"]'))), 30000);
+        await browser.wait(ExpectedConditions.visibilityOf(element(by.xpath('//div[@class="mat-tab-label-content" and normalize-space()="' + fieldLabel + '"]'))), 30000);
+    }                
 
-    }
 
     async reloadPage() {
         await browser.navigate().refresh();
