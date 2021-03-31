@@ -1,6 +1,5 @@
 import { Then, When } from 'cucumber';
 import { AnyCcdPage } from '../../pages/any-ccd.page';
-import { browser } from 'protractor';
 import { expect } from 'chai';
 
 const anyCcdPage = new AnyCcdPage();
@@ -17,7 +16,6 @@ When(/^I allow the appeal to proceed$/, async function () {
 });
 
 Then('I  should see {string} in documents tab', async function (notice) {
-    await anyCcdPage.click('Documents');
-    await browser.sleep(1000);
+    await anyCcdPage.clickTab('Documents');
     expect(await anyCcdPage.contentContains(notice)).to.equal(true);
 });
