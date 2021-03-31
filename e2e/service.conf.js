@@ -11,13 +11,15 @@ module.exports = {
   TestJudgePassword: process.env.TEST_JUDGE_PASSWORD || '',
   TestDWPResponseWriterUserName: process.env.TEST_DWP_USERNAME || '',
   TestDWPResponseWriterPassword: process.env.TEST_DWP_PASSWORD || '',
+  TestOutputDir: process.env.E2E_OUTPUT_DIR || './reports/tests',
+  TestForAccessibility: process.env.TESTS_FOR_ACCESSIBILITY !== 'true',
 
   // CcdGatewayUrl: process.env.TEST_E2E_URL_GATEWAY || 'http://localhost:3453',
   // CcdWebUrl: process.env.TEST_E2E_URL_WEB ||  'http://localhost:3451',
 
   ProxyUrl: process.env.TEST_E2E_URL_PROXY || 'http://proxyout.reform.hmcts.net:8080',
   RunWithNumberOfBrowsers: process.env.TEST_E2E_NUM_BROWSERS || 2,
-  UseProxy: process.env.TEST_E2E_USE_PROXY !== 'false',
+  UseProxy: process.env.TEST_E2E_USE_PROXY === 'false',
   WaitForAngular: process.env.TEST_E2E_WAIT_FOR_ANGULAR !== 'false',
   FailFast: process.env.TEST_E2E_FAIL_FAST !== 'false',
   TestsForCrossBrowser: process.env.TEST_FOR_CROSS_BROWSER || 'false',
