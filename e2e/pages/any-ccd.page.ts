@@ -33,7 +33,7 @@ export class AnyCcdPage extends AnyPage {
         await browser.wait(
             async () => {
                 return await element(by.id(elementId))
-                            .isPresent();
+                    .isPresent();
             },
             Wait.normal,
             'Button did not show in time'
@@ -64,15 +64,15 @@ export class AnyCcdPage extends AnyPage {
 
     async chooseOptionByElementId(elementId: string, option: string) {
         await element(by.id(elementId))
-        .element(by.xpath('.//option[normalize-space()="' + option + '"]'))
-        .click();
+            .element(by.xpath('.//option[normalize-space()="' + option + '"]'))
+            .click();
     }
 
     async chooseOptionContainingText(elementId: string, option: string) {
         await browser.wait(
             async () => {
                 return await element(by.css(elementId))
-                            .isPresent();
+                    .isPresent();
             },
             Wait.normal,
             'Button did not show in time'
@@ -181,7 +181,7 @@ export class AnyCcdPage extends AnyPage {
 
     async selectGeneralIssueCode() {
         element(by.id('elementsDisputedGeneral_0_issueCode'))
-        .element(by.xpath('//*[@id="elementsDisputedGeneral_0_issueCode"]/option[2]')).click();
+            .element(by.xpath('//*[@id="elementsDisputedGeneral_0_issueCode"]/option[2]')).click();
     }
 
     async eventsPresentInHistory(linkText: string) {
@@ -245,4 +245,35 @@ export class AnyCcdPage extends AnyPage {
         button.click();
         await this.smartWait(2000);
     }
+
+    async setFinalDecisionsReasons(
+        elementRef1: string,
+        waitTime: number
+    ) {
+        await this.clickAction(elementRef1);
+        await this.setText('//textarea[@rows=\'3\']', 'I am very busy');
+
+        await this.click('Continue');
+        await browser.sleep(waitTime);
+        await this.click('Continue');
+        await browser.sleep(waitTime);
+        await this.click('Continue');
+        await this.click('Submit');
+        await browser.sleep(5000);
+    }
+
+    async setText(key: string, value: string) {
+         let textBoxRef =  async () => {
+                    return (await element
+                        .all(by.xpath(key))
+                        .filter(e => e.isPresent() && e.isDisplayed())
+                        .count()) > 0;
+             return true;
+                }
+
+        if (textBoxRef) {
+            await element.all(by.xpath(key)).sendKeys(value);
+        }
+
+        }
 }

@@ -33,7 +33,7 @@ Then(/^the case should have successfully processed "(.+)" event$/, async functio
     await delay(5000);
     await anyCcdPage.clickTab('History');
     expect(await caseDetailsPage.eventsPresentInHistory(event)).to.equal(true);
-    await delay(1000);
+    await delay(500);
 });
 
 When(/^I fill the direction notice form with "(.+)"$/, async function (reinstatement) {

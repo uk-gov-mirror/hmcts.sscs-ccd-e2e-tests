@@ -113,7 +113,7 @@ export class CaseDetailsPage extends AnyCcdPage {
             element(by.id(dateType + '-year')).sendKeys(today.getFullYear());
         }
 
-        browser.driver.sleep(100);
+        await browser.driver.sleep(100);
     }
 
     async addFormType(formType: string) {
