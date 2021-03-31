@@ -82,7 +82,7 @@ When(/^I write a final decision generate notice yes daily living mobility is yes
   await browser.sleep(500);
   await caseDetailsPage.addDayItems('writeFinalDecisionEndDate');
   await browser.sleep(3000);
-  await anyCcdPage.click('Continue');
+  await anyCcdPage.clickAction('//button[contains(text(),\'Continue\')]');
   await issueDecisionPage.addPanelMembers();
   await anyCcdPage.click('Continue');
   await browser.sleep(2000)
@@ -99,22 +99,7 @@ When(/^I write a final decision generate notice yes daily living mobility is yes
   await anyCcdPage.click('Continue');
   await issueDecisionPage.pageReference();
   await anyCcdPage.click('Continue');
-  await anyCcdFormPage.addNewCollectionItem('Reasons for decision');
-  await anyCcdFormPage.setCollectionItemFieldValue(
-      'Reasons for decision',
-      0,
-      'Reasons for decision',
-      'Some text'
-  );
-  await anyCcdPage.click('Continue');
-  await browser.sleep(500);
-  await anyCcdPage.click('Continue');
-  // decision generated
-  await browser.sleep(3000);
-  await anyCcdPage.click('Continue');
-  await browser.sleep(3000);
-  await anyCcdPage.click('Submit');
-  await browser.sleep(3000);
+  await anyCcdPage.setFinalDecisionsReasons('//button[contains(text(), \'Add new\')]', 500);
 });
 
 When(/^I see "(.+)"$/, async function (notice) {
