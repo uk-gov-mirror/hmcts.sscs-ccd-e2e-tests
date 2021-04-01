@@ -6,6 +6,7 @@ const logger = Logger.getLogger('ccd.ts');
 const timeout = serviceConfig.ApiCallTimeout;
 const ucPayload = require('../features/json/uc_sya.json');
 const pipPayload = require('../features/json/pip_sya.json');
+const esaPayload = require('../features/json/esa_sya.json');
 
 async function createCase(hearingType) {
     const randomNumber = parseInt(Math.random() * 10000000 + '', 10);
@@ -49,9 +50,18 @@ async function createSYACase(caseType: string) {
             json: true,
             resolveWithFullResponse: true
         };
+    } else if (caseType === 'ESA') {
+        options = {
+            method: 'POST',
+            uri: `${serviceConfig.TribunalApiUri}/appeals`,
+            body: esaPayload,
+            json: true,
+            resolveWithFullResponse: true
+        };
     } else {
         throw 'Unsupported case type passed';
     }
+
     await rp.post(options)
             .then(function (response) {
                 let locationUrl = response.headers['location'];

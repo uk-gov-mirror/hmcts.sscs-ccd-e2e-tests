@@ -1,10 +1,10 @@
+@migrated-to-exui @esa-decision
 Feature: ESA Final Decision Notices
 
-  @esa-decision @nightly-test @ESA-DN-1
-  Scenario: Write ESA final decision WCA and refuse all
-    Given I am signed in as a Case Officer
-    And I have a ESA bulk-scanned document with SSCSPE fields
-    When I choose the next step "Create new case from exception"
+  Background:
+    Given I presetup an "ESA" SYA case
+    And I am signed in as a Case Officer
+    And I navigate to an existing case
     Then the case should be in "With DWP" state
 
     When I switch to be a DWPResponse Writer
@@ -13,7 +13,11 @@ Feature: ESA Final Decision Notices
     Then the case should end in "Ready to list" state
 
     When I switch to be a Judge
+    And I navigate to an existing case
     When I choose "Write final decision"
+
+  @nightly-test @ESA-DN-1 @TA-600
+  Scenario: Write ESA final decision WCA and refuse all
     And I write a final decision of "wca" appeal "YES" and Support group "NO" To Allowed "NO"
     And I select schedule 2 activities with <15 points and reg 29 "NO"
     And I continue writing final decision WCA appeal
@@ -23,7 +27,20 @@ Feature: ESA Final Decision Notices
     When I choose "Issue final decision"
     And I issue a final decision generate decision upheld
     Then the case should end in "Dormant" state
+    And I see "Final Decision Notice"
 
+  @esa-decision @nightly-test-10 @ESA-DN-3
+  Scenario: Write ESA final decision WCA and Support group, >= points for schedule 2, No Schedule 3, reg 35 YES and allow
+    And I write a final decision of "wca" appeal "YES" and Support group "NO" To Allowed "YES"
+    And I select schedule 2 activities with >=15 points
+    And I opt out schedule 3 activities and reg 35 "YES"
+    And I continue writing final decision WCA appeal
+    And I provide reasons and check answers To Allowed "YES"
+    And I see "Draft Decision Notice"
+
+    When I choose "Issue final decision"
+    And I issue a final decision generate decision no
+    Then the case should end "Dormant" state
     And I see "Final Decision Notice"
 
   @esa-decision @nightly-test @ESA-DN-2
@@ -43,34 +60,6 @@ Feature: ESA Final Decision Notices
     When I choose "Issue final decision"
     And I issue a final decision generate decision upheld
     Then the case should end in "Dormant" state
-
-    And I see "Final Decision Notice"
-
-  @esa-decision @nightly-test-10 @ESA-DN-3
-  Scenario: Write ESA final decision WCA and Support group, >= points for schedule 2, No Schedule 3, reg 35 YES and allow
-    Given I am signed in as a Case Officer
-    And I have a ESA bulk-scanned document with SSCSPE fields
-    When I choose the next step "Create new case from exception"
-    Then the case should be in "With DWP" state
-
-    When I switch to be a DWPResponse Writer
-    When I choose "Upload response"
-    And I upload contains further information "NO" for "ESA"
-    Then the case should be in "Ready to list" appeal status
-
-    When I switch to be a Judge
-    When I choose "Write final decision"
-    And I write a final decision of "wca" appeal "YES" and Support group "NO" To Allowed "YES"
-    And I select schedule 2 activities with >=15 points
-    And I opt out schedule 3 activities and reg 35 "YES"
-    And I continue writing final decision WCA appeal
-    And I provide reasons and check answers To Allowed "YES"
-    And I see "Draft Decision Notice"
-
-    When I choose "Issue final decision"
-    And I issue a final decision generate decision no
-    Then the case should end "Dormant" state
-
     And I see "Final Decision Notice"
 
   @esa-decision @nightly-test-10 @ESA-DN-4
@@ -150,7 +139,6 @@ Feature: ESA Final Decision Notices
     When I choose "Issue final decision"
     And I issue a final decision generate decision no
     Then the case should be in "Dormant" appeal status
-
     And I see "Final Decision Notice"
 
   @esa-decision @nightly-test-10 @ESA-DN-7
@@ -177,7 +165,6 @@ Feature: ESA Final Decision Notices
     When I choose "Issue final decision"
     And I issue a final decision generate decision no
     Then the case should be in "Dormant" appeal status
-
     And I see "Final Decision Notice"
 
   @esa-decision @nightly-test-10 @ESA-DN-8
@@ -204,7 +191,6 @@ Feature: ESA Final Decision Notices
     When I choose "Issue final decision"
     And I issue a final decision generate decision no
     Then the case should be in "Dormant" appeal status
-
     And I see "Final Decision Notice"
 
   @esa-decision @nightly-test-10 @ESA-DN-9
@@ -231,9 +217,7 @@ Feature: ESA Final Decision Notices
     When I choose "Issue final decision"
     And I issue a final decision generate decision no
     Then the case should be in "Dormant" appeal status
-
     And I see "Final Decision Notice"
-
 
   @esa-decision @nightly-test-10 @ESA-DN-10
   Scenario: Write ESA final decision non WCA and refuse all
@@ -257,7 +241,6 @@ Feature: ESA Final Decision Notices
     When I choose "Issue final decision"
     And I issue a final decision generate decision upheld
     Then the case should be in "Dormant" appeal status
-
     And I see "Final Decision Notice"
 
   @esa-decision @nightly-test-10 @ESA-DN-11
