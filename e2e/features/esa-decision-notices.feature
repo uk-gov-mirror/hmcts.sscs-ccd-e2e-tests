@@ -126,7 +126,7 @@ Feature: ESA Final Decision Notices
     Then the case should be in "Dormant" appeal status
     And I see "Final Decision Notice"
 
-  @esa-decision @nightly-test-10 @ESA-DN-10
+  @esa-decision @nightly-test @ESA-DN-10
   Scenario: Write ESA final decision non WCA and refuse all
     And I write a final decision of "wca" appeal "NO" and Support group "NO" To Allowed "NO"
     And I continue writing final decision non WCA appeal
