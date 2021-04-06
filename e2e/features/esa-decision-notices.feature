@@ -1,4 +1,4 @@
-@migrated-to-exui @esa-decision
+@migrated-to-exui
 Feature: ESA Final Decision Notices
 
   Background:
@@ -16,7 +16,7 @@ Feature: ESA Final Decision Notices
     And I navigate to an existing case
     When I choose "Write final decision"
 
-  @nightly-test @ESA-DN-1 @TA-600
+  @esa-decision @nightly-test @ESA-DN-1
   Scenario: Write ESA final decision WCA and refuse all
     And I write a final decision of "wca" appeal "YES" and Support group "NO" To Allowed "NO"
     And I select schedule 2 activities with <15 points and reg 29 "NO"
