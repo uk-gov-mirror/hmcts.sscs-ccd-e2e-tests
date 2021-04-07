@@ -159,23 +159,3 @@ Feature: ESA Final Decision Notices
     And I issue a final decision generate decision no
     Then the case should be in "Dormant" appeal status
     And I see "Final Decision Notice"
-
-  @esa-decision @nightly-test @ESA-DN-2
-  Scenario: Write ESA final decision WCA and Support group, >= points for schedule 2, No Schedule 3, No reg 35 and refuse
-    Given I presetup an "ESA" SYA case
-    And I am signed in as a Case Officer
-    And I navigate to an existing case
-    When I choose the next step "Admin - send to Ready to List"
-
-    When I switch to be a Judge
-    When I choose "Write final decision"
-    And I write a final decision of "wca" appeal "YES" and Support group "YES" To Allowed "NO"
-    And I opt out schedule 3 activities and reg 35 "NO"
-    And I continue writing final decision WCA appeal
-    And I provide reasons and check answers To Allowed "NO"
-    And I see "Draft Decision Notice"
-
-    When I choose "Issue final decision"
-    And I issue a final decision generate decision upheld
-    Then the case should end in "Dormant" state
-    And I see "Final Decision Notice"
