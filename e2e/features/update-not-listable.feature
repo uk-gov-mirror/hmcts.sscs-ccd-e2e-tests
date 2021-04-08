@@ -13,7 +13,7 @@ Feature: The Update Not Listable
     Then not listable reason is "Visible" on summary page
     Then the case should be in "Not listable" appeal status
 
-  @update-not-listable @nightly-test @TA-598
+  @update-not-listable @nightly-test
   Scenario: Update not listable : Yes to direction full filled and end to Ready to list
     And I choose "Update not listable case"
     And I choose not listable direction full filled to "YES" and interloc review to "NO"
