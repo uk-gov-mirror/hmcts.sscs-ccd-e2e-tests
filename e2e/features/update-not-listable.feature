@@ -26,7 +26,7 @@ Feature: The Update Not Listable
     And I choose not listable direction full filled to "NO" and interloc review to "NO"
     Then the case should be in "With DWP" appeal status
 
-  @update-not-listable @nightly-test
+  @update-not-listable @nightly-test @TA-598
   Scenario: Update not listable : No to direction full filled and interloc review to YES
     And I choose "Update not listable case"
     And I choose not listable direction full filled to "NO" and interloc review to "YES"
