@@ -73,9 +73,11 @@ Then(/^I enter "(.+)" to appointee and continue$/, async function (hasAppointee)
      await anyCcdPage.clickElementById('appeal_appellant_isAppointee-Yes');
      await appointeePage.addAppointeeDetails()
      browser.driver.sleep(10);
+     await anyCcdPage.click('Continue');
+     browser.driver.sleep(10);
      await anyCcdPage.click('Submit');
      browser.driver.sleep(10);
-     await anyCcdPage.click('History');
+     await anyCcdPage.clickTab('History');
 
      expect(await anyCcdPage.contentContains('Awaiting Admin Action')).to.equal(true);
      browser.driver.sleep(5);
@@ -172,7 +174,7 @@ When(/^I choose not listable direction full filled to "(.+)" and interloc review
                     await anyCcdPage.chooseOptionByElementId('updateNotListableWhoReviewsCase', 'A Judge');
                     await anyCcdPage.click('Continue');
                     await anyCcdPage.click('Submit');
-                    await anyCcdPage.click('History');
+                    await anyCcdPage.clickTab('History');
                     expect(await anyCcdPage.contentContains('Review by Judge')).to.equal(true);
                     await browser.sleep(50);
             } else {
