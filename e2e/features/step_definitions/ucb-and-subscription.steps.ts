@@ -193,8 +193,6 @@ When(/^I choose not listable direction full filled to "(.+)" and interloc review
 Then(/^I subscribed to all parties to "(.+)"$/, async function (isSubscribed) {
 
  const action = isSubscribed;
- console.log('Subscribed to parties : ' + action)
-
  if (action === 'Yes') {
    await anyCcdPage.clickElementById('subscriptions_appellantSubscription_wantSmsNotifications-' + action);
    await anyCcdPage.setValueByElementId('subscriptions_appellantSubscription_tya', 'appellant123')
@@ -206,6 +204,7 @@ Then(/^I subscribed to all parties to "(.+)"$/, async function (isSubscribed) {
   await anyCcdPage.clickElementById('subscriptions_representativeSubscription_wantSmsNotifications-' + action);
   await anyCcdPage.setValueByElementId('subscriptions_representativeSubscription_tya', 'representative123')
   await anyCcdPage.setValueByElementId('subscriptions_representativeSubscription_email', 'representative-test@mailinator.com')
+  await anyCcdPage.setTextFiledValueNull('subscriptions_representativeSubscription_mobile');
   await anyCcdPage.setValueByElementId('subscriptions_representativeSubscription_mobile', '01234567890')
   await anyCcdPage.clickElementById('subscriptions_representativeSubscription_subscribeEmail-' + action);
   await anyCcdPage.clickElementById('subscriptions_representativeSubscription_subscribeSms-' + action);
@@ -241,7 +240,7 @@ Then(/^I subscribed to all parties to "(.+)"$/, async function (isSubscribed) {
     await anyCcdPage.click('Submit');
 
     await browser.sleep(50);
-    await anyCcdPage.click('Subscriptions');
+    await anyCcdPage.clickTab('Subscriptions');
 
     expect(await anyCcdPage.contentContains(action)).to.equal(true);
 
