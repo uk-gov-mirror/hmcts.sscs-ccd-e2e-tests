@@ -10,6 +10,7 @@ Feature: Issue decision
     When I switch to be a DWPResponse Writer
     When I choose "Upload response"
     And I upload contains further information "NO" for "PIP"
+
     When I switch to be a Judge
     And I navigate to an existing case
     When I choose "Write final decision"
