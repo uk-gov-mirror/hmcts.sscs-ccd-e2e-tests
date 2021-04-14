@@ -84,7 +84,8 @@ export class DwpResponsePage extends AnyPage {
         await element(by.id(inputElement)).sendKeys(absolutePath);
     }
 
-    async uploadResponseWithJointParty(benefitType: string, disputed: string, disputedByOthersYesOrNo: string, dwpFurtherInfoYesOrNo: string) {
+    async uploadResponseWithJointParty(benefitType: string, disputed: string,
+                                       disputedByOthersYesOrNo: string, dwpFurtherInfoYesOrNo: string) {
         const dwpState = 'NO';
         await this.uploadResponse(dwpFurtherInfoYesOrNo.toUpperCase(), dwpState, benefitType);
         await anyCcdFormPage.click('Continue');
