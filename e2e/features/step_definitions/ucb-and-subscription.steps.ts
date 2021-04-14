@@ -142,7 +142,7 @@ Then(/^I should see UCB flag$/, async function () {
 });
 
 Then(/^I should see PHME flag as "(.+)"$/, async function (state) {
-    await anyCcdPage.click('Summary');
+    await anyCcdPage.clickTab('Summary');
     await browser.sleep(50);
 
     if (state === 'Under Review') {
