@@ -220,9 +220,11 @@ Then(/^the bundles should be successfully listed in "(.+)" tab$/, async function
 Then(/^the case bundle details should be listed in "(.+)" tab$/, async function (tabName) {
     await anyCcdPage.click(tabName);
     expect(await caseDetailsPage.isFieldValueDisplayed('Stitch status', 'DONE')).to.equal(true);
-    expect(await caseDetailsPage.isFieldValueDisplayed('Config used for bundle', 'SSCS Bundle Edited')).to.equal(true);
-    expect(await caseDetailsPage.isFieldValueDisplayed('Config used for bundle', 'SSCS Bundle Unedited')).to.equal(true);
 });
+
+Then(/^the "(.+)" bundle configuration should have been used$/, async function (config) {
+    expect(await caseDetailsPage.isFieldValueDisplayed('Config used for bundle', config)).to.equal(true);
+})
 
 Given(/^navigate to an existing case$/, async function () {
      console.log(`the saved case id is ################## ${caseReference}`);

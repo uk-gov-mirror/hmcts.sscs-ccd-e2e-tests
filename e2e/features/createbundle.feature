@@ -16,3 +16,4 @@ Feature: Create bundle for a case
     When I choose the next step "Create a bundle"
     Then the bundles should be successfully listed in "History" tab
     And the case bundle details should be listed in "Bundles" tab
+    And the "SSCS Bundle" bundle configuration should have been used

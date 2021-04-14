@@ -29,20 +29,26 @@ When(/^I upload contains further information (.+) for "(.+)"$/, async function (
         await anyCcdPage.selectIssueCode();
         await browser.sleep(2000);
     }
+    await browser.sleep(500);
     await anyCcdPage.click('Continue');
+    await browser.sleep(500);
     if (benefitCode === 'UC') {
       await anyCcdPage.clickElementById('elementsDisputedList-general');
       await anyCcdPage.click('Continue');
+      await browser.sleep(500);
       await anyCcdPage.addNewCollectionItem('General');
       await anyCcdPage.selectGeneralIssueCode();
       await anyCcdPage.click('Continue');
+      await browser.sleep(500);
       await anyCcdPage.clickElementById('elementsDisputedIsDecisionDisputedByOthers-No');
       await anyCcdPage.click('Continue');
+      await browser.sleep(500);
       await anyCcdPage.clickElementById('jointParty-No');
       await anyCcdPage.click('Continue');
-
+      await browser.sleep(500);
     }
     await anyCcdPage.click('Submit');
+    await browser.sleep(500);
     await anyCcdPage.click('Summary');
 });
 

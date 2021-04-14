@@ -21,7 +21,9 @@ Feature: The Update UCB
     When I switch to be a Case Officer
     And I choose "Create a bundle"
     And I submit "Create a bundle"
-    Then The bundles should be successfully listed in "History" tab
+    Then the bundles should be successfully listed in "History" tab
     And the case bundle details should be listed in "Bundles" tab
+    And the "SSCS Bundle Edited" bundle configuration should have been used
+    And the "SSCS Bundle Unedited" bundle configuration should have been used
 
 

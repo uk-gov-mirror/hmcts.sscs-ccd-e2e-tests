@@ -32,11 +32,13 @@ When(/^I write a final decision of "(.+)" appeal "(.+)" and Support group "(.+)"
     await caseDetailsPage.addDayItems('writeFinalDecisionDateOfDecision');
     await browser.sleep(3000);
     await anyCcdPage.click('Continue');
-    await browser.sleep(4000);
+    await browser.sleep(8000);
     if (wcaAppeal === 'YES') {
-        await anyCcdPage.clickElementById(appealType + 'Appeal-Yes');
+        const wcaYes = appealType + 'Appeal-Yes';
+        await anyCcdPage.clickElementById(wcaYes);
     } else {
-        await anyCcdPage.clickElementById(appealType + 'Appeal-No');
+        const wcaNo = appealType + 'Appeal-No';
+        await anyCcdPage.clickElementById(wcaNo);
     }
     await browser.sleep(500);
     if (supportGroup === 'YES') {
