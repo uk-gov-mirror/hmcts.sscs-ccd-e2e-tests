@@ -221,7 +221,8 @@ Then(/^The edited bundles should be successfully listed in "(.+)" tab$/, async f
 });
 
 Then(/^the case bundle details should be listed in "(.+)" tab$/, async function (tabName) {
-    await anyCcdPage.click(tabName);
+    await anyCcdPage.clickTab('Bundles');
+    await browser.sleep(1000);
     expect(await caseDetailsPage.isFieldValueDisplayed('Stitch status', 'DONE')).to.equal(true);
     expect(await caseDetailsPage.isFieldValueDisplayed('Config used for bundle', 'SSCS Bundle')).to.equal(true);
 });
