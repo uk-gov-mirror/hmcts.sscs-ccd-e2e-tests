@@ -25,3 +25,4 @@ Feature: The Update UCB
     And I choose "Create a bundle"
     And I submit "Create a bundle"
     Then the bundles should be successfully listed in "History" tab
+    And the case bundle details should be listed in "Bundles" tab
