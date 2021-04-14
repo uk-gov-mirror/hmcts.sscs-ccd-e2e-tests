@@ -19,9 +19,9 @@ Feature: The Update UCB
     Then I should see PHME flag as "Granted"
 
     When I switch to be a Case Officer
-    And I choose "Create an edited bundle"
-    And I submit "Create an edited bundle"
-    Then The edited bundles should be successfully listed in "History" tab
+    And I choose "Create a bundle"
+    And I submit "Create a bundle"
+    Then The bundles should be successfully listed in "History" tab
     And the case bundle details should be listed in "Bundles" tab
 
 

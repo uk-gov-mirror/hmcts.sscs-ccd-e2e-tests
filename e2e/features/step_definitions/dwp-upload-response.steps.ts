@@ -27,6 +27,7 @@ When(/^I upload contains further information (.+) for "(.+)"$/, async function (
     await dwpresponse.uploadResponse(action, dwpState);
     if (benefitCode !== 'UC') {
         await anyCcdPage.selectIssueCode();
+        await browser.sleep(2000);
     }
     await anyCcdPage.click('Continue');
     if (benefitCode === 'UC') {

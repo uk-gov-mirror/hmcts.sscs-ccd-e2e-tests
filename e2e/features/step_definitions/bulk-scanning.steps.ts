@@ -217,18 +217,11 @@ Then(/^the bundles should be successfully listed in "(.+)" tab$/, async function
     await browser.sleep(500);
 });
 
-Then(/^The edited bundles should be successfully listed in "(.+)" tab$/, async function (tabName) {
-    await delay(10000);
-    await caseDetailsPage.reloadPage();
-    await anyCcdPage.click(tabName);
-    expect(await caseDetailsPage.eventsPresentInHistory('Create an edited bundle')).to.equal(true);
-    await browser.sleep(500);
-});
-
 Then(/^the case bundle details should be listed in "(.+)" tab$/, async function (tabName) {
     await anyCcdPage.click(tabName);
     expect(await caseDetailsPage.isFieldValueDisplayed('Stitch status', 'DONE')).to.equal(true);
-    expect(await caseDetailsPage.isFieldValueDisplayed('Config used for bundle', 'SSCS Bundle')).to.equal(true);
+    expect(await caseDetailsPage.isFieldValueDisplayed('Config used for bundle', 'SSCS Bundle Edited')).to.equal(true);
+    expect(await caseDetailsPage.isFieldValueDisplayed('Config used for bundle', 'SSCS Bundle Unedited')).to.equal(true);
 });
 
 Given(/^navigate to an existing case$/, async function () {
