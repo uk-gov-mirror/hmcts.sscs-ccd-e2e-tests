@@ -19,7 +19,7 @@ Feature: The Update Not Listable
     Then not listable reason is " Invisible" on summary page
     Then the case should end in "Ready to list" state
 
-
+ 
   @update-not-listable @nightly-test
   Scenario: Update not listable : No to direction full filled and interloc review to NO
     And navigate to an existing case

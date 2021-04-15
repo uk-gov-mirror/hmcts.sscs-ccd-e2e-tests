@@ -140,11 +140,11 @@ export class AnyCcdPage extends AnyPage {
     }
 
     async selectIssueCode() {
-        element(by.id('issueCode')).element(by.xpath('//*[@id="issueCode"]/option[3]')).click();
+        await element(by.id('issueCode')).element(by.xpath('//*[@id="issueCode"]/option[3]')).click();
     }
 
     async selectGeneralIssueCode() {
-        element(by.id('elementsDisputedGeneral_0_issueCode'))
+        await element(by.id('elementsDisputedGeneral_0_issueCode'))
         .element(by.xpath('//*[@id="elementsDisputedGeneral_0_issueCode"]/option[2]')).click();
     }
 

@@ -47,7 +47,7 @@ Then(/^I set PHME Granted flag to "(.+)"$/, async function (phmeGranted) {
 });
 
 Then(/^I enter date of appellant death with "(.+)" to appointee$/, async function (hasAppointee) {
-   caseDetailsPage.addPastDate('dateOfAppellantDeath')
+   await caseDetailsPage.addPastDate('dateOfAppellantDeath')
    if (hasAppointee === 'No') {
    await anyCcdPage.clickElementById('appeal_appellant_isAppointee-No');
    await anyCcdPage.click('Continue');
