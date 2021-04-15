@@ -30,9 +30,8 @@ When(/^I write a final decision of "(.+)" appeal "(.+)" and Support group "(.+)"
     await anyCcdPage.click('Continue');
     await browser.sleep(500);
     await caseDetailsPage.addDayItems('writeFinalDecisionDateOfDecision');
-    await browser.sleep(3000);
+    await browser.sleep(1000);
     await anyCcdPage.click('Continue');
-    await browser.sleep(8000);
     if (wcaAppeal === 'YES') {
         const wcaYes = appealType + 'Appeal-Yes';
         await anyCcdPage.clickElementById(wcaYes);
@@ -40,7 +39,7 @@ When(/^I write a final decision of "(.+)" appeal "(.+)" and Support group "(.+)"
         const wcaNo = appealType + 'Appeal-No';
         await anyCcdPage.clickElementById(wcaNo);
     }
-    await browser.sleep(500);
+    await browser.sleep(1000);
     if (supportGroup === 'YES') {
         await anyCcdPage.clickElementById('supportGroupOnlyAppeal-Yes');
     } else if (wcaAppeal === 'YES') {
