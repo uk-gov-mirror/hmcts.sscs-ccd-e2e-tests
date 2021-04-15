@@ -3,3 +3,6 @@
 <failedTest>
 <spec>/Users/ZeroZerp/Documents/HMCTS/SSCS/sscs-ccd-e2e-tests/e2e/features/adjournment.feature</spec>
 </failedTest>
+<failedTest>
+<spec>/Users/ZeroZerp/Documents/HMCTS/SSCS/sscs-ccd-e2e-tests/e2e/features/createbundle.feature</spec>
+</failedTest>

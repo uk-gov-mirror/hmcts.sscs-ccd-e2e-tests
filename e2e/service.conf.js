@@ -22,7 +22,6 @@ module.exports = {
   FailFast: process.env.TEST_E2E_FAIL_FAST !== 'false',
   TestsForCrossBrowser: process.env.TEST_FOR_CROSS_BROWSER || 'false',
 
-
   NightlyTag: process.env.TEST_E2E_ANNOTATION || '--cucumberOpts.tags=@migrated-to-exui'
 
 };

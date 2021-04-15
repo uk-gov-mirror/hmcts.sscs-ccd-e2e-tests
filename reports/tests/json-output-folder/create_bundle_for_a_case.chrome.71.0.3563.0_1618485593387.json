@@ -348,6 +348,17 @@
           }
         ]
       }
-    ]
+    ],
+    "metadata": {
+      "browser": {
+        "name": "chrome",
+        "version": "71.0.3563.0"
+      },
+      "device": "",
+      "platform": {
+        "name": "",
+        "version": ""
+      }
+    }
   }
 ]
