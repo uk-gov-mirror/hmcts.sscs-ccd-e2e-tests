@@ -1,6 +1,6 @@
 Feature: The Update UCB
 
-@update-phme @nightly-test
+@update-phme @nightly-test-1000
   Scenario: Update UCB flag with upload response Granted and Refused
     Given I am signed in as a Case Officer
     And I have a PIP bulk-scanned document with SSCSPE fields
@@ -24,6 +24,6 @@ Feature: The Update UCB
     Then the bundles should be successfully listed in "History" tab
     And the case bundle details should be listed in "Bundles" tab
     And the "SSCS Bundle Edited" bundle configuration should have been used
-    And the "SSCS Bundle Unedited" bundle configuration should have been used
+    And the "SSCS Bundle Original" bundle configuration should have been used
 
 
